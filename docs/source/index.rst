@@ -1,5 +1,5 @@
 #############################################
-Welcome to PicoBricks documentation
+Welcome to PicoBricks Documentation
 #############################################
 
 Here you will find all the relevant information about the project.
