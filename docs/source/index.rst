@@ -4,8 +4,6 @@ Welcome to PicoBricks documentation
 
 Here you will find all the relevant information about the project.
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
 
 .. note::
 
