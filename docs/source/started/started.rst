@@ -1,8 +1,9 @@
-
-
+################
+Getting Started
+################
 
 .. toctree::
-    :caption: Getting Started:
+    :caption: :
     :maxdepth: 1
     :glob:
 
