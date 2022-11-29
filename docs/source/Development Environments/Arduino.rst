@@ -12,3 +12,5 @@ First you need to add Raspberry Pi Pico to Arduino IDE. Start the Arduino IDE. T
     :align: center
     :width: 720
     :figclass: align-center
+
+Write “Raspberry Pi Pico” in field 1. After waiting for a while, click on the Arduino Mbed OS RP2040 Boards option and click the install button in field 2.
