@@ -6,7 +6,8 @@ Introduction
 -------------
 In real life, the employee, who has just started to learn the job, first undertakes the most basic task.The cleaner first learns to use the broom, the cook learns to use the kitchen utensils, the waiter to carry a tray. We can come up with many examples. The first code written by newcomers to software development is known as "Hello World". Printing "Hello World" as soon as the program starts on the screen or console window in the language they use is the first step in programming. Like a baby starting to crawl… 
 
-.. code-block:: bash
+.. code-block::
+
    print("Hello World")
    Hello World
    
@@ -26,12 +27,12 @@ Wiring Diagram
 
 .. figure:: ../_static/blink1.png      
     :align: center
-    :width: 720
+    :width: 520
     :figclass: align-center
     
 .. figure:: ../_static/blink2.png      
     :align: center
-    :width: 720
+    :width: 520
     :figclass: align-center
 
 You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.
@@ -39,6 +40,7 @@ You can program and run Picobricks modules without any wiring. If you are going 
 MicroPython Code of the Project
 --------------------------------
 .. code-block::
+
    from machine import Pin #to access the hardware 
    on the pico
    import utime #time library
@@ -46,4 +48,31 @@ MicroPython Code of the Project
    while True: #while loop
        led.toggle() #LED on&off status
        utime.sleep(0.5) #wait for a half second
+       
+Arduino C Code of the Project
+-------------------------------
 
+.. code-block::
+
+   void setup() {
+   // put your setup code here, to run once:
+    pinMode(7,OUTPUT); // initialize digital pin 7 as an output
+   }
+   void loop() {
+     // put your main code here, to run repeatedly:
+      digitalWrite(7,HIGH); //turn the LED on by making the voltage HIGH  
+      delay(500); //wait for a half second                   
+      digitalWrite(7,LOW); //turn the LED on by making the voltage LOW
+      delay(500); //wait for a half second                    
+   }
+
+Coding the Project with MicroBlocks
+------------------------------------
+
+If you have done MicroBlocks-Picobricks connection and library installation, the steps you need to follow for the first project are detailed in the table below.
+
+.. figure:: ../_static/blink3.png      
+    :align: center
+    :width: 720
+    :figclass: align-center
+    
