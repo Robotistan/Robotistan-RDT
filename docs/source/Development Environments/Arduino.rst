@@ -52,5 +52,5 @@ After the saving process, we must click the "Upload" button in the 1st field to 
     
 .. figure:: ../_static/arduino6.png
     :align: center
-    :width: 720
+    :width: 220
     :figclass: align-center
