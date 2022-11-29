@@ -8,4 +8,7 @@ Download the Arduino IDE 1.8.x setup file from https://www.arduino.cc/en/softwar
 
 First you need to add Raspberry Pi Pico to Arduino IDE. Start the Arduino IDE. Then go to Tools>Board>Boards Manager.
 
-
+.. figure:: ../_static/arduino.png
+    :align: center
+    :width: 720
+    :figclass: align-center
