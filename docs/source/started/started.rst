@@ -3,7 +3,7 @@ Getting Started
 ################
 
 .. toctree::
-    :caption: :
+    :caption: PicoBricks:
     :maxdepth: 1
     :glob:
 
