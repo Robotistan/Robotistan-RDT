@@ -10,7 +10,7 @@ Visit https://thonny.org/. Select the version suitable for your system and downl
 
 .. figure:: ../_static/thonny.png
     :align: center
-    :width: 320
+    :width: 420
     :figclass: align-center
     
 Thonny IDE Interface
@@ -18,7 +18,7 @@ Thonny IDE Interface
 
 .. figure:: ../_static/thonny1.png
     :align: center
-    :width: 320
+    :width: 920
     :figclass: align-center
     
     
@@ -40,28 +40,28 @@ In order for Raspberry Pi Pico to understand the MicroPython code we will write,
 
 .. figure:: ../_static/thonny3.png
     :align: center
-    :width: 320
+    :width: 720
     :figclass: align-center
     
 Select the Raspberry Pi Pico from the drop-down list shown in area 1. Leave the 2nd area as in the image, click on the 3rd area.
 
 .. figure:: ../_static/thonny2.png
     :align: center
-    :width: 320
+    :width: 520
     :figclass: align-center
     
 Connect Pico to your computer's USB port with a cable while holding down the white bootsel button on it.
 
 .. figure:: ../_static/arduino3.png
     :align: center
-    :width: 320
+    :width: 520
     :figclass: align-center
     
 After the Install button is activated, you can release the button. Press the Install button and wait for the firmware to load.
 
 .. figure:: ../_static/thonny4.png
     :align: center
-    :width: 320
+    :width: 520
     :figclass: align-center
     
 After the installation is complete, click the Close button to complete the installation.
@@ -74,7 +74,7 @@ Plug the Pico's cable directly into the computer's USB port. You don't need to h
 
 .. figure:: ../_static/thonny5.png
     :align: center
-    :width: 320
+    :width: 520
     :figclass: align-center
 
 Activate the Files option from the View menu. A long file explorer tab will be placed on the left side of the screen. If you see Raspberry Pi Pico in section 1, it means that it is connected to Thonny Pico without any problems, you are ready to write, save and run your code. File explorer area that shows the working directory on your computer.
@@ -84,7 +84,7 @@ The "hello world" application of the software world is the "blink" application t
 
 .. figure:: ../_static/thonny6.png
     :align: center
-    :width: 320
+    :width: 520
     :figclass: align-center
     
 Select Raspberry Pi Pico from the Save in window, type “blink.py” in the File Name field and click the OK button.After seeing the "blink.py" file in Pico's file explorer, click the F5 key on the keyboard or the green Run button on the toolbar, and the code file will be run by Pico. If you see the internal LED on the Pico blinking at 1 second intervals, you have successfully written and run your first code. Congratulations :)
