@@ -2,8 +2,6 @@
 Development Environments
 ########################
 
-Supported IDEs
---------------------------- 
 
 - MicroBlocks Block Programming Language
  
