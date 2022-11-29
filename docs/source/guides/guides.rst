@@ -1,9 +1,9 @@
-#######################
-⁬DevelopmentEnvironments
-#######################
+######
+Guides
+######
 
 .. toctree::
-    :caption: ⁬DevelopmentEnvironments:
+    :caption: Guides:
     :maxdepth: 1
     :glob:
 
