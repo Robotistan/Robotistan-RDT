@@ -15,7 +15,7 @@ Here you will find all the relevant information about the project.
 
    What is PicoBricks? <picobricks>
    Bricks <bricks>
-   Development Environments <developmentenvironments/DevelopmentEnvironments>
+   Development Environments <developmentenvironments/developmentenvironments>
    Tutorials <tutorials/tutorials>
    Advanced Utilities <advanced_utils>
    FAQ <faq>
