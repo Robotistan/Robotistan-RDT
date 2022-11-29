@@ -8,3 +8,8 @@ Unlike other boards, Pico Bricks has an incredible amount of flexibility for eve
 Learn coding from zero to hero with MicroBlocks or the Pico Bricks's drag-n-drop, block coding builder. MicroBlocks is the easiest coding experience ever created and widely known in the maker industry.
 
 
++------------+
+||picobricks||     
++------------+
+
+.. |picobricks| image:: _static/picobricks.png
