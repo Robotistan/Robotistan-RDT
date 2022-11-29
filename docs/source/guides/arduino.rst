@@ -1,6 +1,10 @@
 Arduino IDE
 ====================
 
+
+Installation Arduino IDE
+------------------------------------------
+
 Picobricks offers us the opportunity to code with Arduino C. Getting started coding the Raspberry Pi Pico at the heart of Picobricks with the widely used Arduino IDE is pretty easy.
 
 Download the Arduino IDE 1.8.x setup file from https://www.arduino.cc/en/software to your computer and install it.
