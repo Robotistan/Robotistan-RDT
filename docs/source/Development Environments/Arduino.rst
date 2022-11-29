@@ -26,3 +26,10 @@ Writing and Running Code with Arduino IDE
 ------------------------------------------
 
 When you want to code Pico with Arduino IDE, you just have to connect it to your computer by holding the BOOTSEL button for the first time.
+
+.. figure:: ../_static/arduino3.png
+    :align: center
+    :width: 720
+    :figclass: align-center
+    
+     In this way, Pico will be connected in bootloader mode and recognized by your computer as external memory. Connect Pico to your computer by holding down the Bootsel button. After seeing Pico as the computer's flash memory, activate your card by going to Tools>Board>Arduino Mbed OS RP2040 boards> Raspberry Pi Pico.
