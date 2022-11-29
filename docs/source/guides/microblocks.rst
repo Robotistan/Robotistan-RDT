@@ -47,7 +47,7 @@ When you open the MicroBlocks program, you will see the IDE image shown below. Y
 
 MicroBlocks-Picobricks Connection and Operation
 ------------------------------------------------
-- Connecting and Updating the Firmware in the Offline Editor
+* Connecting and Updating the Firmware in the Offline Editor
 
 To connect Picobricks to the offline editor, you must connect the card to your computer with the USB cable while holding the white BOOTSEL button on the Raspberry Pi Pico.
 
@@ -56,7 +56,7 @@ To connect Picobricks to the offline editor, you must connect the card to your c
     :width: 220
     :figclass: align-center
     
-- Open the MicroBlocks offline editor and from the MicroBlocks menu, click the MicroBlocks button (gear icon), then click update firmware on board. 
+Open the MicroBlocks offline editor and from the MicroBlocks menu, click the MicroBlocks button (gear icon), then click update firmware on board. 
 
 .. figure:: ../_static/microblocks2.png
     :align: center
@@ -64,7 +64,7 @@ To connect Picobricks to the offline editor, you must connect the card to your c
     :figclass: align-center
     
     
-- You will be presented with a Pico board type selection. Select RP2040(Pico). Firmware installation will only take a few seconds and when finished, MicroBlocks will automatically connect to Picobricks.
+You will be presented with a Pico board type selection. Select RP2040(Pico). Firmware installation will only take a few seconds and when finished, MicroBlocks will automatically connect to Picobricks.
 
 .. figure:: ../_static/microblocks4.png
     :align: center
