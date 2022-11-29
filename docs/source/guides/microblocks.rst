@@ -127,3 +127,14 @@ If all goes well, the PicoBricks library and code blocks will be displayed in th
     :width: 520
     :figclass: align-center
 
+PicoBricks Firmware
+-------------------
+
+If you have previously updated PicoBricks Firmware, you can connect by clicking the USB icon. If you are going to connect MicroBlocks to Picobricks for the first time, you can follow the steps in section 1.1.2.
+
+It is a good idea to check from time to time if there is a new version of the IDE or the Pico Firmware. You can verify the version you are running by selecting MicroBlocks Options (wheel icon) / about in the menu. You should see a display like:
+
+.. figure:: ../_static/microblocks11.png
+    :align: center
+    :width: 520
+    :figclass: align-center
