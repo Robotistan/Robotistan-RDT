@@ -53,14 +53,14 @@ To connect Picobricks to the offline editor, you must connect the card to your c
 
 .. figure:: ../_static/arduino3.png
     :align: center
-    :width: 220
+    :width: 420
     :figclass: align-center
     
 Open the MicroBlocks offline editor and from the MicroBlocks menu, click the MicroBlocks button (gear icon), then click update firmware on board. 
 
 .. figure:: ../_static/microblocks2.png
     :align: center
-    :width: 220
+    :width: 420
     :figclass: align-center
     
     
@@ -69,5 +69,61 @@ You will be presented with a Pico board type selection. Select RP2040(Pico). Fir
 .. figure:: ../_static/microblocks4.png
     :align: center
     :width: 220
+    :figclass: align-center
+
+- Connecting and Updating the Firmware in the Online Editor
+
+A few extra steps are required to connect Picobricks to the online editor. For security reasons, the scanner cannot access the card's USB drive without prompting the user. First, click the MicroBlocks button (gear icon) from the menu, then click the update firmware on board option and select the card type by clicking RP2040 (Pico) from the drop-down list.
+
+When the card is selected, the Firmware Install window will open displaying the following message.
+	
+Now, while holding down the white BOOTSEL button on the Pico, connect the card to your computer. 
+
+.. figure:: ../_static/microblocks5.png
+    :align: center
+    :width: 220
+    :figclass: align-center
+
+Click the OK button on the displayed message and it will automatically open the system file manager window positioned to the RPI-RP2 drive with the firmware file named vm_pico.uf2 selected. 
+
+Click the Save button and the firmware update will complete.
+
+.. figure:: ../_static/microblocks6.png
+    :align: center
+    :width: 720
+    :figclass: align-center
+    
+- Connecting for normal operations (Write & Edit programs):
+
+Clicking the Connect button will display the system USB ports where the micro devices are plugged in. In this window, you can connect Picobricks to MicroBlocks by first selecting the Pico device and then clicking the Connect buttons. When the connection is successful, a green circle will appear behind the USB icon.
+
+.. figure:: ../_static/microblocks7.png
+    :align: center
+    :width: 720
+    :figclass: align-center
+    
+
+MicroBlocks is a real-time coding editor. There is no process of compiling and uploading the code to the card after they are written. When you click on the code blocks, the code will run. 
+
+To use any of the PicoBricks modules, you first, you need to import Picobricks library into the Microblocks editor. You have to click the Add Library button for this.
+
+.. figure:: ../_static/microblocks8.png
+    :align: center
+    :width: 720
+    :figclass: align-center
+
+
+In the File Open window, click the Kits and Boards button to open the list of supported devices.Click PicoBricks from the drop-down list, and then click the Open button.
+
+.. figure:: ../_static/microblocks9.png
+    :align: center
+    :width: 720
+    :figclass: align-center
+    
+If all goes well, the PicoBricks library and code blocks will be displayed in the Code blocks panel.In all the Project examples, whenever you see a block name starting with PicoBricks, it will be located in the PicoBricks Library menu. 
+
+.. figure:: ../_static/microblocks10.png
+    :align: center
+    :width: 520
     :figclass: align-center
 
