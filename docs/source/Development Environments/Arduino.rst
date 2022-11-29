@@ -47,3 +47,10 @@ Write the code in the field number 1 below and follow the File>Save path and sav
     :align: center
     :width: 720
     :figclass: align-center
+    
+After the saving process, we must click the "Upload" button in the 1st field to compile the code and save it in Pico. When we see Done uploading at the bottom, our code will run in Pico and the built-in LED will blink at 1-second intervals. Important Note: While coding Picobricks with Arduino IDE, connect it to your computer by pressing the BOOTSEL button at the first pass from Micropython or Microblocks firmware. You do not need to press BOOTSEL for subsequent code uploads. Enjoyable projects :)
+    
+.. figure:: ../_static/arduino6.png
+    :align: center
+    :width: 720
+    :figclass: align-center
