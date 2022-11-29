@@ -19,3 +19,10 @@ Write “Raspberry Pi Pico” in field 1. After waiting for a while, click on th
     :align: center
     :width: 720
     :figclass: align-center
+
+During all these installations, you must accept the approvals it will ask you for. When the installation is complete and click the close button, you will have added Pico to the Arduino IDE.
+
+Writing and Running Code with Arduino IDE
+------------------------------------------
+
+When you want to code Pico with Arduino IDE, you just have to connect it to your computer by holding the BOOTSEL button for the first time.
