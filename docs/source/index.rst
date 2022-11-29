@@ -17,7 +17,7 @@ Here you will find all the relevant information about the project.
    Bricks <bricks>
    Development Environments <guides/guides>
    Getting Started <started/started>
-   Porjects <projects/projects>
+   Projects <projects/projects>
    FAQ <faq>
    Troubleshooting <troubleshooting>
    Contributing <contributing>
