@@ -33,9 +33,3 @@ Picobricks offers us the opportunity to code with Arduino C. Getting started cod
     :width: 320
     :figclass: align-center
 
-.. toctree::
-    :caption: Development Environments:
-    :maxdepth: 1
-    :glob:
-
-    *
