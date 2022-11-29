@@ -13,7 +13,7 @@ Here you will find all the relevant information about the project.
    :maxdepth: 1
    :caption: Contents:
 
-   PicoBricks <picobricks>
+   What is PicoBricks? <picobricks>
    Bricks <bricks>
    Guides <guides/guides>
    Tutorials <tutorials/tutorials>
