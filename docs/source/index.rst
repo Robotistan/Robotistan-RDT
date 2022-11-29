@@ -16,7 +16,7 @@ Here you will find all the relevant information about the project.
    What is PicoBricks? <picobricks>
    Bricks <bricks>
    Development Environments <guides/guides>
-   Getting Started <started/started>
+   Getting Started <started/microblocks>
    Advanced Utilities <advanced_utils>
    FAQ <faq>
    Troubleshooting <troubleshooting>
