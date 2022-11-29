@@ -14,7 +14,7 @@ Here you will find all the relevant information about the project.
    :caption: Contents:
 
    Getting Started <getting_started>
-   Libraries <libraries>
+   Bricks <bricks>
    Guides <guides/guides>
    Tutorials <tutorials/tutorials>
    Advanced Utilities <advanced_utils>
