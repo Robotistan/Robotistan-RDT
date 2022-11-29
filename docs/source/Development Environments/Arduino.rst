@@ -32,4 +32,18 @@ When you want to code Pico with Arduino IDE, you just have to connect it to your
     :width: 720
     :figclass: align-center
     
-     In this way, Pico will be connected in bootloader mode and recognized by your computer as external memory. Connect Pico to your computer by holding down the Bootsel button. After seeing Pico as the computer's flash memory, activate your card by going to Tools>Board>Arduino Mbed OS RP2040 boards> Raspberry Pi Pico.
+    
+    
+In this way, Pico will be connected in bootloader mode and recognized by your computer as external memory. Connect Pico to your computer by holding down the Bootsel button. After seeing Pico as the computer's flash memory, activate your card by going to Tools>Board>Arduino Mbed OS RP2040 boards> Raspberry Pi Pico.
+     
+.. figure:: ../_static/arduino4.png
+    :align: center
+    :width: 720
+    :figclass: align-center
+
+Write the code in the field number 1 below and follow the File>Save path and save it anywhere on your computer with the name "Blink".
+
+.. figure:: ../_static/arduino5.png
+    :align: center
+    :width: 720
+    :figclass: align-center
