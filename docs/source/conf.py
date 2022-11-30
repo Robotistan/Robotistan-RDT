@@ -48,6 +48,15 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
 }
+
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+            return Mock()
+
+
+MOCK_MODULES = ['fuel']
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
