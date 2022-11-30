@@ -73,7 +73,7 @@ Coding the Project with MicroBlocks
 
 This block executes the code under it whenever the Start button is clicked
 
-.. figure:: ../_static/blink3.png      
+.. figure:: ../_static/blink33.png      
     :align: center
     :width: 520
     :figclass: align-center
