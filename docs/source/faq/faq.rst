@@ -30,13 +30,13 @@ After downloading library, you need to load the picobricks.py library into the r
     :width: 620
     :figclass: align-center
 
-Should ı BOOTSEL every time when ı use PicoBricks?
+Should I BOOTSEL every time when I use PicoBricks?
 ---------------------------------------------------
 
 
 You don't need to BOOTSEL every time, if you don't switch between coding platforms, you don't need to BOOTSEL when you reconnect picobricks to the coding platform you developed the last project on. However, if you switch to a different platform, you need to BOOTSEL your card.
 
-How can ı test Picobricks boards and modules?
+How can I test Picobricks boards and modules?
 ----------------------------------------------
 
 To test the modules on Picobricks, R&D team has created 2 different test codes using Thonny and Microblocks platforms. You can test by using these test codes.
