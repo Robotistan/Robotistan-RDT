@@ -48,7 +48,11 @@ MicroPython Code of the Project
    while True: #while loop
        led.toggle() #LED on&off status
        utime.sleep(0.5) #wait for a half second
-       
+
+
+.. tip::
+  If you rename your code file to main.py, your code will run after every boot.
+   
 Arduino C Code of the Project
 -------------------------------
 
