@@ -10,9 +10,15 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+import inspect
 import os
 import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import sphinx.environment
+from docutils.utils import get_source_line
+from mock import Mock as MagicMock
+from sphinx.ext.autodoc import cut_lines
+
+# sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information
 
@@ -31,6 +37,11 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.todo',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.graphviz',
+    'sphinx.ext.linkcode'
 ]
 
 intersphinx_mapping = {
