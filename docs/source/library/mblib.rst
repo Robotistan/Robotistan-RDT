@@ -22,7 +22,7 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 +-------------------+--+------------+--+---------------------+--+------+--++
 
 +-------------------+----------------+---+-------------------+----------+
-|            |windows-logo|          | |linux-logo|                     | 
+||windows-logo|                      | |linux-logo|                     | 
 +-------------------+----------------+--+-------------------+-----------+
 | Makes a beep sound from the speaker| Returns the button status as 1/0 | 
 +-------------------+----------------+---+-------------------+----------+
@@ -32,7 +32,7 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 .. |macos-logo| image:: _static/pb_color.png
 
 +-------------------+----------------+-++-------+--------------------------+
-|            |windows-logo1|           |  |macos-logo1|                    |
+||windows-logo1|                       |  |macos-logo1|                    |
 +-------------------+----------------+-+-------------------+-----------+---+
 | Returns the humidity percentage value|  Returns the potentiometer value. |
 +-------------------+----------------+-+-------------------+----------+----+
@@ -43,7 +43,7 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 
 
 +-------------------+----------------+--+-------------------+--+
-|            |windows-logo2|         | |linux-logo2|           | 
+| |windows-logo2|                    | |linux-logo2|           | 
 +-------------------+----------------+--+-------------------+--+
 | Sets the RGB LED to a random color | Sets the red LED as 1/0 |
 +-------------------+----------------+--+-------------------+--+
