@@ -7,11 +7,6 @@ BOOTSEL
 
 Pico’s BOOTSEL mode lives in read-only memory inside the RP2040 chip, and can’t be overwritten accidentally. No matter what, if you hold down the BOOTSEL button when you plug in your Pico, it will appear as a drive onto which you can drag a new UF2 file. There is no way to brick the board through software. However, there are some circumstances where you might want to make sure your Flash memory is empty. You can do this by dragging and dropping a special UF2 binary onto your Pico when it is in mass storage mode.
 
-.. figure:: ../_static/pico1.png
-    :align: center
-    :width: 720
-    :figclass: align-center
-
 
 * Download the MicroPython ``UF2 file`` from the Raspberry Pi website
 * Hold down the ``BOOTSEL`` button on your Pico and plug it into your computer's USB port.
