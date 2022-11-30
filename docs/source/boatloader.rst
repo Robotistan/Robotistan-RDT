@@ -7,10 +7,9 @@ BOOTSEL
 
 Pico’s BOOTSEL mode lives in read-only memory inside the RP2040 chip, and can’t be overwritten accidentally. No matter what, if you hold down the BOOTSEL button when you plug in your Pico, it will appear as a drive onto which you can drag a new UF2 file. There is no way to brick the board through software. However, there are some circumstances where you might want to make sure your Flash memory is empty. You can do this by dragging and dropping a special UF2 binary onto your Pico when it is in mass storage mode.
 
-.. figure:: ../_static/pico.png
+.. figure:: ../_static/pico.png      
     :align: center
     :width: 520
-    :alt: pico
     :figclass: align-center
 
 * Download the MicroPython ``UF2 file`` from the Raspberry Pi website
@@ -46,27 +45,27 @@ Reset Button Project
 
 1) Place the Raspberry Pi Pico into the breadboard so that the micro USB port hangs over ``the end of the breadboard.``
 
-.. figure:: ../_static/pico1.png
+.. figure:: ../_static/pico1.png      
     :align: center
     :width: 520
-    :alt: pico
     :figclass: align-center
+
     
 2) Insert a ``push button`` as you see in the image
 
-.. figure:: ../_static/pico2.png
+.. figure:: ../_static/pico2.png      
     :align: center
     :width: 520
-    :alt: pico
     :figclass: align-center
+
     
 3) Connect one of the jumper wires to the GND pin and the right leg of the button, and connect the other to the RUN pin and the left leg of the button.
 
-.. figure:: ../_static/pico3.png
+.. figure:: ../_static/pico3.png      
     :align: center
     :width: 520
-    :alt: pico
     :figclass: align-center
+
     
 .. note::
   Our reset button is ready to use.
