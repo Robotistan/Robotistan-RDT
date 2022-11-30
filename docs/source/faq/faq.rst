@@ -43,6 +43,9 @@ To test the modules on Picobricks, R&D team has created 2 different test codes u
 
 `For Thonny <https://github.com/Robotistan/PicoBricks/blob/main/Software/Pre-Installed%20Code/test.py>`_;
 
+.. tip::
+  If you rename test.py to main.py, your code will run after every boot.
+
 .. code-block:: bash
 
    from utime import sleep
