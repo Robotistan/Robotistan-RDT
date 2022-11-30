@@ -1,15 +1,25 @@
-What is PicoBricks?
-====================
+Library Guide for MicroBlocks
+========================================
 
-Pico Bricks is an electronic development board + software which is designed for use in maker projects. With ten detachable modules included, Pico Bricks can be used to create a wide variety of projects. It also includes a protoboard that you can use to add your own modules!
-Pico Bricks is for everyone interested in electronics and coding. Beginners with no prior experience will find it easy to get started thanks to the modular hardware design, Scratch-like block coding environment, and simulator. Those with experience can dig more deeply into electronics or explore coding in Python. And even the most expert makers will appreciate how quickly they can explore ideas and create prototypes with Pico Bricks.
-Unlike other boards, Pico Bricks has an incredible amount of flexibility for every level of makers! Bricks IDE has example code for different scenarios.
+Summary of Blocks
+------------------
 
-Learn coding from zero to hero with MicroBlocks or the Pico Bricks's drag-n-drop, block coding builder. MicroBlocks is the easiest coding experience ever created and widely known in the maker industry.
+For each block, there is a short description entry and a detailed block and component description. You can click on block pictures in the short description table to access the details and sample codes.
 
+Sample codes on how to use the blocks have been provided. To try them out, all you have to do is open a browser session of the MicroBlocks IDE and drag and drop them onto the editor programming area. Then you can just click on them and see the results.
 
-+------------+
-||picobricks||     
-+------------+
+.. tip::
+    Before continuing, we must be clear that this project is supported by `Espressif Systems`_ and the community.
+    Everyone is more than welcome to contribute back to this project.
 
-.. |picobricks| image:: _static/picobricks.png
+To test any of the sample codes below, just drag and drop them onto the MicroBlocks IDE.
+
++-------------------+-------------------+-------------------+
+| |windows-logo|    | |linux-logo|      | |macos-logo|      |
++-------------------+-------------------+-------------------+
+| Windows           | Linux             | macOS             |
++-------------------+-------------------+-------------------+
+
+.. |windows-logo| image:: _static/logo_windows.png
+.. |linux-logo| image:: _static/logo_linux.png
+.. |macos-logo| image:: _static/logo_macos.png
