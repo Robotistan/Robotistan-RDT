@@ -1,58 +1,71 @@
 ###############
-Bricks
+Boatloader
 ###############
 
-+--------+
-||bricks||     
-+--------+
+BOOTSEL
+--------
 
-.. |bricks| image:: _static/bricks.png
+Pico’s BOOTSEL mode lives in read-only memory inside the RP2040 chip, and can’t be overwritten accidentally. No matter what, if you hold down the BOOTSEL button when you plug in your Pico, it will appear as a drive onto which you can drag a new UF2 file. There is no way to brick the board through software. However, there are some circumstances where you might want to make sure your Flash memory is empty. You can do this by dragging and dropping a special UF2 binary onto your Pico when it is in mass storage mode.
 
-Pico Board
+.. figure:: ../_static/arduino.png
+    :align: center
+    :width: 720
+    :figclass: align-center
+
+
+* Download the MicroPython ``UF2 file`` from the Raspberry Pi website
+* Hold down the ``BOOTSEL`` button on your Pico and plug it into your computer's USB port.
+* Open Explorer, and open the ``RPI-RP2 directory`` like you would any other hard drive
+* Drag and drop the ``UF2 file`` into the ``RPI-RP2 directory``
+
+
+Reset Flash Memory
 -------------------
-Raspberry Pi Pico is a microcontroller that you can use in your embedded system projects, prototyping. Raspberry Pi Pico, powered by the RP2040 microcontroller, has a dual-core ARM Cortex M0+ processor. The low-cost Raspberry Pi Pico stands out with its low power consumption and high performance. The Raspberry Pi Pico, which can be programmed with both C/C++ and MicroPython, appeals to users of all ages.
 
-OLED Screen
--------------------
-Miniature OLED display modules are a great way to add a small screen to your Raspberry Pi projects. 
+The Raspberry Pi Pico is a fantastic piece of technology, but it does have one flaw: ``there is no reset button``. How important is this omission? Sometimes our code can go away, or we need to flash new firmware to our Pico.
 
-Temperature and Humidity Sensor
--------------------
-It uses a capacitive humidity sensor and a thermistor to measure the surrounding air and spits out a digital signal on the data pin. It's fairly simple to use but requires careful timing to grab data. 
+When this happens we have to unplug the Pico and plug it back in again in order to reset it. If we pull out the micro USB lead, a mechanical connection which is rated for a finite number of insertions, too many times, we could wear it out. If we have the Pico connected to a powered USB hub with on / off buttons, we can press the button on that, but what if we don’t.
 
-LED Button
--------------------
-Light emitting diode (LED) modules are self-contained devices that contain a chain of LED emitters. Owing to their size, small LED modules make perfect light fixtures in narrow profiles and applications where space is limited.
+.. tip::
+  With very little equipment, and zero code we can build a simple button to reset our Pico ready for the next project.
+  
+Reset Button Project
+---------------------
 
-RGB LED
--------------------
-RGB LED modules can emit various colors of light. The three primary colors, red, green, and blue, can be mixed and compose all kinds of colors by brightness, so you can make an RGB LED emit colorful light by controlling the circuit.
++---------------+---------------+
+| What You Need For This        | 
++===============+===============+
+| A Raspberry Pi Pico           | 
++---------------+---------------+
+| 2 x Male to Male Jumper Wires | 
++---------------+---------------+
+| Breadboard                    | 
++---------------+---------------+
+| Pushbutton                    | 
++---------------+---------------+
 
-Motor Driver
--------------------
-It is electrical equipment that adjusts the speed of induction motors by changing the frequency. In addition to speed control, it is equipped with superior protection, control and communication features.
+1) Place the Raspberry Pi Pico into the breadboard so that the micro USB port hangs over ``the end of the breadboard.``
 
-LDR
--------------------
-LDR sensor module is used to detect the intensity of light. When there is light, the resistance of LDR will become low according to the intensity of light. The greater the intensity of light, the lower the resistance of LDR. The sensor has a potentiometer knob that can be adjusted to change the sensitivity of LDR towards light.
 
-Relay
--------------------
-Relays are switches that open and close circuits electromechanically or electronically. Relays control one electrical circuit by opening and closing contacts in another circuit.
 
-Potentiometer
--------------------
-A potentiometer is defined as a 3 terminal variable resistor in which the resistance is manually varied to control the flow of electric current. 
+    
+2) Insert a ``push button`` as you see in the image
 
-ESP8266
--------------------
-ESP8266 is a low Wi-Fi microcontroller with full TCP/IP stack. It has many GPIO (general purpose input output pins) for interfacing with different sensors. ESP8266 due to its good functionality is used a lot in prototyping IOT products.
-Its cross functionality with Arduino makes it easy to program with Arduino IDE.
+.. figure:: ../_static/arduino.png
+    :align: center
+    :width: 720
+    :figclass: align-center
 
-Buzzer
--------------------
-A buzzer or beeper is an signaling device, which produces sound. 
+    
+3) Connect one of the jumper wires to the GND pin and the right leg of the button, and connect the other to the RUN pin and the left leg of the button.
 
-Protoboard
--------------------
-A protoboard is usually a construction base for prototyping of electronics. 
+
+
+    
+.. note::
+  Our reset button is ready to use.
+  
+.. tip::
+  You can also check `Raspberry Pi Website <https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#resetting-flash-memory>`_ for more information.
+   
+
