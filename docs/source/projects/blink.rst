@@ -75,7 +75,7 @@ This block executes the code under it whenever the Start button is clicked
 
 .. figure:: ../_static/blink33.png      
     :align: center
-    :width: 520
+    :width: 220
     :figclass: align-center
 2) Then, drag the ``forever`` block from the ``Control`` category and add it under the when started block. 
 
@@ -83,7 +83,7 @@ Forever block will execute the blocks placed within it non-stop (forever, as the
 
 .. figure:: ../_static/blink4.png      
     :align: center
-    :width: 520
+    :width: 220
     :figclass: align-center
 
 3) Drag the PicoBricks ``set red LED block`` and drop it into the ``forever`` block.The boolean TRUE (green) selection in the block will make the LED turn on. Alternatively, the FALSE (red) selection will make the LED go off.
@@ -92,7 +92,7 @@ Test if the red LED is lit by pressing the ``start`` button
 
 .. figure:: ../_static/blink5.png      
     :align: center
-    :width: 520
+    :width: 220
     :figclass: align-center
     
 4) Now, to turn off the red LED, click once on the boolean control in the block to set it to red. This setting means FALSE and should turn off the LED.
@@ -101,7 +101,7 @@ Test whether the LED goes out by pressing the Start button again.
     
 .. figure:: ../_static/blink6.png      
     :align: center
-    :width: 520
+    :width: 220
     :figclass: align-center    
     
     
@@ -111,7 +111,7 @@ Drag the ``wait 500 millisecs`` block from the ``Control`` category and add it b
 
 .. figure:: ../_static/blink7.png      
     :align: center
-    :width: 520
+    :width: 220
     :figclass: align-center    
 
 6) Then add the ``Picobricks set red LED block`` again under the ``wait 500 millisecs`` block and set the boolean control to False. 
@@ -123,7 +123,7 @@ The number 500 in the ``wait 500 millisecs`` block represents milliseconds. You 
 
 .. figure:: ../_static/blink8.png      
     :align: center
-    :width: 520
+    :width: 220
     :figclass: align-center    
 
     
