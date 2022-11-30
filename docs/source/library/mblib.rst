@@ -15,11 +15,11 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 
 
 
-+-------------------+----+------------+--+-------------------+--+--+------+-----+--------+---------------+
-|      |windows-logo3|   | |linux-logo3|                           | |macos-logo3|                       |
-+-------------------+----+-----------+--+-------------------+--+---+------+-----+-------+----------------+
-| Controls the DC motors | Sets the RGB LED to the selected color. | Returns the temperature in Celsius. |
-+-------------------+----+------------+--+-------------------+--+--+------+----+---------+---------------+
++-------------------+--+------------+--+-------------------+--+--+------+-----+--------+----------+
+|      |windows-logo3| ||linux-logo3|                         | |macos-logo3|                     |
++-------------------+--+-----------+--+-------------------+---+------+-----+-------+--------------+
+|Controls the DC motors|Sets the RGB LED to the selected color| Returns the temperature in Celsius|
++-------------------+--+------------+--+-------------------+--+------+----+---------+-------------+
 
 +-------------------+----------------+---+-------------------+----------+
 |            |windows-logo|          | |linux-logo|                     | 
@@ -31,11 +31,11 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 .. |linux-logo| image:: _static/pb_button.png
 .. |macos-logo| image:: _static/pb_color.png
 
-+-------------------+----------------+--++-------+--------------------------+
-|            |windows-logo1|            |  |macos-logo1|                    |
-+-------------------+----------------+--+-------------------+-----------+---+
-| Returns the humidity percentage value.|  Returns the potentiometer value. |
-+-------------------+----------------+--+-------------------+----------+----+
++-------------------+----------------+-++-------+--------------------------+
+|            |windows-logo1|           |  |macos-logo1|                    |
++-------------------+----------------+-+-------------------+-----------+---+
+| Returns the humidity percentage value|  Returns the potentiometer value. |
++-------------------+----------------+-+-------------------+----------+----+
 
 .. |windows-logo1| image:: _static/pb_humidity.png
 .. |linux-logo1| image:: _static/pb_lightsensor.png
@@ -58,11 +58,11 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 .. |linux-logo3| image:: _static/pb_setrgbcolor.png
 .. |macos-logo3| image:: _static/pb_temperature.png
 
-+-------------------+----+------------------+
-|      |windows-logo4|   |  |macos-logo4|   |
-+-------------------+----++-----+-----+-----+
-| Turns off the RGB LED. |  Rescales values |
-+-------------------+----+------------+--+--+
++-------------------+-+---+-------------+
+||windows-logo4|      ||macos-logo4|    |
++-------------------+-+---++-----+-----++
+|Turns off the RGB LED| Rescales values |
++-------------------+-+---+------------++
 
 .. |windows-logo4| image:: _static/pb_turnoffrgb.png
 .. |linux-logo4| image:: _static/pb_initpins.png
@@ -76,7 +76,7 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 
 
 +-----+-------------+------+-------------------+----------+-----+----------+
-||macos-logo|              ||linux-logo1|                                 |
+||macos-logo|              ||linux-logo1|                                  |
 +----+-------------+-------+-----------------------------------------------+
 |Returns a RGB color value | Returns the light level as a percentage value |
 +----+--------------+------+-----------------------------------------------+
