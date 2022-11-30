@@ -41,6 +41,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'sphinx.ext.graphviz',
+    'sphinx.ext.linkcode',
 ]
 
 intersphinx_mapping = {
@@ -56,6 +57,17 @@ class Mock(MagicMock):
 
 MOCK_MODULES = ['fuel']
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
+
+def linkcode_resolve(domain, info):
+    if domain != 'py':
+        return None
+    if not info['module']:
+        return None
+    filename = info['module'].replace('.', '/')
+    return "https://somesite/sourcerepo/%s.py" % filename
+
+
 intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
