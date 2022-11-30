@@ -45,3 +45,47 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 .. |linux-logo2| image:: _static/pb_redled.png
 .. |macos-logo2| image:: _static/pb_relay.png
 
+
++-------------------+----+------------+--+-------------------+--+--+------+-----+--------+---------------+
+|      |windows-logo3|   | |linux-logo3|                           | |macos-logo3|                       |
++-------------------+----+-----------+--+-------------------+--+---+------+-----+-------+----------------+
+| Controls the DC motors | Sets the RGB LED to the selected color. | Returns the temperature in Celsius. |
++-------------------+----+------------+--+-------------------+--+--+------+----+---------+---------------+
+
+.. |windows-logo3| image:: _static/pb_setmotor.png
+.. |linux-logo3| image:: _static/pb_setrgbcolor.png
+.. |macos-logo3| image:: _static/pb_temperature.png
+
++-------------------+----+------------+--+-------------------+--+--+-+-----+-----+-----+
+|      |windows-logo4|   | |linux-logo4|                             | |macos-logo4|   |
++-------------------+----+-----------+--+-------------------+--+---+-+-----+-----+-----+
+| Turns off the RGB LED. | Initializes the library pins assignments. | Rescales values |
++-------------------+----+------------+--+-------------------+--+--+-+----+----+-------+
+
+.. |windows-logo4| image:: _static/pb_turnoffrgb.png
+.. |linux-logo4| image:: _static/pb_initpins.png
+.. |macos-logo4| image:: _static/pb_rescale.png
+
+Working with Library Blocks
+-----------------------------
+
+The library consists of a set of simple services, that together allow the user to have complete control of the PicoBricks Board and the modules on it.
+
+PicoBricks Library has two distinct types of block shapes:
+
+* oval: these are ``reporter blocks`` that return some kind of information back. The user would normally either assign these to a project variable or use it in a suitable input slot of other blocks. The return information type is a Number.
+
+* rectangular: these are ``command blocks`` that perform a programmed function and do not return any information.
+
+Notes on Library Components
+----------------------------
+
+PicoBricks board contains ten components premounted. The Library, however, only has blocks for seven of them; the OLED screen, Motor Control, and Wireless Comm components are ``not directly covered`` by the library.
+
+In this section, we will describe how one can make use of these components, as well as some special information about them.
+
+*OLED display module is programmed by using the MicroBlocks graphics library called OLED Graphics. It is located under Libraries+ / Graphics / OLED Graphics.ubl in the IDE.
+
+For details of the library blocks and operations, refer to  `OLED Library <https://wiki.microblocks.fun/extension_libraries/oled>`_
+
+For a project that describes advanced use of the library and data transfer, please refer to `SNAP to MicroBlocks <https://wiki.microblocks.fun/snap/snap2mb_img_code>`_
