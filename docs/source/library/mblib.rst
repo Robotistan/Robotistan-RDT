@@ -72,7 +72,7 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 | |windows-logo3|      | |macos-logo2|         |
 +----------------------+-----------------------+
 |Controls the DC motors| Sets the relay as 1/0 |
-+----------------------------------------------+
++----------------------+-----------------------+
 
 
 +--------------------------+-----------------------------------------------+
