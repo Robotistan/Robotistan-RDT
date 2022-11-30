@@ -15,11 +15,11 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 
 
 
-+-------------------+--+------------+--+-------------------+--+--+------+-----+--------+----------+
-|      |windows-logo3| ||linux-logo3|                         | |macos-logo3|                     |
-+-------------------+--+-----------+--+-------------------+---+------+-----+-------+--------------+
-|Controls the DC motors|Sets the RGB LED to the selected color| Returns the temperature in Celsius|
-+-------------------+--+------------+--+-------------------+--+------+----+---------+-------------+
++-------------------+--+------------+--+++-------------------+--+--+-------+
+|  |linux-logo3|                       | |macos-logo3|                     |
++-------------------+--+-----------+--+++-----------------+---+------+----++
+|Sets the RGB LED to the selected color| Returns the temperature in Celsius|
++-------------------+--+------------+--+---------------------+--+------+--++
 
 +-------------------+----------------+---+-------------------+----------+
 |            |windows-logo|          | |linux-logo|                     | 
@@ -68,11 +68,11 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 .. |linux-logo4| image:: _static/pb_initpins.png
 .. |macos-logo4| image:: _static/pb_rescale.png
 
-+------------+--+-------------------+--+-++-+-----+-----+-----+--+
-||linux-logo4|                           | |macos-logo2|         |
-+-----------+--+-------------------+--+--+---------+-----+-------+
-|Initializes the library pins assignments| Sets the relay as 1/0 |
-+--------------+--+--+-+----+----+-------+--------+----+---------+
++------------+--+------+-------------+--+-++-+-+
+| |windows-logo3|      | |macos-logo2|         |
++-----------+--+-------+------------+--+--+----+
+|Controls the DC motors| Sets the relay as 1/0 |
++--------------+--+--+-+----+----+-------+-----+
 
 
 +-----+-------------+------+-------------------+----------+-----+----------+
