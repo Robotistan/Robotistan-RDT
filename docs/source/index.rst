@@ -8,6 +8,10 @@ Here you will find all the relevant information about the project.
 .. note::
 
    This project is under active development.
+   
+.. tip::
+
+   If you have any questions, please contact technical support on our ``Robotistan Community``.
 
 .. toctree::
    :maxdepth: 1
