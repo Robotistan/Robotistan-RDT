@@ -8,7 +8,7 @@ We can use the 12 modules on the PicoBricks by separating them from the break po
 
 .. figure:: ../_static/faq.png      
     :align: center
-    :width: 520
+    :width: 620
     :figclass: align-center
     
     
@@ -27,7 +27,7 @@ After downloading library, you need to load the picobricks.py library into the r
 
 .. figure:: ../_static/faq1.png      
     :align: center
-    :width: 520
+    :width: 620
     :figclass: align-center
 
 Should ı BOOTSEL every time when ı use PicoBricks?
@@ -132,5 +132,5 @@ For MicroBlocks;
 
 .. figure:: ../_static/faq5.png      
     :align: center
-    :width: 520
+    :width: 720
     :figclass: align-center
