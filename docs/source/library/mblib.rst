@@ -9,8 +9,7 @@ For each block, there is a short description entry and a detailed block and comp
 Sample codes on how to use the blocks have been provided. To try them out, all you have to do is open a browser session of the MicroBlocks IDE and drag and drop them onto the editor programming area. Then you can just click on them and see the results.
 
 .. tip::
-    Before continuing, we must be clear that this project is supported by `Espressif Systems`_ and the community.
-    Everyone is more than welcome to contribute back to this project.
+    To test any of the sample codes below, just drag and drop them onto the MicroBlocks IDE.
 
 To test any of the sample codes below, just drag and drop them onto the MicroBlocks IDE.
 
