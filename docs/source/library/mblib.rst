@@ -84,8 +84,36 @@ PicoBricks board contains ten components premounted. The Library, however, only 
 
 In this section, we will describe how one can make use of these components, as well as some special information about them.
 
-*OLED display module is programmed by using the MicroBlocks graphics library called OLED Graphics. It is located under Libraries+ / Graphics / OLED Graphics.ubl in the IDE.
+* OLED display module is programmed by using the MicroBlocks graphics library called OLED Graphics. It is located under ``Libraries+ / Graphics / OLED Graphics.ubl`` in the IDE.
 
-For details of the library blocks and operations, refer to  `OLED Library <https://wiki.microblocks.fun/extension_libraries/oled>`_
+.. figure:: ../_static/pb_oled_module.png
+    :align: center
+    :width: 520
+    :figclass: align-center
 
-For a project that describes advanced use of the library and data transfer, please refer to `SNAP to MicroBlocks <https://wiki.microblocks.fun/snap/snap2mb_img_code>`_
+.. note::
+    For details of the library blocks and operations, refer to  `OLED Library <https://wiki.microblocks.fun/extension_libraries/oled>`_
+
+.. tip::
+    For a project that describes advanced use of the library and data transfer, please refer to `SNAP to MicroBlocks <https://wiki.microblocks.fun/snap/snap2mb_img_code>`_
+
+* MOTOR module is used to control SERVO motors and DC motors.DC Motor support is provided in the library directly. However, there is a caveat: since the motor connections are only via thee-wire cable, it is not possible to programmatically reverse the direction of the DC motors. The only way to change the direction of the DC motors is to change the way the wires are connected.
+
+.. figure:: ../_static/pb_motor_module.png
+    :align: center
+    :width: 520
+    :figclass: align-center
+
+
+.. warning::
+    SERVO motor programming is supported via the MicroBlocks library Servo. It is located under Libraries+ / Servo.ubl in the IDE.    
+    
+.. note::
+   For a detailed project that uses the DC and Servo motors, please refer to  `PicoBricks Servo and DC Motor Control <https://wiki.microblocks.fun/picobricks/motorservo>`_
+
+* WIRELESS COMM Module enables PicoBricks to communicate with other environments using either a WIFI module or a Bluetooth module and is connected to the Serial IO ports of the Pico.
+
+.. figure:: ../_static/pb_wireless_module.png
+    :align: center
+    :width: 520
+    :figclass: align-center
