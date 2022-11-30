@@ -16,6 +16,7 @@ Visit https://thonny.org/. Select the version suitable for your system and downl
 Thonny IDE Interface
 -----------------------
 
+
 .. figure:: ../_static/thonny1.png
     :align: center
     :width: 920
