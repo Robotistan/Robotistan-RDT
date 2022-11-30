@@ -21,7 +21,7 @@ At the heart of Picobricks is the Raspberry Pi Pico. The Thonny Raspberry Pi is 
     :width: 320
     :figclass: align-center
 
-.. note::
+.. tip::
      If you rename your code file to main.py, your code will run after every boot.
      
 - Arduino IDE 
