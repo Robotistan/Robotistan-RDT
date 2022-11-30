@@ -88,7 +88,7 @@ In this section, we will describe how one can make use of these components, as w
 
 .. figure:: ../_static/pb_oled_module.png
     :align: center
-    :width: 520
+    :width: 320
     :figclass: align-center
 
 .. note::
@@ -101,7 +101,7 @@ In this section, we will describe how one can make use of these components, as w
 
 .. figure:: ../_static/pb_motor_module.png
     :align: center
-    :width: 520
+    :width: 320
     :figclass: align-center
 
 
@@ -115,5 +115,5 @@ In this section, we will describe how one can make use of these components, as w
 
 .. figure:: ../_static/pb_wireless_module.png
     :align: center
-    :width: 520
+    :width: 320
     :figclass: align-center
