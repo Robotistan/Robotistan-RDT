@@ -23,5 +23,5 @@ Here you will find all the relevant information about the project.
    Getting Started <started/started>
    Projects <projects/projects>
    Boatloader <boatloader/boatloader>
-   Library <library/mblib>
+   Library Guide for MicroBlocks <library/mblib>
    Contributing <contributing>
