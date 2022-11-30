@@ -47,7 +47,10 @@ Reset Button Project
     
 2) Insert a ``push button`` as you see in the image
 
-
+.. figure:: ../_static/arduino.png
+    :align: center
+    :width: 720
+    :figclass: align-center
 
     
 3) Connect one of the jumper wires to the GND pin and the right leg of the button, and connect the other to the RUN pin and the left leg of the button.
