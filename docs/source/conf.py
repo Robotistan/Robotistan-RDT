@@ -41,7 +41,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'sphinx.ext.graphviz',
-    'sphinx.ext.linkcode'
+    'sphinx.ext.linkcode',
 ]
 
 intersphinx_mapping = {
