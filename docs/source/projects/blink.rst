@@ -4,7 +4,7 @@ Blink
 
 Introduction
 -------------
-In real life, the employee, who has just started to learn the job, first undertakes the most basic task.The cleaner first learns to use the broom, the cook learns to use the kitchen utensils, the waiter to carry a tray. We can come up with many examples. The first code written by newcomers to software development is known as "Hello World". Printing "Hello World" as soon as the program starts on the screen or console window in the language they use is the first step in programming. Like a baby starting to crawl… 
+In real life, the employee, who has just started to learn the job, first undertakes the most basic task.The cleaner first learns to use the broom, the cook learns to use the kitchen utensils, the waiter to carry a tray. We can come up with many examples. The first code written by newcomers to software development is known as ``"Hello World"``. Printing "Hello World" as soon as the program starts on the screen or console window in the language they use is the first step in programming. Like a baby starting to crawl… 
 
 .. code-block::
 
@@ -52,27 +52,32 @@ MicroPython Code of the Project
 Arduino C Code of the Project
 -------------------------------
 
-.. code-block::
 
-   void setup() {
-   // put your setup code here, to run once:
-    pinMode(7,OUTPUT); // initialize digital pin 7 as an output
-   }
-   void loop() {
-     // put your main code here, to run repeatedly:
-      digitalWrite(7,HIGH); //turn the LED on by making the voltage HIGH  
-      delay(500); //wait for a half second                   
-      digitalWrite(7,LOW); //turn the LED on by making the voltage LOW
-      delay(500); //wait for a half second                    
-   }
+
+ >>> void setup() {
+ ...  // put your setup code here, to run once:
+ >>> pinMode(7,OUTPUT); // initialize digital pin 7 as an output
+ ...  }
+ >>>  void loop() {
+ ...   // put your main code here, to run repeatedly:
+ >>>     digitalWrite(7,HIGH); //turn the LED on by making the voltage HIGH  
+ >>>    delay(500); //wait for a half second                   
+ >>>     digitalWrite(7,LOW); //turn the LED on by making the voltage LOW
+ >>>     delay(500); //wait for a half second                    
+ ...  }
 
 Coding the Project with MicroBlocks
 ------------------------------------
 
-If you have done MicroBlocks-Picobricks connection and library installation, the steps you need to follow for the first project are detailed in the table below.
+1) Drag and drop the ``when started block`` from the ``Control`` category to the Scripting area. 
+
+This block executes the code under it whenever the Start button is clicked
 
 .. figure:: ../_static/blink3.png      
     :align: center
-    :width: 720
+    :width: 520
     :figclass: align-center
-    
+2) Then, drag the ``forever`` block from the ``Control`` category and add it under the when started block. 
+
+Forever block will execute the blocks placed within it non-stop (forever, as the name implies).
+
