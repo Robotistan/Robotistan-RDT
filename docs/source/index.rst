@@ -22,6 +22,6 @@ Here you will find all the relevant information about the project.
    Development Environments <guides/guides>
    Getting Started <started/started>
    Projects <projects/projects>
-   FAQ <faq>
+   Boatloader <boatloader>
    Troubleshooting <troubleshooting>
    Contributing <contributing>
