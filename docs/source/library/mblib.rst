@@ -14,37 +14,6 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 
 
 
-+-------------------+----------------+---+-------------------+----------+-----+-------------+-------+
-|            |windows-logo|          | |linux-logo|                     | |macos-logo|              |
-+-------------------+----------------+--+-------------------+-----------+-----+-------------+-------+
-| Makes a beep sound from the speaker| Returns the button status as 1/0 | Returns a RGB color value |
-+-------------------+----------------+---+-------------------+----------+----+--------------+-------+
-
-.. |windows-logo| image:: _static/pb_beep.png
-.. |linux-logo| image:: _static/pb_button.png
-.. |macos-logo| image:: _static/pb_color.png
-
-+-------------------+----------------+--+-------------------+----------+-----+-----------+-------+--------------------------+
-|            |windows-logo1|            | |linux-logo1|                                  | |macos-logo1|                    |
-+-------------------+----------------+--+-------------------+-----------+-----+----------+-------+--------------------------+
-| Returns the humidity percentage value.| Returns the light level as a percentage value. | Returns the potentiometer value. |
-+-------------------+----------------+--+-------------------+----------+----+------------+-------+--------------------------+
-
-.. |windows-logo1| image:: _static/pb_humidity.png
-.. |linux-logo1| image:: _static/pb_lightsensor.png
-.. |macos-logo1| image:: _static/pb_potentiometer.png
-
-
-+-------------------+----------------+--+-------------------+--+--------+-----+--------+
-|            |windows-logo2|         | |linux-logo2|           | |macos-logo2|         |
-+-------------------+----------------+--+-------------------+--+---------+-----+-------+
-| Sets the RGB LED to a random color | Sets the red LED as 1/0 | Sets the relay as 1/0 |
-+-------------------+----------------+--+-------------------+--+--------+----+---------+
-
-.. |windows-logo2| image:: _static/pb_randomcolor.png
-.. |linux-logo2| image:: _static/pb_redled.png
-.. |macos-logo2| image:: _static/pb_relay.png
-
 
 +-------------------+----+------------+--+-------------------+--+--+------+-----+--------+---------------+
 |      |windows-logo3|   | |linux-logo3|                           | |macos-logo3|                       |
@@ -52,19 +21,65 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 | Controls the DC motors | Sets the RGB LED to the selected color. | Returns the temperature in Celsius. |
 +-------------------+----+------------+--+-------------------+--+--+------+----+---------+---------------+
 
++-------------------+----------------+---+-------------------+----------+
+|            |windows-logo|          | |linux-logo|                     | 
++-------------------+----------------+--+-------------------+-----------+
+| Makes a beep sound from the speaker| Returns the button status as 1/0 | 
++-------------------+----------------+---+-------------------+----------+
+
+.. |windows-logo| image:: _static/pb_beep.png
+.. |linux-logo| image:: _static/pb_button.png
+.. |macos-logo| image:: _static/pb_color.png
+
++-------------------+----------------+--++-------+--------------------------+
+|            |windows-logo1|            |  |macos-logo1|                    |
++-------------------+----------------+--+-------------------+-----------+---+
+| Returns the humidity percentage value.|  Returns the potentiometer value. |
++-------------------+----------------+--+-------------------+----------+----+
+
+.. |windows-logo1| image:: _static/pb_humidity.png
+.. |linux-logo1| image:: _static/pb_lightsensor.png
+.. |macos-logo1| image:: _static/pb_potentiometer.png
+
+
++-------------------+----------------+--+-------------------+--+
+|            |windows-logo2|         | |linux-logo2|           | 
++-------------------+----------------+--+-------------------+--+
+| Sets the RGB LED to a random color | Sets the red LED as 1/0 |
++-------------------+----------------+--+-------------------+--+
+
+.. |windows-logo2| image:: _static/pb_randomcolor.png
+.. |linux-logo2| image:: _static/pb_redled.png
+.. |macos-logo2| image:: _static/pb_relay.png
+
+
+
 .. |windows-logo3| image:: _static/pb_setmotor.png
 .. |linux-logo3| image:: _static/pb_setrgbcolor.png
 .. |macos-logo3| image:: _static/pb_temperature.png
 
-+-------------------+----+------------+--+-------------------+--+--+-+-----+-----+-----+
-|      |windows-logo4|   | |linux-logo4|                             | |macos-logo4|   |
-+-------------------+----+-----------+--+-------------------+--+---+-+-----+-----+-----+
-| Turns off the RGB LED. | Initializes the library pins assignments. | Rescales values |
-+-------------------+----+------------+--+-------------------+--+--+-+----+----+-------+
++-------------------+----+------------------+
+|      |windows-logo4|   |  |macos-logo4|   |
++-------------------+----++-----+-----+-----+
+| Turns off the RGB LED. |  Rescales values |
++-------------------+----+------------+--+--+
 
 .. |windows-logo4| image:: _static/pb_turnoffrgb.png
 .. |linux-logo4| image:: _static/pb_initpins.png
 .. |macos-logo4| image:: _static/pb_rescale.png
+
++------------+--+-------------------+--+-++-+-----+-----+-----+--+
+||linux-logo4|                           | |macos-logo2|         |
++-----------+--+-------------------+--+--+---------+-----+-------+
+|Initializes the library pins assignments| Sets the relay as 1/0 |
++--------------+--+--+-+----+----+-------+--------+----+---------+
+
+
++-----+-------------+------+-------------------+----------+-----+----------+
+||macos-logo|              ||linux-logo1|                                 |
++----+-------------+-------+-----------------------------------------------+
+|Returns a RGB color value | Returns the light level as a percentage value |
++----+--------------+------+-----------------------------------------------+
 
 Working with Library Blocks
 -----------------------------
