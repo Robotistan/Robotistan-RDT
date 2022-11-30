@@ -41,7 +41,7 @@ How can ı test Picobricks boards and modules?
 
 To test the modules on Picobricks, R&D team has created 2 different test codes using Thonny and Microblocks platforms. You can test by using these test codes.
 
-For Thonny;
+`For Thonny <https://github.com/Robotistan/PicoBricks/blob/main/Software/Pre-Installed%20Code/test.py>`_;
 
 .. code-block:: bash
 
@@ -128,7 +128,7 @@ For Thonny;
         oled.fill(0)
 
 
-For MicroBlocks;
+`For MicroBlocks <https://github.com/Robotistan/PicoBricks/tree/main/Software/Pre-Installed%20Code/Microblocks%20Test%20Code>`_;
 
 .. figure:: ../_static/faq5.png      
     :align: center
