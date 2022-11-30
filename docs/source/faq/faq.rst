@@ -19,7 +19,7 @@ You can develop projects using different libraries, but you are required to use 
 
 To the picobricks.py library from the picobricks github page; 
 
-You can reach it by following the steps PicoBricks/Software/Pre-Installed Code/picobricks.py or click  `here <https://github.com/Robotistan/PicoBricks/blob/main/Software/Pre-Installed%20Code/picobricks.py>`_
+You can reach it by following the steps `PicoBricks/Software/Pre-Installed Code/picobricks.py <https://github.com/Robotistan/PicoBricks/blob/main/Software/Pre-Installed%20Code/picobricks.py>`_
 
 * How to add?
 
