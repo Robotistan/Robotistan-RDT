@@ -22,6 +22,6 @@ Here you will find all the relevant information about the project.
    Development Environments <guides/guides>
    Getting Started <started/started>
    Projects <projects/projects>
-   Boatloader <boatloader/boatloader>
+   Bootloader <boatloader/boatloader>
    Library Guide for MicroBlocks <library/mblib>
    FAQ <faq/faq>
