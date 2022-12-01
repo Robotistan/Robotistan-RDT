@@ -1,5 +1,5 @@
 ###############
-Boatloader
+Bootloader
 ###############
 
 BOOTSEL
