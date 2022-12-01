@@ -11,7 +11,7 @@ Here you will find all the relevant information about the project.
    
 .. tip::
 
-   If you have any questions, please contact technical support on our ``Robotistan Community``.
+   If you have any questions, please contact technical support on our `` `Community <https://community.robotistan.com/>`_ ``.
 
 .. toctree::
    :maxdepth: 1
