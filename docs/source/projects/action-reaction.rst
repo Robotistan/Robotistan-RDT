@@ -20,10 +20,10 @@ Wiring Diagram
 
 .. figure:: ../_static/action-reaction.png      
     :align: center
-    :width: 520
+    :width: 500
     :figclass: align-center
     
-.. figure:: ../_static/action-reaction1.png      
+.. figure:: ../_static/action-reaction-1.png      
     :align: center
     :width: 520
     :figclass: align-center
