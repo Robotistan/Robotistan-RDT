@@ -20,6 +20,9 @@ from sphinx.ext.autodoc import cut_lines
 
 # sys.path.insert(0, os.path.abspath('..'))
 
+formats:
+- pdf
+
 # -- Project information
 
 project = 'PicoBricks'
