@@ -115,7 +115,7 @@ Coding the Project with MicroBlocks
 
 .. figure:: ../_static/thermometer2.png
     :align: center
-    :width: 220
+    :width: 420
     :figclass: align-center
 
 .. note::
