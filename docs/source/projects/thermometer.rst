@@ -1,26 +1,27 @@
 ###########
-Autonomous Lighting
+Thermometer
 ###########
 
 Introduction
 -------------
-In this project, with PicoBricks, we will enable the LED to turn on when the amount of light decreases in order to understand the working systems of the systems where the lighting is turned on automatically when it gets dark.
-   
+In this project, you will prepare a thermometer with Picobricks that will display the ambient temperature on the OLED screen.
+
+Sensors are the sense organs of electronic systems. We use our skin to feel, our eyes to see, our ears to hear, our tongue to taste, and our nose to smell. There are already many sense organs (sensors) in the picobrix. Also, new ones can be added. You can interact with the environment using humidity, temperature, light and many more sensors. Picobricks can measure the ambient temperature without the need for any other environmental component. Ambient temperature is used in greenhouses, incubators, in environments used for the transport of drugs, briefly in situations where the temperature change must be constantly monitored. If you are going to do an operation on temperature change in your projects, you should know how to measure the ambient temperature.
 
 Project Details and Algorithm
 ------------------------------
 
-It is called the state of being autonomous when electronic systems make a decision based on the data they collect and perform the given task automatically. The components that enable electronic systems to collect data from their environment are called sensors. Many data such as the level of light in the environment, how many degrees the air temperature is, how many lt/min water flow rate, how loud the sound is, are collected by the sensors and transmitted to PicoBricks as electrical signals, that is data. There are many sensors in Picobricks. Knowing how to get data from sensors and how to interpret and use that data will improve project ideas like reading a book improves vocabulary.
+Picobricks has a DHT11 module. This module can sense the temperature and humidity in the environment and send data to the microcontroller. In this project, we will write the necessary codes to print the temperature values measured by the DHT11 temperature and humidity sensor on the OLED screen.
 
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/autonomous-lighting.png      
+.. figure:: ../_static/thermometer.png
     :align: center
     :width: 500
     :figclass: align-center
     
-.. figure:: ../_static/autonomous-lighting1.png      
+.. figure:: ../_static/thermometer1.png
     :align: center
     :width: 520
     :figclass: align-center
@@ -32,36 +33,36 @@ MicroPython Code of the Project
 --------------------------------
 .. code-block::
 
-   import time
-   from machine import Pin, ADC
-   from picobricks import  WS2812
-   #define the library
+  from machine import Pin,I2C,ADC #to acces the hardware picobricks
+  from picobricks import SSD1306_I2C, DHT11 #oled library
+  import utime #time library
+  #to acces the hardware picobricks
+  WIDTH=128
+  HEIGHT=64
+  #define the weight and height picobricks
 
-   ldr = ADC(Pin(27))
-   ws = WS2812(6, brightness=0.4)
-   #define the input and output pins
-
-   #define colors
-   RED = (255, 0, 0)
-   GREEN = (0, 255, 0)
-   BLUE = (0, 0, 255)
-
-   COLORS = (RED, GREEN, BLUE)
-   #RGB color Code
-
-   while True:#while loop
-    print(ldr.read_u16()) #print the value of the LDR sensor to the screen.
-    
-    if(ldr.read_u16()>10000):#let's check the ldr sensor
-        for color in COLORS:
-            
-            #turn on the LDR
-            ws.pixels_fill(color)
-            ws.pixels_show()
-                
-    else:
-        ws.pixels_fill((0,0,0))  #turn off the RGB
-        ws.pixels_show()
+  sda=machine.Pin(4)
+  scl=machine.Pin(5)
+  #we define sda and scl pins for inter-path communication
+  i2c=machine.I2C(0, sda=sda, scl=scl, freq=2000000)#determine the frequency values
+  oled=SSD1306_I2C(WIDTH, HEIGHT, i2c)
+  pico_temp=DHT11(Pin(11))
+  current_time=utime.time()
+  while True:
+    if(utime.time() - current_time > 2):
+        current_time = utime.time()
+        pico_temp.measure()
+        oled.fill(0)#clear OLED
+        oled.show()
+        temperature=pico_temp.temperature
+        humidity=pico_temp.humidity
+        oled.text("Temperature: ",15,10)#print "Temperature: " on the OLED at x=15 y=10
+        oled.text(str(int(temperature)),55,25)
+        oled.text("Humidty: ", 30,40)
+        oled.text(str(int(humidity)),55,55)
+        oled.show()#show on OLED
+        utime.sleep(0.5)#wait for a half second
+   
 
 
 .. tip::
@@ -73,46 +74,46 @@ Arduino C Code of the Project
 
 .. code-block::
 
-   #include <Adafruit_NeoPixel.h>
-   #define PIN            6
-   #define NUMLEDS        1
-   #define LIGHT_SENSOR_PIN 27
+   #include <Wire.h>
+   #include <DHT.h>
+   #include "ACROBOTIC_SSD1306.h"
+   #define DHTPIN 11
+   #define DHTTYPE DHT11
+   //define the library
 
-   Adafruit_NeoPixel leds = Adafruit_NeoPixel(NUMLEDS, PIN, NEO_GRB + NEO_KHZ800);
-   //define the libraries
+   DHT dht(DHTPIN, DHTTYPE);
+   float temperature;
+   //define the temperature veriable
 
-   int delayval = 250; // delay for half a second
-
-      void setup() 
-      {
-      leds.begin(); 
+   void setup() {
+   //define dht sensor and Oled screen
+   Serial.begin(115200);
+   dht.begin();
+   Wire.begin();  
+   oled.init();                      
+   oled.clearDisplay(); 
       }
 
-      void loop() 
-      {
-      int analogValue = analogRead(LIGHT_SENSOR_PIN);
-      for(int i=0;i < NUMLEDS;i++)
-      {
-      if (analogValue > 200) {
-          // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
-          leds.setPixelColor(i, leds.Color(255,255,255));
-          leds.show(); // This sends the updated pixel color to the hardware.
-          delay(delayval); 
+   void loop() {
+   temperature = dht.readTemperature();
+   Serial.print("Temp: ");
+   Serial.println(temperature);
+   oled.setTextXY(3,1);              
+   oled.putString("Temperature: ");
+   //print "Temperature: " on the OLED at x=3 y=1
+   oled.setTextXY(4,3);              
+   oled.putString(String(temperature));
+   //print the value from the temperature sensor to the oled screen at x=4 y=3
+   Serial.println(temperature);
+   delay(100);
       }
-       else {
-         leds.setPixelColor(i, leds.Color(0,0,0));  //white color code.
-         leds.show(); // This sends the updated pixel color to the hardware.
-      }
-    }
-    delay(10);
-   }
 
 
 Coding the Project with MicroBlocks
 ------------------------------------
 
 
-.. figure:: ../_static/autonomous-lighting2.png
+.. figure:: ../_static/thermometer2.png
     :align: center
     :width: 220
     :figclass: align-center
