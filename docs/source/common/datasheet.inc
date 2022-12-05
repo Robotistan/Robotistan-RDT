@@ -16,7 +16,7 @@ Datasheet
 .. _GitHub: https://github.com/Robotistan/PicoBricks
 .. _ESP8266: https://github.com/Robotistan/PicoBricks/blob/main/Documents/Datasheets/ESP8266.pdf
 .. _Raspberry-Pi-Pico: https://github.com/Robotistan/PicoBricks/blob/main/Documents/Datasheets/RaspberryPiPico.pdf
-.. _OledScreen: https://github.com/Robotistan/PicoBricks/blob/main/Documents/Datasheets/SSD1306.pdf
+.. _Oled-Screen: https://github.com/Robotistan/PicoBricks/blob/main/Documents/Datasheets/SSD1306.pdf
 .. _Buzzer: https://github.com/Robotistan/PicoBricks/blob/main/Documents/Datasheets/PassiveBuzzer.pdf
 .. _DHT11: https://github.com/Robotistan/PicoBricks/blob/main/Documents/Datasheets/DHT11.pdf
 .. _Relay: https://github.com/Robotistan/PicoBricks/blob/main/Documents/Datasheets/Relay.pdf
