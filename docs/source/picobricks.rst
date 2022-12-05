@@ -20,7 +20,7 @@ Learn coding from zero to hero with ``MicroBlocks`` or the Pico Bricks's drag-n-
 Support Development Envıronment For All Levels
 -----------------------------------------------
 
-ico Bricks is for everyone interested in electronics and coding. Beginners with no prior experience will find it easy to get started thanks to the modular hardware design, Scratch-like block coding environment, and simulator. Those with experience can dig more deeply into electronics or explore coding in Python. And even the most expert makers will appreciate how quickly they can explore ideas and create prototypes with Pico Bricks.
+PicoBricks is for everyone interested in electronics and coding. Beginners with no prior experience will find it easy to get started thanks to the modular hardware design, Scratch-like block coding environment, and simulator. Those with experience can dig more deeply into electronics or explore coding in Python. And even the most expert makers will appreciate how quickly they can explore ideas and create prototypes with Pico Bricks.
 
 .. figure:: ../_static/pb1.png
     :align: center
