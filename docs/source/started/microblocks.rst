@@ -97,7 +97,7 @@ Click the Save button and the firmware update will complete.
 
 Clicking the Connect button will display the system USB ports where the micro devices are plugged in. In this window, you can connect Picobricks to MicroBlocks by first selecting the Pico device and then clicking the Connect buttons. When the connection is successful, a green circle will appear behind the USB icon.
 
-.. figure:: ../_static/microblocks7.png
+.. figure:: ../_static/microblocks.png
     :align: center
     :width: 720
     :figclass: align-center
