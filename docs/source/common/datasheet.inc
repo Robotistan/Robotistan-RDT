@@ -3,7 +3,7 @@ Datasheet
 
 * `ESP8266`_ 
 * `Raspberry-Pi-Pico`_ 
-* `OledScreen`_ 
+* `OLED-Screen`_ 
 * `Buzzer`_ 
 * `DHT11`_ 
 * `Relay`_ 
