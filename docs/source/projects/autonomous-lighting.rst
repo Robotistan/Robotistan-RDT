@@ -1,29 +1,26 @@
 ###########
-Action-Reaction
+Autonomous Lighting
 ###########
 
 Introduction
 -------------
-In the project, we will understand the pressing status by checking whether the button conducts current or not. If it is pressed, it will light the LED, if it is not pressed, we will turn off the LED.
-
+In this project, with PicoBricks, we will enable the LED to turn on when the amount of light decreases in order to understand the working systems of the systems where the lighting is turned on automatically when it gets dark.
    
-As Newton explained in his laws of motion, a reaction occurs against every action. Electronic systems receive commands from users and perform their tasks. Usually a keypad, touch screen or a button is used for this job. Electronic devices respond verbally, in writing or visually to inform the user that their task is over and what is going on during the task. In addition to informing the user of these reactions, it can help to understand where the fault may be in a possible malfunction. 
-In this project, you will learn how to receive and react to a command from the user in your projects by coding the button-LED module of Picobricks.
 
 Project Details and Algorithm
 ------------------------------
 
-There is 1 push button on Picobricks. They work like a switch, they conduct current when pressed and do not conduct current when released.
+It is called the state of being autonomous when electronic systems make a decision based on the data they collect and perform the given task automatically. The components that enable electronic systems to collect data from their environment are called sensors. Many data such as the level of light in the environment, how many degrees the air temperature is, how many lt/min water flow rate, how loud the sound is, are collected by the sensors and transmitted to PicoBricks as electrical signals, that is data. There are many sensors in Picobricks. Knowing how to get data from sensors and how to interpret and use that data will improve project ideas like reading a book improves vocabulary.
 
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/action-reaction.png      
+.. figure:: ../_static/autonomous-lighting.png      
     :align: center
     :width: 500
     :figclass: align-center
     
-.. figure:: ../_static/action-reaction-1.png      
+.. figure:: ../_static/autonomous-lighting1.png      
     :align: center
     :width: 520
     :figclass: align-center
@@ -35,15 +32,36 @@ MicroPython Code of the Project
 --------------------------------
 .. code-block::
 
-   from machine import Pin#to acces the hardware picobricks
-   led = Pin(7,Pin.OUT)#initialize digital pin as an output for led
-   push_button = Pin(10,Pin.IN,Pin.PULL_DOWN)#initialize digital pin 10 as an input
+   import time
+   from machine import Pin, ADC
+   from picobricks import  WS2812
+   #define the library
+
+   ldr = ADC(Pin(27))
+   ws = WS2812(6, brightness=0.4)
+   #define the input and output pins
+
+   #define colors
+   RED = (255, 0, 0)
+   GREEN = (0, 255, 0)
+   BLUE = (0, 0, 255)
+
+   COLORS = (RED, GREEN, BLUE)
+   #RGB color Code
+
    while True:#while loop
-    logic_state = push_button.value();#button on&off status
-    if logic_state == True:#check the button and if it is on
-        led.value(1)#turn on the led
+    print(ldr.read_u16()) #print the value of the LDR sensor to the screen.
+    
+    if(ldr.read_u16()>10000):#let's check the ldr sensor
+        for color in COLORS:
+            
+            #turn on the LDR
+            ws.pixels_fill(color)
+            ws.pixels_show()
+                
     else:
-        led.value(0)#turn off the led
+        ws.pixels_fill((0,0,0))  #turn off the RGB
+        ws.pixels_show()
 
 
 .. tip::
@@ -55,36 +73,52 @@ Arduino C Code of the Project
 
 .. code-block::
 
-   void setup() {
-  // put your setup code here, to run once:
-  pinMode(7,OUTPUT);//initialize digital pin 7 as an output
-  pinMode(10,INPUT);//initialize digital pin 10 as an input
-  
+   #include <Adafruit_NeoPixel.h>
+   #define PIN            6
+   #define NUMLEDS        1
+   #define LIGHT_SENSOR_PIN 27
 
-   }
-      void loop() {
-  // put your main code here, to run repeatedly:
-  if(digitalRead(10)==1){//check the button and if it is on
-    digitalWrite(7,HIGH);//turn the LED on by making the voltage HIGH
-  }
-  else{
-    digitalWrite(7,LOW);//turn the LED off by making the voltage LOW 
-  }
-  delay(10);//wait for half second
+   Adafruit_NeoPixel leds = Adafruit_NeoPixel(NUMLEDS, PIN, NEO_GRB + NEO_KHZ800);
+   //define the libraries
 
+   int delayval = 250; // delay for half a second
+
+      void setup() 
+      {
+      leds.begin(); 
       }
+
+      void loop() 
+      {
+      int analogValue = analogRead(LIGHT_SENSOR_PIN);
+      for(int i=0;i < NUMLEDS;i++)
+      {
+      if (analogValue > 200) {
+          // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
+          leds.setPixelColor(i, leds.Color(255,255,255));
+          leds.show(); // This sends the updated pixel color to the hardware.
+          delay(delayval); 
+      }
+       else {
+         leds.setPixelColor(i, leds.Color(0,0,0));  //white color code.
+         leds.show(); // This sends the updated pixel color to the hardware.
+      }
+    }
+    delay(10);
+   }
 
 
 Coding the Project with MicroBlocks
 ------------------------------------
 
 
-.. figure:: ../_static/action-reaction3.png
+.. figure:: ../_static/autonomous-lighting2.png
     :align: center
     :width: 220
     :figclass: align-center
 
-* To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
+.. note::
+  To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
   
 
     
