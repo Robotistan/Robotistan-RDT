@@ -1,10 +1,10 @@
 Datasheet
 ---------
 
-* `ESP8266`_ (Datasheet)
-* `Raspberry-Pi-Pico`_ (Datasheet)
-* `OledScreen`_ (Datasheet)
-* `Buzzer`_ (Datasheet)
+* `ESP8266`_ 
+* `Raspberry-Pi-Pico`_ 
+* `OledScreen`_ 
+* `Buzzer`_ 
 
 .. _GitHub: https://github.com/Robotistan/PicoBricks
 .. _ESP8266: https://github.com/Robotistan/PicoBricks/blob/main/Documents/Datasheets/esp8266-datasheet.pdf
