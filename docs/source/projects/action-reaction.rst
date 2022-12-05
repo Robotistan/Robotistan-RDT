@@ -18,15 +18,7 @@ There is 1 push button on Picobricks. They work like a switch, they conduct curr
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/action-reaction1.png      
-    :align: center
-    :width: 520
-    :figclass: align-center
-    
-.. figure:: ../_static/action-reaction2.png      
-    :align: center
-    :width: 520
-    :figclass: align-center
+
 
 You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.
 
