@@ -6,10 +6,11 @@ Introduction
 -------------
 In real life, the employee, who has just started to learn the job, first undertakes the most basic task.The cleaner first learns to use the broom, the cook learns to use the kitchen utensils, the waiter to carry a tray. We can come up with many examples. The first code written by newcomers to software development is known as ``"Hello World"``. Printing "Hello World" as soon as the program starts on the screen or console window in the language they use is the first step in programming. Like a baby starting to crawl… 
 
-.. code-block::
-
-   print("Hello World")
-   Hello World
+.. doctest::
+   :hide:
+   
+  >>> print("Hello World")
+  >>> Hello World
    
 The first step in physical computing is the Blink application: controlling the on/off status of a LED. By simply connecting an LED to the microprocessor board, the code keeps the LED blinking continuously. Ask people who have developed themselves in the field of robotics programming how they got to this level. The answer they will give you starts like this; it all started with a flashing LED! 
 
