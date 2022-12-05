@@ -48,9 +48,9 @@ To test the modules on Picobricks, R&D team has created 2 different test codes u
 
 .. code-block:: bash
 
-   from utime import sleep
-   import time
-   from machine import Pin, I2C, PWM, ADC
+    from utime import sleep
+    import time
+    from machine import Pin, I2C, PWM, ADC
     from picobricks import SSD1306_I2C, WS2812, DHT11
     import framebuf
     import random
@@ -137,3 +137,7 @@ To test the modules on Picobricks, R&D team has created 2 different test codes u
     :align: center
     :width: 720
     :figclass: align-center
+    
+    
+.. tip::
+ You can access the Microblocks test code by dragging the image to the Microblocks Run tab.
