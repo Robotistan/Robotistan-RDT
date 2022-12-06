@@ -18,7 +18,7 @@ Wiring Diagram
 
 .. figure:: ../_static/know-your-color.png      
     :align: center
-    :width: 500
+    :width: 400
     :figclass: align-center
     
 .. figure:: ../_static/know-your-color1.png      
@@ -272,7 +272,7 @@ Coding the Project with MicroBlocks
 
 .. figure:: ../_static/know-your-color2.png
     :align: center
-    :width: 420
+    :width: 520
     :figclass: align-center
 
 .. note::
