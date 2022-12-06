@@ -1,30 +1,30 @@
 ###########
-Know Your Color
+Buzz Wire Game
 ###########
 
 Introduction
 -------------
-In this project you will learn about the randomness used in every programming language. We will prepare a enjoyable game with the RGB LED, OLED screen and button module of Picobricks. The game we will build in the project will be built on the user knowing the colors correctly or incorrectly.
+In this project, we will electronically prepare the attention and concentration developer Buzz Wire Game with the help of a conductor wire using the buzzer and LED module with Picobricks. While preparing this project, you will have learned an input technique that is not a button but will be used like a ``button``.
 
 Project Details and Algorithm
 ------------------------------
 
-LEDs are often used on electronic systems. Each button can have small LEDs next to each option. By making a single LED light up in different colors, it is possible to do the work of more than one LED with a single LED. LEDs working in this type are called RGB LEDs. It takes its name from the initials of the color names Red, Green, Blue. Another advantage of this LED is that it can light up in mixtures of 3 primary colors. Purple, turquoise, orange…
+Projects don't always have to be about solving problems and making things easier. You can also prepare projects to have fun and develop yourself. Attention and concentration are features that many people want to develop. The applications that we can do with this are quite interesting. How about making Buzz Wire Game with Picobricks? You must have heard the expression that computers work with 0s and 1s. 0 represents the absence of electricity and 1 represents its presence. 0 and 1’s come together with a certain number and sequence of combinations to form meaningful data. In electronic systems, 0s and 1s can be used to directly control a situation. Is the door closed or not? Is the light on or off? Is the irrigation system on or not? In order to obtain such information, a status check is carried out. In this project, we will electronically prepare the attention and concentration developer Buzz Wire Game with the help of a conductor wire using the buzzer and LED module with Picobricks. While preparing this project, you will have learned an input technique that is not a button but will be used like a button.
 
-One of the colors red, green, blue and white will light up randomly on the RGB LED on Picobricks, and the name of one of these four colors will be written randomly on the OLED screen at the same time. The user must press the button of Picobricks within 1.5 seconds to use the right of reply. The game will be repeated 10 times, each repetition will get 10 points if the user presses the button when the colors match, or if the user does not press the button when they do not match. If the user presses the button even though the colors do not match, he will lose 10 points. After ten repetitions, the user’s score will be displayed on the OLED screen. If the user wishes, he may not use his right of reply by not pressing the button.
+
+To prepare the project, you need 2 male-male jumper cables and a 15 cm long conductor bendable wire. When the player is ready, it will be asked to press the button to start the game. If the jumper cable touches the conductor wire in the player’s hand when the button is pressed, Picobricks will detect this and give an audible and written warning. The time from the start of the game to the end will also be displayed on the OLED screen. We reset the timer after the user presses the button. Then we will give a voltage of 3.3V to the conductor wire connected to the GPIO1 pin of Picobricks. One end of the cable held by the player will be connected to the GND pin on the Picobricks. If the player touches the jumper cable in his hand to the conductive wire, the GPIO1 pin will drop to the ``Passive/Off/0 position``. Then, it will announce that the game is over, and there will be light, written and audio feedback, then the elapsed time will be shown on the OLED screen in milliseconds. After 5 seconds, the player will be prompted to press the button to restart.
+
+
 
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/know-your-color.png      
+.. figure:: ../_static/buzz-wire-game.png      
     :align: center
     :width: 400
     :figclass: align-center
     
-.. figure:: ../_static/know-your-color1.png      
-    :align: center
-    :width: 520
-    :figclass: align-center
+
 
 
 You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.
@@ -33,120 +33,62 @@ MicroPython Code of the Project
 --------------------------------
 .. code-block::
 
-    from machine import Pin, I2C
-    from picobricks import SSD1306_I2C
-    import utime
-    import urandom
-    import _thread
-    from picobricks import WS2812
+    from machine import Pin, I2C, Timer #to access the hardware on the pico
+    from picobricks import SSD1306_I2C #OLED Screen Library
+    from utime import sleep # time library
 
+    #OLED Screen Settings
     WIDTH  = 128                                            
-    HEIGHT = 64                                          
-    sda=machine.Pin(4)
+    HEIGHT = 64
+
+    sda=machine.Pin(4)#initialize digital pin 4 and 5 as an OUTPUT for OLED Communication
     scl=machine.Pin(5)
     i2c=machine.I2C(0,sda=sda, scl=scl, freq=1000000)
-    ws = WS2812(pin_num=6, num_leds=1, brightness=0.3)
-
     oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)
 
-    button = Pin(10,Pin.IN,Pin.PULL_DOWN)
-    RED = (255, 0, 0)
-    GREEN = (0, 255, 0)
-    BLUE = (0, 0, 255)
-    WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
+    wire=Pin(1,Pin.OUT)#initialize digital pin 1 as an OUTPUT 
+    led = Pin(7,Pin.OUT)#initialize digital pin 7 and 5 as an OUTPUT for LED
+    buzzer=Pin(20, Pin.OUT)#initialize digital pin 20 as an OUTPUT for Buzzer
+    button=Pin(10,Pin.IN,Pin.PULL_DOWN)#initialize digital pin 10 as an INPUT for button
+    endtime=0
 
-    oled.fill(0)
-    oled.show()
 
-    ws.pixels_fill(BLACK)
-    ws.pixels_show()
-
-    global button_pressed
-    score=0
-    button_pressed = False
-
-    def random_rgb():
-    global ledcolor
-    ledcolor=int(urandom.uniform(1,4))
-    if ledcolor == 1:
-        ws.pixels_fill(RED)
-        ws.pixels_show()
-    elif ledcolor == 2:
-        ws.pixels_fill(GREEN)
-        ws.pixels_show()
-    elif ledcolor == 3:
-        ws.pixels_fill(BLUE)
-        ws.pixels_show()
-    elif ledcolor == 4:
-        ws.pixels_fill(WHİTE)
-        ws.pixels_show()
-
-    def random_text():
-    global oledtext
-    oledtext=int(urandom.uniform(1,4))
-    if oledtext == 1:
-        oled.fill(0)
-        oled.show()
-        oled.text("RED",45,32)
-        oled.show()
-    elif oledtext == 2:
-        oled.fill(0)
-        oled.show()
-        oled.text("GREEN",45,32)
-        oled.show()
-    elif oledtext == 3:
-        oled.fill(0)
-        oled.show()
-        oled.text("BLUE",45,32)
-        oled.show()
-    elif oledtext == 4:
-        oled.fill(0)
-        oled.show()
-        oled.text("WHITE",45,32)
-        oled.show()
-
-    def button_reader_thread():
     while True:
-        global button_pressed
-        if button_pressed == False:
-            if button.value() == 1:
-                button_pressed = True
-                global score
-                global oledtext
-                global ledcolor
-                if ledcolor == oledtext:
-                    score += 10
-                else:
-                    score -= 10
-        utime.sleep(0.01)
-
-    _thread.start_new_thread(button_reader_thread, ())
-
-    oled.text("The Game Begins",0,10)
-    oled.show()
-    utime.sleep(2)
-
-    for i in range(10):
-    random_text()
-    random_rgb()
-    button_pressed=False
-    utime.sleep(1.5)
+    led.low()
     oled.fill(0)
     oled.show()
-    ws.pixels_fill(BLACK)
-    ws.pixels_show()
-    utime.sleep(1.5)
+    oled.text("<BUZZ WIRE GAME>",0,0)
+    oled.text("Press the button",0,17)
+    oled.text("TO START!",25,35)
+    oled.show()
+    #When button is '0', OLED says 'GAME STARTED'
+    while button.value()==0:
+        print("press the button")
     oled.fill(0)
     oled.show()
-    oled.text("Your total score:",0,20)
-    oled.text(str(score), 30,40)
+    oled.text("GAME",25,35)
+    oled.text("STARTED",25,45)
     oled.show()
+    wire.high()
+    timer_start=utime.ticks_ms()
+     #When wire is '1', OLED says 'GAME OVER'
+    while wire.value()==1:
+        print("Started")
+    endtime=utime.ticks_diff(utime.ticks_ms(), timer_start)
+    print(endtime)
+    oled.fill(0)
+    oled.show()
+    oled.text("GAME OVER!",25,35)
+    oled.text(endtime + "ms" ,25,45)
+    oled.show()
+    led.high()#LED On
+    buzzer.high()#Buzzer On
+    sleep(5)#Delay
             
 
 
 .. tip::
-  Ifyou rename your code file to main.py, your code will run after every boot.
+  If you rename your code file to main.py, your code will run after every boot.
    
 Arduino C Code of the Project
 -------------------------------
@@ -154,117 +96,81 @@ Arduino C Code of the Project
 
 .. code-block::
 
-    #include <Adafruit_NeoPixel.h>
-    #define PIN        6 
-    #define NUMPIXELS 1
-    Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
-    #define DELAYVAL 500
     #include <Wire.h>
-    #include "ACROBOTIC_SSD1306.h" //define libraries
-    int OLED_color;
-    int RGB_color;
-    int score = 0;
-    int button = 0;
+    #include "ACROBOTIC_SSD1306.h"
 
-
+    int Time=0;
+    unsigned long Old_Time=0;
 
     void setup() {
     // put your setup code here, to run once:
+    pinMode(20,OUTPUT);
+    pinMode(7,OUTPUT);
+    pinMode(1,OUTPUT);
+    pinMode(10,INPUT);
+
     Wire.begin();  
     oled.init();                      
-    oled.clearDisplay(); 
+    oled.clearDisplay();
+   
+    #if defined(__AVR_ATtiny85__) && (F_CPU == 16000000)
+    clock_prescale_set(clock_div_1);
+    #endif  
 
-
-    pixels.begin();
-    pixels.clear(); 
-    randomSeed(analogRead(27));
 
         }
 
     void loop() {
     // put your main code here, to run repeatedly:
+    digitalWrite(7,LOW);
+
+    oled.setTextXY(2,1);              
+    oled.putString("BUZZ WIRE GAME"); 
+    oled.setTextXY(4,2);              
+    oled.putString("Press Button"); 
+    oled.setTextXY(5,3);              
+    oled.putString("TO START!");
+
+    while (!(digitalRead(10)==1)){
+    
+        }
+
     oled.clearDisplay();
-    oled.setTextXY(3,1);              
-    oled.putString("The game begins");
-    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
-    pixels.show();
-    delay(2000);
-    oled.clearDisplay();
+    oled.setTextXY(3,6);              
+    oled.putString("GAME"); 
+    oled.setTextXY(5,4);              
+    oled.putString("STARTED");
+
+    digitalWrite(1,HIGH);
+    Old_Time=millis();
   
-    for (int i=0;i<10;i++){
-    button = digitalRead(10);
-    random_color();
-    pixels.show();
-    unsigned long start_time = millis();
-    while (button == 0) {
-        button = digitalRead(10);
-        if (millis() - start_time > 2000)
-          break;
-    }
-    if (button == 1){
+    while(!(digitalRead(1)==0)){
+
+    Time=millis()-Old_Time;   
+        }
+
+    String(String_Time)=String(Time);
   
-        if(OLED_color==RGB_color){
-          score=score+10;
-        }
-        if(OLED_color!=RGB_color){
-          score=score-10;
-        }
-        delay(200);
-    }
     oled.clearDisplay();
-    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
-    pixels.show();
-        }
+    oled.setTextXY(3,4);              
+    oled.putString("GAME OVER"); 
+    oled.setTextXY(5,4);              
+    oled.putString(String_Time);
+    oled.setTextXY(5,10);              
+    oled.putString("ms"); 
 
-    String string_scrore=String(score);
-    oled.clearDisplay();
-    oled.setTextXY(2,5);              
-    oled.putString("Score: ");
-    oled.setTextXY(4,7);              
-    oled.putString(string_scrore);
-    oled.setTextXY(6,5);              
-    oled.putString("points");
-    // print final score on OLED screen
+    digitalWrite(7,HIGH);
+    digitalWrite(20,HIGH);
+    delay(500);
+    digitalWrite(20,LOW);
+    delay(5000);
   
-    delay(10000);
-        }
-
-    void random_color(){
-
-    OLED_color = random(1,5);
-    RGB_color = random(1,5); 
-    // generate numbers between 1 and 5 randomly and print them on the screen
-    if (OLED_color == 1){
-      oled.setTextXY(3,7);              
-      oled.putString("red");
-        }
-    if (OLED_color == 2){
-      oled.setTextXY(3,6);              
-      oled.putString("green");
-        }
-    if (OLED_color == 3){
-      oled.setTextXY(3,6);              
-      oled.putString("blue");
-        }
-    if (OLED_color == 4){
-      oled.setTextXY(3,6);              
-      oled.putString("white");
-        } 
-    if (RGB_color == 1){
-      pixels.setPixelColor(0, pixels.Color(255, 0, 0));
-        }
-    if (RGB_color == 2){
-      pixels.setPixelColor(0, pixels.Color(0, 255, 0));
-        }
-    if (RGB_color == 3){
-      pixels.setPixelColor(0, pixels.Color(0, 0, 255));
-        }
-    if (RGB_color == 4){
-      pixels.setPixelColor(0, pixels.Color(255, 255, 255));
-    }
+    Time=0;
+    Old_Time=0;
+    oled.clearDisplay();
 
 
-    }
+        }
 
 Coding the Project with MicroBlocks
 ------------------------------------
@@ -274,6 +180,7 @@ Coding the Project with MicroBlocks
     :align: center
     :width: 520
     :figclass: align-center
+
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
