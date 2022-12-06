@@ -175,11 +175,11 @@ Arduino C Code of the Project
 Coding the Project with MicroBlocks
 ------------------------------------
 
++--------+
+||know-your-color2||     
++--------+
 
-.. figure:: ../_static/know-your-color2.png
-    :align: center
-    :width: 520
-    :figclass: align-center
+.. |know-your-color2| image:: _static/know-your-color2.png
 
 
 .. note::
