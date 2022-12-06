@@ -189,6 +189,9 @@ Coding the Project with MicroBlocks
     :width: 420
     :figclass: align-center
 
+
+
+
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
   
