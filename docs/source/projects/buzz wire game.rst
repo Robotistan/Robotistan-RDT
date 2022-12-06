@@ -175,9 +175,9 @@ Arduino C Code of the Project
 Coding the Project with MicroBlocks
 ------------------------------------
 
-+--------+
++------------------+
 ||know-your-color2||     
-+--------+
++------------------+
 
 .. |know-your-color2| image:: _static/know-your-color2.png
 
