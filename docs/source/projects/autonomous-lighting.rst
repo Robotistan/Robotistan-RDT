@@ -114,7 +114,7 @@ Coding the Project with MicroBlocks
 
 .. figure:: ../_static/autonomous-lighting2.png
     :align: center
-    :width: 220
+    :width: 320
     :figclass: align-center
 
 .. note::
