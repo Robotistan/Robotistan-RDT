@@ -4,7 +4,7 @@ Graphic Monitor
 
 Introduction
 -------------
-In this project, we will prepare a project in which we increase or decrease the brightness of the red LED with a potentiometer. In addition, we will simultaneously monitor the electrical change occurring during this process on the Microblocks graphic monitor. When the picobricks starts, the potentiometer value will be read continuously and the brightness value of the LED will be adjusted. Applications in which the effect of the electrical signal is reduced by changing the frequency is called PWM. We will send the analog values we read from the potentiometer as PWM signals to the red LED and we will be able to adjust the illumination intensity.   
+In this project, we will prepare a project in which we increase or decrease the brightness of the red LED with a potentiometer. In addition, we will simultaneously monitor the electrical change occurring during this process on the Microblocks graphic monitor. When the picobricks starts, the potentiometer value will be read continuously and the brightness value of the LED will be adjusted. Applications in which the effect of the electrical signal is reduced by changing the frequency is called ``PWM``. We will send the analog values we read from the potentiometer as PWM signals to the red LED and we will be able to adjust the illumination intensity.   
 
 Project Details and Algorithm
 ------------------------------
