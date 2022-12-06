@@ -1,22 +1,25 @@
 ###########
-Smart Cooler
+Dinosaur Game
 ###########
 
 Introduction
 -------------
-In our project, we will firstly display the temperature values measured by the DHT11 temperature and humidity sensor on Picobricks. Then, we will define a temperature limit and write the necessary codes for the DC motor connected to Picobricks to start rotating when the temperature value from the DHT11 module reaches this limit, and for the DC motor to stop when the temperature value falls below the limit we have determined.
+In this project you will learn how to control Servo motors with PicoBricks. While writing the project codes, we will first fix the LDR sensor on the computer screen and read the sensor data on the white and black background, then write the necessary codes for the servo motor to move according to these data.
 
 Project Details and Algorithm
 ------------------------------
 
-Air conditioners are used to cool in the summer and warm up in the winter. Air conditioners adjust the degree of heating and cooling according to the temperature of the environment. While cooking the food, the ovens try to rise to the temperature value set by the user and maintain that temperature. These two electronic devices use special temperature sensors to control the temperature. In addition, temperature and humidity are measured together in greenhouses. In order to keep these two values in balance at the desired level, it is tried to provide air flow with the fan. In Picobricks, you can measure temperature and humidity separately and interact with the environment with these measurements. In this project, we will prepare a cooling system that automatically adjusts the fan speed according to the temperature with Picobricks. In this way, you will learn the DC motor operating system and motor speed adjustment.
+If the electronic systems to be developed will fulfill their duties by pushing, pulling, turning, lifting, lowering, etc., pneumatic systems or electric motor systems are used as actuators in the project. Picobricks supports two different engine types so that you can produce systems that can activate the codes you write in your projects. DC motor and Servo motors in which the movements of DC motors are regulated electronically. Servo motors are motors that rotate to that angle when the rotation angle value is given. In RC boats, servo motors are used with the same logic to change the direction of the vehicle. In addition, advanced servo motors known as smart continuous servos, which can rotate full-round, are also used in the wheels of the smart vacuum cleaners we use in our homes. 
+
+In this project, we will automatically play Google Chrome offline dinasour game to picobricks. In the game, Picobricks will automatically control the dinosaur’s movements by detecting obstacles. We will use the picobricks LDR sensor to detect the obstacles in front of the dinosaur during the game. LDR can send analog signals by measuring the amount of light touching the sensor surface. By fixing the sensor on the computer screen, we can detect if there is an obstacle in front of the dinosaur by taking advantage of the difference in the amount of light between the white and black colors. When an obstacle is detected, we can use a servo motor to automatically press the spacebar on the keyboard. In this way, the dinosaur will easily overcome the obstacles. While writing the project codes, we will firstly fix the LDR sensor on the computer screen and read the sensor data on the white and black background, then write the necessary codes for the servo motor to move according to these data.
+
 
 
 
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/smart-cooler.png      
+.. figure:: ../_static/dinosaur-game.png      
     :align: center
     :width: 500
     :figclass: align-center
@@ -30,29 +33,21 @@ MicroPython Code of the Project
 --------------------------------
 .. code-block::
 
-    from machine import Pin
-    from picobricks import DHT11
-    import utime
+    from machine import Pin, ADC, PWM#to access the hardware on the pico
+    from utime import sleep #time library
 
-    LIMIT_TEMPERATURE = 20 #define the limit temperature
-
-    dht_sensor = DHT11(Pin(11, Pin.IN, Pin.PULL_DOWN))
-    m1 = Pin(21, Pin.OUT)
-    m1.low()
-    dht_read_time = utime.time()
-    #define input-output pins
+    ldr=ADC(27) #initialize digital pin 27 for LDR
+    servo=PWM(Pin(21)) #initialize digital PWM pin 27 for Servo Motor
+    servo.freq(50)
 
     while True:
-    if utime.time() - dht_read_time >= 3:
-        dht_read_time = utime.time()
-        dht_sensor.measure()
-        temp= dht_sensor.temperature
-        print(temp)
-        if temp >= LIMIT_TEMPERATURE:     
-            m1.high()
-            #operate if the room temperature is higher than the limit temperature
-        else:
-            m1.low()
+    sleep(0.01)
+    #When LDR data higher than 40000
+    if ldr.read_u16()>4000:
+        servo.duty_u16(2000)# sets position to 180 degrees
+        sleep(0.1)#delay
+        servo.duty_u16(1350) # sets position to 0 degrees
+        sleep(0.5)#delay
             
 
 
@@ -65,43 +60,43 @@ Arduino C Code of the Project
 
 .. code-block::
 
-    #include <DHT.h>
-    #define LIMIT_TEMPERATURE     27
-    #define DHTPIN 11
-    #define DHTTYPE DHT11
-
-    DHT dht(DHTPIN, DHTTYPE);
-    float temperature;
+    #include <Servo.h>
+    Servo myservo;
 
     void setup() {
     // put your setup code here, to run once:
-    Serial.begin(115200);
-    dht.begin();
-    pinMode(21,OUTPUT);
+    myservo.attach(22);
+    myservo.write(20);
+    pinMode(27,INPUT);
+
+  
 
         }
 
     void loop() {
     // put your main code here, to run repeatedly:
+    int light_sensor=analogRead(27);
+
+    if(light_sensor>100){
+
+    int x=45;
+    int y=20;
+    
+    myservo.write(x);
     delay(100);
-    temperature = dht.readTemperature();
-    Serial.print("Temp: ");
-    Serial.println(temperature);
-    if(temperature > LIMIT_TEMPERATURE){
-    digitalWrite(21,HIGH);
-    } 
-    else{
-    digitalWrite(21,LOW);    
+    myservo.write(y);
+    delay(500);
         }
 
 
     }
 
+
 Coding the Project with MicroBlocks
 ------------------------------------
 
 
-.. figure:: ../_static/smart-cooler1.png
+.. figure:: ../_static/dinosaur-game1.png
     :align: center
     :width: 420
     :figclass: align-center
