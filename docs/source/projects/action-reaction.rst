@@ -81,7 +81,7 @@ Coding the Project with MicroBlocks
 
 .. figure:: ../_static/action-reaction3.png
     :align: center
-    :width: 220
+    :width: 320
     :figclass: align-center
     
 
