@@ -13,7 +13,7 @@ In this project, you will learn how to receive and react to a command from the u
 Project Details and Algorithm
 ------------------------------
 
-There is 1 push button on Picobricks. They work like a switch, they conduct current when pressed and do not conduct current when released.
+There is 1 push button on Picobricks. They work like a ``switch``, they conduct current when pressed and do not conduct current when released.
 
 Wiring Diagram
 --------------
