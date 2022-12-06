@@ -1,26 +1,24 @@
 ###########
-Autonomous Lighting
+Graphic Monitor
 ###########
 
 Introduction
 -------------
-In this project, with PicoBricks, we will enable the LED to turn on when the amount of light decreases in order to understand the working systems of the systems where the lighting is turned on automatically when it gets dark.
-   
+In this project, we will prepare a project in which we increase or decrease the brightness of the red LED with a potentiometer. In addition, we will simultaneously monitor the electrical change occurring during this process on the Microblocks graphic monitor. When the picobricks starts, the potentiometer value will be read continuously and the brightness value of the LED will be adjusted. Applications in which the effect of the electrical signal is reduced by changing the frequency is called PWM. We will send the analog values we read from the potentiometer as PWM signals to the red LED and we will be able to adjust the illumination intensity.   
 
 Project Details and Algorithm
 ------------------------------
-
-It is called the state of being autonomous when electronic systems make a decision based on the data they collect and perform the given task automatically. The components that enable electronic systems to collect data from their environment are called sensors. Many data such as the level of light in the environment, how many degrees the air temperature is, how many lt/min water flow rate, how loud the sound is, are collected by the sensors and transmitted to PicoBricks as electrical signals, that is data. There are many sensors in Picobricks. Knowing how to get data from sensors and how to interpret and use that data will improve project ideas like reading a book improves vocabulary.
+When we look at the electronic items around us, you realize that they have many replaceable features and they are designed by engineers to be most useful to the user. Such as lighting systems, cooking systems, sound systems, cleaning systems. The way it works, the amount, the method, etc., by many system users. features can be programmed to change. In robotic projects, in the processes of changing the sound level, changing the motor speed, changing the brightness of the light, the electrical voltage is sent in a way that creates a lower or higher effect. By decreasing the frequency of the electrical signal to the component, it can be operated at a lower level, and by increasing the frequency of the outgoing electrical signals, it can be operated at a higher level. In systems without a screen, real-time graphic monitors are used to monitor some sensors and variables involved in the operation of the system. Graphic monitors make it very easy to detect the fault.
 
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/autonomous-lighting.png      
+.. figure:: ../_static/graphic-monitor.png      
     :align: center
     :width: 500
     :figclass: align-center
     
-.. figure:: ../_static/autonomous-lighting1.png      
+.. figure:: ../_static/graphic-monitor1.png      
     :align: center
     :width: 520
     :figclass: align-center
@@ -32,36 +30,23 @@ MicroPython Code of the Project
 --------------------------------
 .. code-block::
 
-   import time
-   from machine import Pin, ADC
-   from picobricks import  WS2812
-   #define the library
+   from machine import Pin,ADC,PWM
+   from utime import sleep
+   #define libraries
 
-   ldr = ADC(Pin(27))
-   ws = WS2812(6, brightness=0.4)
-   #define the input and output pins
-
-   #define colors
-   RED = (255, 0, 0)
-   GREEN = (0, 255, 0)
-   BLUE = (0, 0, 255)
-
-   COLORS = (RED, GREEN, BLUE)
-   #RGB color Code
+   led=PWM(Pin(7))
+   pot=ADC(Pin(26,Pin.IN))
+   #define the value we get from the led and pot.
+   led.freq(1000)
 
    while True:#while loop
-    print(ldr.read_u16()) #print the value of the LDR sensor to the screen.
     
-    if(ldr.read_u16()>10000):#let's check the ldr sensor
-        for color in COLORS:
-            
-            #turn on the LDR
-            ws.pixels_fill(color)
-            ws.pixels_show()
-                
-    else:
-        ws.pixels_fill((0,0,0))  #turn off the RGB
-        ws.pixels_show()
+    led.duty_u16(int((pot.read_u16())))
+    print(str(int((pot.read_u16()))))
+    #Turn on the LED according to the value from the potentiometer.
+    
+    sleep(0.1)#delay
+                 
 
 
 .. tip::
@@ -73,48 +58,37 @@ Arduino C Code of the Project
 
 .. code-block::
 
-   #include <Adafruit_NeoPixel.h>
-   #define PIN            6
-   #define NUMLEDS        1
-   #define LIGHT_SENSOR_PIN 27
+   void setup() {
+   // put your setup code here, to run once:
+   pinMode (7,OUTPUT);//initialize digital pin 7 as an output
+   pinMode (26,INPUT);//initialize digital pin 26 as an input
+   Serial.begin(9600);//start serial communication
 
-   Adafruit_NeoPixel leds = Adafruit_NeoPixel(NUMLEDS, PIN, NEO_GRB + NEO_KHZ800);
-   //define the libraries
 
-   int delayval = 250; // delay for half a second
-
-      void setup() 
-      {
-      leds.begin(); 
       }
 
-      void loop() 
-      {
-      int analogValue = analogRead(LIGHT_SENSOR_PIN);
-      for(int i=0;i < NUMLEDS;i++)
-      {
-      if (analogValue > 200) {
-          // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
-          leds.setPixelColor(i, leds.Color(255,255,255));
-          leds.show(); // This sends the updated pixel color to the hardware.
-          delay(delayval); 
-      }
-       else {
-         leds.setPixelColor(i, leds.Color(0,0,0));  //white color code.
-         leds.show(); // This sends the updated pixel color to the hardware.
-      }
-    }
-    delay(10);
+   void loop() {
+   // put your main code here, to run repeatedly:
+   int pot_val = analogRead(26);
+   int led_val = map(pot_val, 0, 1023, 0, 255);
+   analogWrite(7, led_val);
+   Serial.println(led_val);
+   //turn on the LED according to the value from the potentiometer
+  
+   delay(100);//wait
+
+
    }
+
 
 
 Coding the Project with MicroBlocks
 ------------------------------------
 
 
-.. figure:: ../_static/autonomous-lighting2.png
+.. figure:: ../_static/graphic-monitor2.png
     :align: center
-    :width: 220
+    :width: 420
     :figclass: align-center
 
 .. note::
