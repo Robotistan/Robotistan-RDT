@@ -5,9 +5,10 @@ Projects
 
 
 .. toctree::
-    :caption: Projects:
     :maxdepth: 1
-    :glob:
+    :caption: Projects:
+    
+     Blink <blink>
 
     *
 
