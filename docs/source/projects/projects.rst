@@ -6,7 +6,7 @@ Projects
 
 .. toctree::
     :maxdepth: 1
-    :caption: Projects:
+    :caption: Activities From Easy To Difficult:
     
      Blink <blink>
      Action-Reaction <action-reaction>
