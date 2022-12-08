@@ -171,9 +171,9 @@ Arduino C Code of the Project
     
 Coding the Project with MicroBlocks
 ------------------------------------
-+---------------------+
++----------------+
 ||digital-ruler1||     
-+---------------------+
++----------------+
 
 .. |digital-ruler1| image:: _static/digital-ruler1.png
 
