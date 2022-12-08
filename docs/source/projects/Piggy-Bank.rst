@@ -113,9 +113,9 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
-+---------------------+
++-------------+
 ||piggy-bank1||     
-+---------------------+
++-------------+
 
 .. |piggy-bank1| image:: _static/piggy-bank1.png
 
