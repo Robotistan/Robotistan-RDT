@@ -83,12 +83,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++-------------+
+||magic-lamp2||     
++-------------+
+
+.. |magic-lamp2| image:: _static/magic-lamp2.png
 
 
-.. figure:: ../_static/magic-lamp2.png
-    :align: center
-    :width: 420
-    :figclass: align-center
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
