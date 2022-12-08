@@ -77,12 +77,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++------------------+
+||action-reaction3||     
++------------------+
+
+.. |action-reaction3| image:: _static/action-reaction3.png
 
 
-.. figure:: ../_static/action-reaction3.png
-    :align: center
-    :width: 320
-    :figclass: align-center
     
 
 .. note::
