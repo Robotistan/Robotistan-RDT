@@ -175,9 +175,9 @@ Arduino C Code of the Project
 Coding the Project with MicroBlocks
 ------------------------------------
 
-+------------------+
++-----------------+
 ||buzz-wire-game1||     
-+------------------+
++-----------------+
 
 .. |buzz-wire-game1| image:: _static/buzz-wire-game1.png
 
