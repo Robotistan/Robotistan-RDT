@@ -4,7 +4,7 @@ Voice Controlled Car
 
 Introduction
 -------------
-In the project, the robot car kit that comes out of the set will be assembled and controlled via mobile phone. 
+In the project, the robot car kit that comes out of the set will be assembled and controlled via mobile phone.
 
 Project Details and Algorithm
 ------------------------------
