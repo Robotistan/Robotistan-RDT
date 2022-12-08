@@ -121,13 +121,15 @@ Arduino C Code of the Project
       delay(1000);
         }
 
-Coding the Project with MicroBlocks
+Coding the Project with Microblocks
 ------------------------------------
+
 +-----------------------+
 ||voice-controlled-car1||     
 +-----------------------+
 
 .. |voice-controlled-car1| image:: _static/voice-controlled-car1.png
+
 
 
 
