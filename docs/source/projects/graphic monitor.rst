@@ -85,11 +85,13 @@ Arduino C Code of the Project
 Coding the Project with MicroBlocks
 ------------------------------------
 
++------------------+
+||graphic-monitor2||     
++------------------+
 
-.. figure:: ../_static/graphic-monitor2.png
-    :align: center
-    :width: 420
-    :figclass: align-center
+.. |graphic-monitor2| image:: _static/graphic-monitor2.png
+
+
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
