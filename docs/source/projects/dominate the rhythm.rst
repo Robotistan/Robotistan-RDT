@@ -182,12 +182,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++------------------+
+||dominate-rhythm2||     
++------------------+
+
+.. |dominate-rhythm2| image:: _static/dominate-rhythm2.png
 
 
-.. figure:: ../_static/dominate-rhythm2.png
-    :align: center
-    :width: 420
-    :figclass: align-center
 
 
 
