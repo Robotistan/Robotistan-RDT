@@ -1,5 +1,5 @@
 ###########
-Know Your Color
+Two Axis Robot Arm
 ###########
 
 Introduction
@@ -16,15 +16,11 @@ One of the colors red, green, blue and white will light up randomly on the RGB L
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/know-your-color.png      
+.. figure:: ../_static/two-axis-robot-arm.png      
     :align: center
     :width: 400
     :figclass: align-center
     
-.. figure:: ../_static/know-your-color1.png      
-    :align: center
-    :width: 520
-    :figclass: align-center
 
 
 You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.
@@ -268,12 +264,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++---------------------+
+||two-axis-robot-arm1||     
++---------------------+
+
+.. |two-axis-robot-arm1| image:: _static/two-axis-robot-arm1.png
 
 
-.. figure:: ../_static/know-your-color2.png
-    :align: center
-    :width: 520
-    :figclass: align-center
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
