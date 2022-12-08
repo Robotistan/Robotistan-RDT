@@ -94,12 +94,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++----------------+
+||dinosaur-game1||     
++----------------+
+
+.. |dinosaur-game1| image:: _static/dinosaur-game1.png
 
 
-.. figure:: ../_static/dinosaur-game1.png
-    :align: center
-    :width: 420
-    :figclass: align-center
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
