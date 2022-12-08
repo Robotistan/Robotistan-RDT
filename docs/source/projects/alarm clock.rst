@@ -179,11 +179,12 @@ Arduino C Code of the Project
 Coding the Project with MicroBlocks
 ------------------------------------
 
++--------------+
+||alarm-clock2||     
++--------------+
 
-.. figure:: ../_static/alarm-clock2.png
-    :align: center
-    :width: 420
-    :figclass: align-center
+.. |alarm-clock2| image:: _static/alarm-clock2.png
+
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
