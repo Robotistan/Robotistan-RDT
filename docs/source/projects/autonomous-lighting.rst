@@ -111,11 +111,13 @@ Arduino C Code of the Project
 Coding the Project with MicroBlocks
 ------------------------------------
 
++----------------------+
+||autonomous-lighting2||     
++----------------------+
 
-.. figure:: ../_static/autonomous-lighting2.png
-    :align: center
-    :width: 320
-    :figclass: align-center
+.. |autonomous-lighting2| image:: _static/autonomous-lighting2.png
+
+
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
