@@ -176,10 +176,10 @@ Coding the Project with MicroBlocks
 ------------------------------------
 
 +------------------+
-||know-your-color2||     
+||buzz-wire-game1||     
 +------------------+
 
-.. |know-your-color2| image:: _static/know-your-color2.png
+.. |buzz-wire-game1| image:: _static/buzz-wire-game1.png
 
 
 .. note::
