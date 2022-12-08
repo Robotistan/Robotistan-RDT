@@ -231,12 +231,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++-----------+
+||my-timer2||     
++-----------+
+
+.. |my-timer2| image:: _static/my-timer2.png
 
 
-.. figure:: ../_static/my-timer2.png
-    :align: center
-    :width: 420
-    :figclass: align-center
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
