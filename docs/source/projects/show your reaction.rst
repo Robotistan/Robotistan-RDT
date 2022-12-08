@@ -195,12 +195,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++---------------------+
+||show-your-reaction2||     
++---------------------+
+
+.. |show-your-reaction2| image:: _static/show-your-reaction2.png
 
 
-.. figure:: ../_static/show-your-reaction2.png
-    :align: center
-    :width: 620
-    :figclass: align-center
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
