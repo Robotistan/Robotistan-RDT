@@ -99,12 +99,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++---------------+
+||smart-cooler1||     
++---------------+
+
+.. |smart-cooler1| image:: _static/smart-cooler1.png
 
 
-.. figure:: ../_static/smart-cooler1.png
-    :align: center
-    :width: 420
-    :figclass: align-center
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
