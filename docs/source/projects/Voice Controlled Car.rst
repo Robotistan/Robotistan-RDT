@@ -61,7 +61,7 @@ MicroPython Code of the Project
 
 
 .. tip::
-  Ifyou rename your code file to main.py, your code will run after every boot.
+  If you rename your code file to main.py, your code will run after every boot.
    
 Arduino C Code of the Project
 -------------------------------
