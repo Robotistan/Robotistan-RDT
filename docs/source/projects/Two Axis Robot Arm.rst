@@ -265,10 +265,10 @@ Arduino C Code of the Project
 Coding the Project with MicroBlocks
 ------------------------------------
 +---------------------+
-||two-axis-robot-arm1||     
+||two-axis-robot-arm2||     
 +---------------------+
 
-.. |two-axis-robot-arm1| image:: _static/two-axis-robot-arm1.png
+.. |two-axis-robot-arm2| image:: _static/two-axis-robot-arm2.png
 
 
 
