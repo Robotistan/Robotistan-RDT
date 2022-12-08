@@ -308,12 +308,13 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
++----------------+
+||night-and-day1||     
++----------------+
+
+.. |night-and-day1| image:: _static/night-and-day1.png
 
 
-.. figure:: ../_static/night-and-day1.png
-    :align: center
-    :width: 520
-    :figclass: align-center
 
 
 .. note::
