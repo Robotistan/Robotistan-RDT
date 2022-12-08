@@ -88,7 +88,8 @@ MicroPython Code of the Project
                 neo.show()
                 servo.duty_u16(1350)
                 
-                
+MicroPyhton Card ID Code
+-------------
 .. code-block::
 
     from machine import Pin, SPI
@@ -221,7 +222,8 @@ Arduino C Code of the Project
     Serial.println("");
         }
         
-        
+Arduino Card ID Code
+---------------------
 .. code-block::
 
     #include <SPI.h>
@@ -268,9 +270,9 @@ Arduino C Code of the Project
 
 Coding the Project with MicroBlocks
 ------------------------------------
-+---------------------+
++-----------------+
 ||nfc-smart-door1||     
-+---------------------+
++-----------------+
 
 .. |nfc-smart-door1| image:: _static/nfc-smart-door1.png
 
