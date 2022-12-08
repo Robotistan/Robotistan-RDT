@@ -125,10 +125,10 @@ Coding the Project with Microblocks
 ------------------------------------
 
 +-----------------------+
-||voice-controlled-car1||     
+||voice-controlled-car2||     
 +-----------------------+
 
-.. |voice-controlled-car1| image:: _static/voice-controlled-car1.png
+.. |voice-controlled-car2| image:: _static/voice-controlled-car2.png
 
 
 
