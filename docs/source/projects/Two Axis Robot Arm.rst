@@ -4,14 +4,15 @@ Two Axis Robot Arm
 
 Introduction
 -------------
-In this project you will learn about the randomness used in every programming language. We will prepare a enjoyable game with the RGB LED, OLED screen and button module of Picobricks. The game we will build in the project will be built on the user knowing the colors correctly or incorrectly.
+In this project you will learn about robot arm with Picobricks.
 
 Project Details and Algorithm
 ------------------------------
 
-LEDs are often used on electronic systems. Each button can have small LEDs next to each option. By making a single LED light up in different colors, it is possible to do the work of more than one LED with a single LED. LEDs working in this type are called RGB LEDs. It takes its name from the initials of the color names Red, Green, Blue. Another advantage of this LED is that it can light up in mixtures of 3 primary colors. Purple, turquoise, orange…
 
-One of the colors red, green, blue and white will light up randomly on the RGB LED on Picobricks, and the name of one of these four colors will be written randomly on the OLED screen at the same time. The user must press the button of Picobricks within 1.5 seconds to use the right of reply. The game will be repeated 10 times, each repetition will get 10 points if the user presses the button when the colors match, or if the user does not press the button when they do not match. If the user presses the button even though the colors do not match, he will lose 10 points. After ten repetitions, the user’s score will be displayed on the OLED screen. If the user wishes, he may not use his right of reply by not pressing the button.
+Robot arms have replaced human power in the industrial field. In factories, robotic arms undertake the tasks of carrying and turning loads of weights and sizes that cannot be carried by a human. Being able to be positioned with a precision of one thousandth of a millimeter is above the sensitivity that a human hand can exhibit. When you watch the production videos of automobile factories, you will see how vital the robot arms are. The reason why they are called robots is that they can be programmed to do the same work with endless repetitions. The reason why it is called an arm is because it has an articulated structure like our arms. How many different directions a robot arm has the ability to rotate and move is expressed as axes. Robot arms are also used for carving and shaping aluminum and various metals. These devices, which are referred to as 7-axis CNC Routers, can shape metals like a sculptor shapes mud. According to the purpose of use in robot arms, stepper motor and servo motors, which are a kind of electric motor, are used. PicoBricks allows you to make projects with servo motors.
+
+In preparation for the installation, we will first write and upload the codes to set the servo motors to 0 degrees. When an object is placed on the LDR sensor, the robot arm will bend down and close its open gripper. After the gripper is closed, the robot arm will rise again. As a result of each movement of the robot arm, a short beep will be heard from the buzzer. The RGB LED will glow red when an object is placed on the LDR sensor. When the object is held by the robot arm and lifted into the air, the RGB LED will turn green. Servo motor movements are very fast. In order to slow down the movement, we will code the servo motors with a total of 90 degrees of movement, 2 degrees each at 30 millisecond intervals. We’re not going to do this for the gripper to close.
 
 Wiring Diagram
 --------------
@@ -29,120 +30,98 @@ MicroPython Code of the Project
 --------------------------------
 .. code-block::
 
-    from machine import Pin, I2C
-    from picobricks import SSD1306_I2C
-    import utime
-    import urandom
-    import _thread
+    from machine import Pin, PWM, ADC
+    from utime import sleep
     from picobricks import WS2812
+    #define libraries
 
-    WIDTH  = 128                                            
-    HEIGHT = 64                                          
-    sda=machine.Pin(4)
-    scl=machine.Pin(5)
-    i2c=machine.I2C(0,sda=sda, scl=scl, freq=1000000)
-    ws = WS2812(pin_num=6, num_leds=1, brightness=0.3)
+    ws = WS2812(6, brightness=0.3)
+    ldr=ADC(27)
+    buzzer=PWM(Pin(20, Pin.OUT))
+    servo1=PWM(Pin(21))
+    servo2=PWM(Pin(22))
+    #define LDR, buzzer and servo motors pins
 
-    oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)
+    servo1.freq(50)
+    servo2.freq(50)
+    buzzer.freq(440)
+    #define frequencies of servo motors and buzzer
 
-    button = Pin(10,Pin.IN,Pin.PULL_DOWN)
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
-    BLUE = (0, 0, 255)
-    WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
+    BLACK = (0, 0, 0) # RGB color settings
+    angleupdown=4770
+    angleupdown2=8200
 
-    oled.fill(0)
-    oled.show()
+    def up():
+    global angleupdown
+    for i in range (45):
+        angleupdown +=76 
+        servo2.duty_u16(angleupdown)
+        sleep(0.03)
+    buzzer.duty_u16(2000)
+    sleep(0.1)
+    buzzer.duty_u16(0)
+    # servo2 goes up at specified intervals
+    def down():
+    global angleupdown
+    for i in range (45):
+        angleupdown -=76
+        servo2.duty_u16(angleupdown)
+        sleep(0.03)
+    buzzer.duty_u16(2000)
+    sleep(0.1)
+    buzzer.duty_u16(0)
+    # servo2 goes down at specified intervals
 
+    def open():
+    global angleupdown2
+    for i in range (45):
+        angleupdown2 +=500
+        servo1.duty_u16(angleupdown2)
+        sleep(0.03)
+    buzzer.duty_u16(2000)
+    sleep(0.1)
+    buzzer.duty_u16(0)
+    # servo1 works for opening the clamps
+    def close():
+    global angleupdown2
+    for i in range (45):
+        angleupdown2 -=500
+        servo1.duty_u16(angleupdown2)
+        sleep(0.03)
+    buzzer.duty_u16(2000)
+    sleep(0.1)
+    buzzer.duty_u16(0)
+    # servo1 works for closing the clamps
+    open()
+    servo2.duty_u16(angleupdown)
     ws.pixels_fill(BLACK)
     ws.pixels_show()
-
-    global button_pressed
-    score=0
-    button_pressed = False
-
-    def random_rgb():
-    global ledcolor
-    ledcolor=int(urandom.uniform(1,4))
-    if ledcolor == 1:
+    while True:
+    if ldr.read_u16()>20000:
         ws.pixels_fill(RED)
         ws.pixels_show()
-    elif ledcolor == 2:
+        sleep(1)
+        buzzer.duty_u16(2000)
+        sleep(1)
+        buzzer.duty_u16(0)
+        open()
+        sleep(0.5)
+        down()
+        sleep(0.5)
+        close()
+        sleep(0.5)
+        up()
         ws.pixels_fill(GREEN)
         ws.pixels_show()
-    elif ledcolor == 3:
-        ws.pixels_fill(BLUE)
-        ws.pixels_show()
-    elif ledcolor == 4:
-        ws.pixels_fill(WHİTE)
-        ws.pixels_show()
-
-    def random_text():
-    global oledtext
-    oledtext=int(urandom.uniform(1,4))
-    if oledtext == 1:
-        oled.fill(0)
-        oled.show()
-        oled.text("RED",45,32)
-        oled.show()
-    elif oledtext == 2:
-        oled.fill(0)
-        oled.show()
-        oled.text("GREEN",45,32)
-        oled.show()
-    elif oledtext == 3:
-        oled.fill(0)
-        oled.show()
-        oled.text("BLUE",45,32)
-        oled.show()
-    elif oledtext == 4:
-        oled.fill(0)
-        oled.show()
-        oled.text("WHITE",45,32)
-        oled.show()
-
-    def button_reader_thread():
-    while True:
-        global button_pressed
-        if button_pressed == False:
-            if button.value() == 1:
-                button_pressed = True
-                global score
-                global oledtext
-                global ledcolor
-                if ledcolor == oledtext:
-                    score += 10
-                else:
-                    score -= 10
-        utime.sleep(0.01)
-
-    _thread.start_new_thread(button_reader_thread, ())
-
-    oled.text("The Game Begins",0,10)
-    oled.show()
-    utime.sleep(2)
-
-    for i in range(10):
-    random_text()
-    random_rgb()
-    button_pressed=False
-    utime.sleep(1.5)
-    oled.fill(0)
-    oled.show()
-    ws.pixels_fill(BLACK)
-    ws.pixels_show()
-    utime.sleep(1.5)
-    oled.fill(0)
-    oled.show()
-    oled.text("Your total score:",0,20)
-    oled.text(str(score), 30,40)
-    oled.show()
+        sleep(0.5)
+        # According to the data received from LDR, RGB LED lights red and green and servo motors move
             
 
 
 .. tip::
-  Ifyou rename your code file to main.py, your code will run after every boot.
+  If you rename your code file to main.py, your code will run after every boot.
    
 Arduino C Code of the Project
 -------------------------------
@@ -151,116 +130,95 @@ Arduino C Code of the Project
 .. code-block::
 
     #include <Adafruit_NeoPixel.h>
-    #define PIN        6 
+    #ifdef __AVR__
+    #include <avr/power.h>
+    #endif
+    #define PIN        6
     #define NUMPIXELS 1
     Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
     #define DELAYVAL 500
-    #include <Wire.h>
-    #include "ACROBOTIC_SSD1306.h" //define libraries
-    int OLED_color;
-    int RGB_color;
-    int score = 0;
-    int button = 0;
+    // define required libraries
+    #include <Servo.h>
+    Servo myservo1;
+    Servo myservo2;
 
-
+    int angleupdown;
 
     void setup() {
-    // put your setup code here, to run once:
-    Wire.begin();  
-    oled.init();                      
-    oled.clearDisplay(); 
 
+    pinMode(20,OUTPUT);
+    pinMode(27,INPUT);
+    // define input and output pins
 
     pixels.begin();
-    pixels.clear(); 
-    randomSeed(analogRead(27));
+    pixels.clear();
 
+    myservo1.attach(21);
+    myservo2.attach(22); // define servo motor pins
+    Open();
+    angleupdown=180;
+    myservo2.write(angleupdown);
+  
         }
 
     void loop() {
-    // put your main code here, to run repeatedly:
-    oled.clearDisplay();
-    oled.setTextXY(3,1);              
-    oled.putString("The game begins");
-    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
-    pixels.show();
-    delay(2000);
-    oled.clearDisplay();
-  
-    for (int i=0;i<10;i++){
-    button = digitalRead(10);
-    random_color();
-    pixels.show();
-    unsigned long start_time = millis();
-    while (button == 0) {
-        button = digitalRead(10);
-        if (millis() - start_time > 2000)
-          break;
-    }
-    if (button == 1){
-  
-        if(OLED_color==RGB_color){
-          score=score+10;
-        }
-        if(OLED_color!=RGB_color){
-          score=score-10;
-        }
-        delay(200);
-    }
-    oled.clearDisplay();
-    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
-    pixels.show();
-        }
+    if(analogRead(27)>150){
 
-    String string_scrore=String(score);
-    oled.clearDisplay();
-    oled.setTextXY(2,5);              
-    oled.putString("Score: ");
-    oled.setTextXY(4,7);              
-    oled.putString(string_scrore);
-    oled.setTextXY(6,5);              
-    oled.putString("points");
-    // print final score on OLED screen
-  
+    pixels.setPixelColor(0, pixels.Color(255, 0, 0));
+    pixels.show();
+    delay(1000);
+    tone(20,700);
+    delay(1000);
+    noTone(20);
+
+    Open();
+    delay(500);
+    Down();
+    delay(500);
+    Close();
+    delay(500);
+    Up();
+    pixels.setPixelColor(0, pixels.Color(0, 255, 0));
+    pixels.show();
     delay(10000);
+    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+    pixels.show();
+    Open();
+    angleupdown=180;
+    myservo2.write(angleupdown);
+    // If the LDR data is greater than the specified limit, the buzzer will sound, the RGB will turn red and servo motors will work
+    // The RGB will turn green when the movement is complete
+    
         }
-
-    void random_color(){
-
-    OLED_color = random(1,5);
-    RGB_color = random(1,5); 
-    // generate numbers between 1 and 5 randomly and print them on the screen
-    if (OLED_color == 1){
-      oled.setTextXY(3,7);              
-      oled.putString("red");
-        }
-    if (OLED_color == 2){
-      oled.setTextXY(3,6);              
-      oled.putString("green");
-        }
-    if (OLED_color == 3){
-      oled.setTextXY(3,6);              
-      oled.putString("blue");
-        }
-    if (OLED_color == 4){
-      oled.setTextXY(3,6);              
-      oled.putString("white");
-        } 
-    if (RGB_color == 1){
-      pixels.setPixelColor(0, pixels.Color(255, 0, 0));
-        }
-    if (RGB_color == 2){
-      pixels.setPixelColor(0, pixels.Color(0, 255, 0));
-        }
-    if (RGB_color == 3){
-      pixels.setPixelColor(0, pixels.Color(0, 0, 255));
-        }
-    if (RGB_color == 4){
-      pixels.setPixelColor(0, pixels.Color(255, 255, 255));
     }
 
+    void Open(){
+    myservo1.write(180);
+        }
 
+    void Close(){
+    myservo1.write(30);
+        }
+
+    void Up(){
+
+    for (int i=0;i<45;i++){
+
+    angleupdown = angleupdown+2;
+    myservo2.write(angleupdown);
+    delay(30);
     }
+    }
+
+    void Down(){
+
+    for (int i=0;i<45;i++){
+
+    angleupdown = angleupdown-2;
+    myservo2.write(angleupdown);
+    delay(30);
+        }
+        }
 
 Coding the Project with MicroBlocks
 ------------------------------------
