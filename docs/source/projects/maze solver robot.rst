@@ -1,25 +1,25 @@
 ###########
-Digital Ruler
+Maze Solver Robot
 ###########
 
 Introduction
 -------------
-In this project, you will learn how to receive and react to a command from the user in your projects by coding the button-LED module of Picobricks.
+In the maze solving robot project, we will use the 2WD robot car kit that comes out of the set.
 
 Project Details and Algorithm
 ------------------------------
 
-As Newton explained in his laws of motion, a reaction occurs against every action. Electronic systems receive commands from users and perform their tasks. Usually a keypad, touch screen or a button is used for this job. Electronic devices respond verbally, in writing or visually to inform the user that their task is over and what is going on during the task. In addition to informing the user of these reactions, it can help to understand where the fault may be in a possible malfunction.
+Coding education is as old as the history of programming languages. Today, different products are used to popularize coding education and make it exciting and fun. The first of these is educational robots. Preparing and coding robots improves children’s ``engineering`` and ``coding`` skills. Robotics competitions are organized by institutions and organizations to popularize coding education and encourage teachers and students. One of these competitions is the Maze Solver Robot competitions. These robots firstly learn the destination by wandering around the maze and return to the starting point. Then, when they start the labyrinth again, they try to reach their destination in the shortest way possible. Robots use distance sensors while learning about the maze. Infrared or ultrasonic sensors are used in these robots. Smart robot vacuums used in homes and workplaces also work with logic close to the algorithms of maze-solver robots. Thanks to their algorithms that constantly check and map the obstacles, they try to do it completely and without crashing. Most of the smart vacuums are equipped with LIDAR and infrared sensors, which make high-precision laser measurements for distance measurement and obstacle detection. In this project, we will make a simple robot with PicoBricks that you can prepare for maze solver robot competitions.
 
-Different types of buttons are used in electronic systems. Locked buttons, push buttons, switched buttons... There is 1 push button on Picobricks. They work like a switch, they conduct current when pressed and do not conduct current when released. In the project, we will understand the pressing status by checking whether the button conducts current or not. If it is pressed, it will light the LED, if it is not pressed, we will turn off the LED.
 
+We will use the ``HC-SR04 ultrasonic distance sensor`` so that the robot can detect the distance in front of it and decide its movements on its own. In the maze, the robot will detect the distance in front of the car and move forward if it is empty. If the distance is less than 5 cm, the car will turn right, measure the distance again, if the distance on the right is greater than 5 cm, it will continue on its way, if it is less, it will turn left and move forward. In this way, by turning right and left, we will enable the vehicle to move forward and exit the maze through the empty roads in the maze.
 
 
 
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/digital-ruler.png      
+.. figure:: ../_static/maze-solver-robot.png      
     :align: center
     :width: 400
     :figclass: align-center
@@ -32,28 +32,23 @@ MicroPython Code of the Project
 --------------------------------
 .. code-block::
 
-    from machine import Pin, PWM, I2C
+    from machine import Pin
     from utime import sleep
-    from picobricks import SSD1306_I2C
     import utime
-    #define the libraries
-    redLed=Pin(7,Pin.OUT)
-    button=Pin(10,Pin.IN,Pin.PULL_DOWN)
-    buzzer=PWM(Pin(20,Pin.OUT))
-    buzzer.freq(392)
+    #define libraries
+
     trigger = Pin(15, Pin.OUT)
     echo = Pin(14, Pin.IN)
-    #define input and output pins
-    WIDTH  = 128                                            
-    HEIGHT = 64                                       
-    #OLED screen settings
-    sda=machine.Pin(4)
-    scl=machine.Pin(5)
-    i2c=machine.I2C(0,sda=sda, scl=scl, freq=1000000)
-    #initialize digital pin 4 and 5 as an OUTPUT for OLED communication
-    oled = SSD1306_I2C(128, 64, i2c)
-    measure=0
-    finalDistance=0
+    #define sensor pins
+
+    m1 = Pin(21, Pin.OUT)
+    m2 = Pin(22, Pin.OUT)
+    #define dc motor pins
+
+    m1.low()
+    m2.low()
+    signaloff = 0
+    signalon = 0
 
     def getDistance():
     trigger.low()
@@ -68,30 +63,33 @@ MicroPython Code of the Project
     timepassed = signalon - signaloff
     distance = (timepassed * 0.0343) / 2
     return distance
-    #calculate the distance
-    def getMeasure(pin):
-    global measure
-    global finalDistance
-    redLed.value(1)
-    for i in range(20):
-        measure += getDistance()
-        sleep(0.05)
-    redLed.value(0)
-    finalDistance = (measure/20) + 1
-    oled.fill(0)
-    oled.show()
-    oled.text(">Digital Ruller<", 2,5)
-    oled.text("Distance " + str(round(finalDistance)) +" cm", 0, 32)
-    oled.show()
-    #print the specified distance to the specified x and y coordinates on the OLED screen
-    print(finalDistance)
-    buzzer.duty_u16(4000)
-    sleep(0.05)
-    buzzer.duty_u16(0)
+    #calculate distance
+
     measure=0
-    finalDistance=0
-    #sound the buzzer  
-    button.irq(trigger=machine.Pin.IRQ_RISING, handler=getMeasure)
+    while True:
+    
+    measure=int(getDistance())
+    print(measure)
+    if measure>5:
+        m1.high()
+        m2.high()
+        sleep(1) #if the distance is higher than 5, the wheels go straight
+    else:
+        m1.low()
+        m2.low()
+        sleep(0.5)
+        m1.high()
+        m2.low()
+        sleep(0.5)
+        measure=int(getDistance())
+        if measure<5:
+            m1.low()
+        m2.low()
+        sleep(0.5)
+        m1.low()
+        m2.high()
+        sleep(0.5)
+        #If the distance is less than 5, wait, move in any direction; if the distance is less than 5, move in the opposite direction
 
 
 .. tip::
@@ -103,79 +101,69 @@ Arduino C Code of the Project
 
 .. code-block::
 
-    #include <Wire.h>
-    #include "ACROBOTIC_SSD1306.h"
     #include <NewPing.h>
-    // define the libraries
+
     #define TRIGGER_PIN  15
     #define ECHO_PIN     14
     #define MAX_DISTANCE 400
+    //define sensor pins
 
     NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 
-    #define T_B 493
-
-    int distance = 0;
-    int total = 0;
-
     void setup() {
-    pinMode(7,OUTPUT);
-    pinMode(20,OUTPUT);
-    pinMode(10,INPUT); 
-    // define input and output pins
-    Wire.begin();  
-    oled.init();                      
-    oled.clearDisplay(); 
-
-
+    pinMode(21,OUTPUT);
+    pinMode(22,OUTPUT); //define dc motor pins
         }
 
     void loop() {
-
+  
     delay(50);
-    if(digitalRead(10) == 1){
+    int distance=sonar.ping_cm();
+    Forward();
 
-    int measure=0;
-    digitalWrite(7,HIGH);
-    tone(20,T_B);
-    delay(500);
-    noTone(20);
+    if(distance<5){
 
-    for (int i=0;i<20;i++){
-
-      measure=sonar.ping_cm();
-      total=total+measure;
-      delay(50);      
-        }
-
-    distance = total/20+6; // calculate the distance
-    digitalWrite(7,LOW);
-
+    Stop();
     delay(1000);
-    oled.clearDisplay();
-    oled.setTextXY(2,1);              
-    oled.putString(">Digital Ruler<");
-    oled.setTextXY(5,1);              
-    oled.putString("Distance: ");
-    oled.setTextXY(5,10);              
-    String string_distance=String(distance);
-    oled.putString(string_distance);
-    oled.setTextXY(5,12);              
-    oled.putString("cm"); // print the calculated distance on the OLED screen
+    Turn_Right();
+    delay(1000);
+    int distance=sonar.ping_cm();
 
-    measure=0;
-    distance=0;
-    total=0;
+    if(distance<5){
+      Stop();
+      delay(1000);
+      Turn_Left();
+      delay(500);
+      // If the distance is less than 5, wait, turn right; if the distance is less than 5 again, move in the opposite direction
+            }
         }
     }
+
+    void Forward(){
+    digitalWrite(21,HIGH);
+    digitalWrite(22,HIGH); //if the distance is higher than 5, go straight
+    }
+    void Turn_Left(){
+    digitalWrite(21,LOW);
+    digitalWrite(22,HIGH); //turn left
+    }
+    void Turn_Right(){
+    digitalWrite(21,HIGH);
+    digitalWrite(22,LOW);  //turn right
+    }
+    void Stop(){
+    digitalWrite(21,LOW);
+    digitalWrite(22,LOW); //wait
+    }
+   
     
 Coding the Project with MicroBlocks
 ------------------------------------
-+----------------+
-||digital-ruler1||     
-+----------------+
++--------------------+
+||maze-solver-robot1||     
++--------------------+
 
-.. |digital-ruler1| image:: _static/digital-ruler1.png
+.. |maze-solver-robot1| image:: _static/maze-solver-robot1.png
 
 
 
