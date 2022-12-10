@@ -1,25 +1,24 @@
 ###########
-Digital Ruler
+Smart Greenhouse
 ###########
 
 Introduction
 -------------
-In this project, you will learn how to receive and react to a command from the user in your projects by coding the button-LED module of Picobricks.
+In this project, we will prepare a simple greenhouse with ``IOT technology`` and PicoBricks. We will use PicoBricks with the ESP8266 wifi module in this greenhouse. In this way, we will turn the greenhouse into an object that we can track over the Internet.
 
 Project Details and Algorithm
 ------------------------------
 
-As Newton explained in his laws of motion, a reaction occurs against every action. Electronic systems receive commands from users and perform their tasks. Usually a keypad, touch screen or a button is used for this job. Electronic devices respond verbally, in writing or visually to inform the user that their task is over and what is going on during the task. In addition to informing the user of these reactions, it can help to understand where the fault may be in a possible malfunction.
+The rapid changes in climate due to the effect of global warming cause a decrease in productivity in agricultural activities. In the 1500s, Daniel Barbaro built the first known greenhouse in history. Greenhouses are suitable environments for growing plants that can provide controllable air, water, heat and light conditions. In greenhouses, heaters are used to balance the heat, electric water motors for irrigation, fans are used to regulate humidity and to provide pollination. With the development of technology, the producer can follow the status of the greenhouse with his phone from anywhere and can do the work that needs to be done. The general name of this technology is ``Internet of Things`` (IOT). Special sensors are used to measure temperature, humidity and oxygen content in greenhouses. In addition, special sensors measuring soil moisture are used to decide on irrigation. Electronically controlled drip irrigation systems are used to increase irrigation efficiency. 
 
-Different types of buttons are used in electronic systems. Locked buttons, push buttons, switched buttons... There is 1 push button on Picobricks. They work like a switch, they conduct current when pressed and do not conduct current when released. In the project, we will understand the pressing status by checking whether the button conducts current or not. If it is pressed, it will light the LED, if it is not pressed, we will turn off the LED.
-
+The greenhouse model you will prepare will include a soil moisture sensor, and a DHT11 temperature and humidity sensor hanging from the top. A submersible pump will be placed in the water tank outside the model, and the hose coming out of the end of the pump will go to the ground in the greenhouse. Picoboard will be placed in a suitable place outside the greenhouse model. When Picobricks starts, it starts to broadcast wifi thanks to the ESP8266 wifi module. When we enter the IP address of Esp8266 from the smart phone connected to the same network, we encounter the web page where we will control the Greenhouse. Here we can see the temperature and humidity values. If we wish, we can start the irrigation process by giving the irrigation command.
 
 
 
 Wiring Diagram
 --------------
 
-.. figure:: ../_static/digital-ruler.png      
+.. figure:: ../_static/smart-greenhouse.png      
     :align: center
     :width: 400
     :figclass: align-center
@@ -32,66 +31,143 @@ MicroPython Code of the Project
 --------------------------------
 .. code-block::
 
-    from machine import Pin, PWM, I2C
-    from utime import sleep
-    from picobricks import SSD1306_I2C
     import utime
-    #define the libraries
-    redLed=Pin(7,Pin.OUT)
-    button=Pin(10,Pin.IN,Pin.PULL_DOWN)
-    buzzer=PWM(Pin(20,Pin.OUT))
-    buzzer.freq(392)
-    trigger = Pin(15, Pin.OUT)
-    echo = Pin(14, Pin.IN)
-    #define input and output pins
-    WIDTH  = 128                                            
-    HEIGHT = 64                                       
-    #OLED screen settings
-    sda=machine.Pin(4)
-    scl=machine.Pin(5)
-    i2c=machine.I2C(0,sda=sda, scl=scl, freq=1000000)
-    #initialize digital pin 4 and 5 as an OUTPUT for OLED communication
-    oled = SSD1306_I2C(128, 64, i2c)
-    measure=0
-    finalDistance=0
+    import uos
+    import machine 
+    from machine import Pin, ADC
+    from picobricks import DHT11  
+    from utime import sleep 
 
-    def getDistance():
-    trigger.low()
-    utime.sleep_us(2)
-    trigger.high()
-    utime.sleep_us(5)
-    trigger.low()
-    while echo.value() == 0:
-       signaloff = utime.ticks_us()
-    while echo.value() == 1:
-       signalon = utime.ticks_us()
-    timepassed = signalon - signaloff
-    distance = (timepassed * 0.0343) / 2
-    return distance
-    #calculate the distance
-    def getMeasure(pin):
-    global measure
-    global finalDistance
-    redLed.value(1)
-    for i in range(20):
-        measure += getDistance()
-        sleep(0.05)
-    redLed.value(0)
-    finalDistance = (measure/20) + 1
-    oled.fill(0)
-    oled.show()
-    oled.text(">Digital Ruller<", 2,5)
-    oled.text("Distance " + str(round(finalDistance)) +" cm", 0, 32)
-    oled.show()
-    #print the specified distance to the specified x and y coordinates on the OLED screen
-    print(finalDistance)
-    buzzer.duty_u16(4000)
-    sleep(0.05)
-    buzzer.duty_u16(0)
-    measure=0
-    finalDistance=0
-    #sound the buzzer  
-    button.irq(trigger=machine.Pin.IRQ_RISING, handler=getMeasure)
+    dht_sensor = DHT11(Pin(11))
+    smo_sensor=ADC(27)
+    m1 = Pin(22, Pin.OUT)
+    m1.low()
+
+    print("Machine: \t" + uos.uname()[4])
+    print("MicroPython: \t" + uos.uname()[3])
+
+    uart0 = machine.UART(0, baudrate=115200)
+    print(uart0)
+
+    def Connect_WiFi(cmd, uart=uart0, timeout=5000):
+    print("CMD: " + cmd)
+    uart.write(cmd)
+    utime.sleep(7.0)
+    Wait_ESP_Rsp(uart, timeout)
+    print()
+    
+    def Rx_ESP_Data():
+    recv=bytes()
+    while uart0.any()>0:
+        recv+=uart0.read(1)
+    res=recv.decode('utf-8')
+    return res
+
+    def Send_AT_Cmd(cmd, uart=uart0, timeout=2000):
+    print("CMD: " + cmd)
+    uart.write(cmd)
+    Wait_ESP_Rsp(uart, timeout)
+    print()
+
+    def Wait_ESP_Rsp(uart=uart0, timeout=2000):
+    prvMills = utime.ticks_ms()
+    resp = b""
+    while (utime.ticks_ms()-prvMills)<timeout:
+        if uart.any():
+            resp = b"".join([resp, uart.read(1)])
+    print("resp:")
+    try:
+        print(resp.decode())
+    except UnicodeError:
+        print(resp)
+
+    Send_AT_Cmd('AT\r\n')          #Test AT startup
+    Send_AT_Cmd('AT+GMR\r\n')      #Check version information
+    Send_AT_Cmd('AT+CIPSERVER=0\r\n')   
+    Send_AT_Cmd('AT+RST\r\n')      #Check version information
+    Send_AT_Cmd('AT+RESTORE\r\n')  #Restore Factory Default Settings
+    Send_AT_Cmd('AT+CWMODE?\r\n')  #Query the WiFi mode
+    Send_AT_Cmd('AT+CWMODE=1\r\n') #Set the WiFi mode = Station mode
+    Send_AT_Cmd('AT+CWMODE?\r\n')  #Query the WiFi mode again
+    Send_AT_Cmd('AT+CWJAP="ID","Password"\r\n', timeout=5000) #Connect to AP
+    utime.sleep(3.0)
+    Send_AT_Cmd('AT+CIFSR\r\n')    #Obtain the Local IP Address
+    utime.sleep(3.0)
+    Send_AT_Cmd('AT+CIPMUX=1\r\n')    
+    utime.sleep(1.0)
+    Send_AT_Cmd('AT+CIPSERVER=1,80\r\n')    #Obtain the Local IP Address
+    utime.sleep(1.0)
+
+    while True:
+    res =""
+    res=Rx_ESP_Data()
+    utime.sleep(2.0)
+    if '+IPD' in res: # if the buffer contains IPD(a connection), then respond with HTML handshake
+        id_index = res.find('+IPD')
+        
+        if '/WATERING' in res:
+            print('Irrigation Start')
+            m1.high()
+            utime.sleep(10)
+            m1.low()
+            print('Irrigation Finished')
+            connection_id =  res[id_index+5]
+            print("connectionId:" + connection_id)
+            print ('! Incoming connection - sending webpage')
+            uart0.write('AT+CIPSEND='+connection_id+',200'+'\r\n')  
+            utime.sleep(1.0)
+            uart0.write('HTTP/1.1 200 OK'+'\r\n')
+            uart0.write('Content-Type: text/html'+'\r\n')
+            uart0.write('Connection: close'+'\r\n')
+            uart0.write(''+'\r\n')
+            uart0.write('<!DOCTYPE HTML>'+'\r\n')
+            uart0.write('<html>'+'\r\n')
+            uart0.write('<body><center><H1>CONNECTED...<br/></H1></center>'+'\r\n')
+            uart0.write('<body><center><H1>Irrigation Complete.<br/></H1></center>'+'\r\n')
+            uart0.write('</body></html>'+'\r\n')
+        elif '/SERA' in res:
+            #sleep(1) # It was used for DHT11 to measure.
+            dht_sensor.measure() # Use the sleep() command before this line.
+            temp=dht_sensor.temperature
+            hum=dht_sensor.humidity
+            smo=round((smo_sensor.read_u16()/65535)*100)
+            sendStr="\"TEMP\":{}, \"Humidity\":{}, \"S.Moisture\":{}%".format(temp,hum,smo)
+            sendText="{"+sendStr+"}"
+            strLen=46+len(sendText)
+            connection_id =  res[id_index+5]
+            print("connectionId:" + connection_id)
+            print ('! Incoming connection - sending webpage')
+            atCmd="AT+CIPSEND="+connection_id+","+str(strLen)
+            uart0.write(atCmd+'\r\n') 
+            utime.sleep(1.0)
+            uart0.write('HTTP/1.1 200 OK'+'\r\n')
+            uart0.write('Content-Type: text/html'+'\r\n')
+            uart0.write(''+'\r\n')
+            uart0.write(sendText+'\r\n')
+
+        elif '/' in res:
+            
+            print("resp:")
+            print(res)
+            connection_id =  res[id_index+5]
+            print("connectionId:" + connection_id)
+            print ('! Incoming connection - sending webpage')
+            uart0.write('AT+CIPSEND='+connection_id+',200'+'\r\n') 
+            utime.sleep(3.0)
+            uart0.write('HTTP/1.1 200 OK'+'\r\n')
+            uart0.write('Content-Type: text/html'+'\r\n')
+            uart0.write('Connection: close'+'\r\n')
+            uart0.write(''+'\r\n')
+            uart0.write('<!DOCTYPE HTML>'+'\r\n')
+            uart0.write('<html>'+'\r\n')
+            uart0.write('<body><center><H1>CONNECTED.<br/></H1></center>'+'\r\n')
+            uart0.write('<center><h4>INFO:Get Sensor Data</br>WATERING:Run Water Pump</h4></center>'+'\r\n')
+            uart0.write('</body></html>'+'\r\n')
+        utime.sleep(4.0)
+        Send_AT_Cmd('AT+CIPCLOSE='+ connection_id+'\r\n') # once file sent, close connection
+        utime.sleep(3.0)
+        recv_buf="" #reset buffer
+        print ('Waiting For connection...')
 
 
 .. tip::
@@ -103,79 +179,162 @@ Arduino C Code of the Project
 
 .. code-block::
 
-    #include <Wire.h>
-    #include "ACROBOTIC_SSD1306.h"
-    #include <NewPing.h>
-    // define the libraries
-    #define TRIGGER_PIN  15
-    #define ECHO_PIN     14
-    #define MAX_DISTANCE 400
+    #include <DHT.h>
+    #define RX 0
+    #define TX 1
 
-    NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
+    #define LIMIT_TEMPERATURE     30
+    #define DHTPIN                11
+    #define DHTTYPE               DHT11
+    #define smo_sensor            27
+    #define motor                 22
+    #define DEBUG true
 
-    #define T_B 493
-
-    int distance = 0;
-    int total = 0;
+    DHT dht(DHTPIN, DHTTYPE);
+    int connectionId;
 
     void setup() {
-    pinMode(7,OUTPUT);
-    pinMode(20,OUTPUT);
-    pinMode(10,INPUT); 
-    // define input and output pins
-    Wire.begin();  
-    oled.init();                      
-    oled.clearDisplay(); 
+    Serial1.begin(115200);
+    dht.begin();
+    pinMode(smo_sensor, INPUT);
+    pinMode(motor, OUTPUT);
 
-
+    sendData("AT+RST\r\n", 2000, DEBUG); // reset module
+    sendData("AT+GMR\r\n", 1000, DEBUG); // configure as access point
+    sendData("AT+CIPSERVER=0\r\n", 1000, DEBUG); // configure as access point
+    sendData("AT+RST\r\n", 1000, DEBUG); // configure as access point
+    sendData("AT+RESTORE\r\n", 1000, DEBUG); // configure as access point
+    sendData("AT+CWMODE?\r\n", 1000, DEBUG); // configure as access point
+    sendData("AT+CWMODE=1\r\n", 1000, DEBUG); // configure as access point
+    sendData("AT+CWMODE?\r\n", 1000, DEBUG); // configure as access point
+    sendData("AT+CWJAP=\"WIFI_ID\",\"WIFI_PASSWORD\"\r\n", 5000, DEBUG); // ADD YOUR OWN WIFI ID AND PASSWORD
+    delay(3000);
+    sendData("AT+CIFSR\r\n", 1000, DEBUG); // get ip address
+    delay(3000);
+    sendData("AT+CIPMUX=1\r\n", 1000, DEBUG); // configure for multiple connections
+    delay(1000);
+    sendData("AT+CIPSERVER=1,80\r\n", 1000, DEBUG); // turn on server on port 80
+    delay(1000);
         }
 
     void loop() {
+    if (Serial1.find("+IPD,")) {
+    delay(300);
+    connectionId = Serial1.read() - 48;
+    String serialIncoming = Serial1.readStringUntil('\r');
+    Serial.print("SERIAL_INCOMING:");
+    Serial.println(serialIncoming);
 
-    delay(50);
-    if(digitalRead(10) == 1){
-
-    int measure=0;
-    digitalWrite(7,HIGH);
-    tone(20,T_B);
-    delay(500);
-    noTone(20);
-
-    for (int i=0;i<20;i++){
-
-      measure=sonar.ping_cm();
-      total=total+measure;
-      delay(50);      
-        }
-
-    distance = total/20+6; // calculate the distance
-    digitalWrite(7,LOW);
-
-    delay(1000);
-    oled.clearDisplay();
-    oled.setTextXY(2,1);              
-    oled.putString(">Digital Ruler<");
-    oled.setTextXY(5,1);              
-    oled.putString("Distance: ");
-    oled.setTextXY(5,10);              
-    String string_distance=String(distance);
-    oled.putString(string_distance);
-    oled.setTextXY(5,12);              
-    oled.putString("cm"); // print the calculated distance on the OLED screen
-
-    measure=0;
-    distance=0;
-    total=0;
-        }
+    if (serialIncoming.indexOf("/WATERING") > 0) {
+      Serial.println("Irrigation Start");
+      digitalWrite(motor, HIGH);
+      delay(1000); // 10 sec.
+      digitalWrite(motor, LOW);
+      Serial.println("Irrigation Finished");
+      Serial.println("! Incoming connection - sending WATERING webpage");
+      String html = "";
+      html += "<html>";
+      html += "<body><center><H1>Irrigation Complete.<br/></H1></center>";
+      html += "</body></html>";
+      espsend(html);
     }
+    if (serialIncoming.indexOf("/SERA") > 0) {
+      delay(300);
+
+      float smo = analogRead(smo_sensor);
+      float smopercent = (460-smo)*100.0/115.0 ; //min ve max değerleri değişken.
+      Serial.print("SMO: %");
+      Serial.println(smo);
+
+      float temperature = dht.readTemperature();
+      Serial.print("Temp: ");
+      Serial.println(temperature);
+
+      float humidity = dht.readHumidity();
+      Serial.print("Hum: ");
+      Serial.println(humidity);
+      
+      Serial.println("! Incoming connection - sending SERA webpage");
+      String html = "";
+      html += "<html>";
+      html += "<body><center><H1>TEMPERATURE<br/></H1></center>";
+      html += "<center><H2>";
+      html += (String)temperature;
+      html += " C<br/></H2></center>";
+
+      html += "<body><center><H1>HUMIDITY<br/></H1></center>";
+      html += "<center><H2>";
+      html += (String)humidity;
+      html += "%<br/></H2></center>";  
+      
+      html += "<body><center><H1>SMO<br/></H1></center>";
+      html += "<center><H2>";
+      html += (String)smopercent;
+      html += "%<br/></H2></center>";  
+          
+      html += "</body></html>";
+      espsend(html);
+    }
+    else
+      Serial.println("! Incoming connection - sending MAIN webpage");
+    String html = "";
+    html += "<html>";
+    html += "<body><center><H1>CONNECTED.<br/></H1></center>";
+    html += "<center><a href='/SERA'><h4>INFO:Get Sensor Data</a></br><a href='/WATERING'>WATERING:Run Water Pump</a></h4></center>";
+    html += "</body></html>";
+    espsend(html);
+    String closeCommand = "AT+CIPCLOSE=";  ////////////////close the socket connection////esp command
+    closeCommand += connectionId; // append connection id
+    closeCommand += "\r\n";
+    sendData(closeCommand, 3000, DEBUG);
+
+        }
+
+        }
+        //////////////////////////////sends data from ESP to webpage///////////////////////////
+
+    void espsend(String d)
+        {
+    String cipSend = " AT+CIPSEND=";
+    cipSend += connectionId;
+    cipSend += ",";
+    cipSend += d.length();
+    cipSend += "\r\n";
+    sendData(cipSend, 1000, DEBUG);
+    sendData(d, 1000, DEBUG);
+        }
+
+        //////////////gets the data from esp and displays in serial monitor///////////////////////
+
+    String sendData(String command, const int timeout, boolean debug)
+        {
+    String response = "";
+    Serial1.print(command);
+    long int time = millis();
+    while ( (time + timeout) > millis())
+        {
+    while (Serial1.available())
+    {
+      char c = Serial1.read(); // read the next character.
+      response += c;
+    }
+    }
+
+    if (debug)
+    {
+    Serial.print(response); //displays the esp response messages in arduino Serial monitor
+    }
+    return response;
+    }
+    
     
 Coding the Project with MicroBlocks
 ------------------------------------
-+----------------+
-||digital-ruler1||     
-+----------------+
++-------------------+
+||smart-greenhouse1||     
++-------------------+
 
-.. |digital-ruler1| image:: _static/digital-ruler1.png
+.. |smart-greenhouse1| image:: _static/smart-greenhouse1.png
 
 
 
