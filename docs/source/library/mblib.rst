@@ -1,4 +1,4 @@
-Library Guide for MicroBlocks
+Guide for MicroBlocks
 ========================================
 
 Summary of Blocks
@@ -30,6 +30,7 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 .. |windows-logo| image:: _static/pb_beep.png
 .. |linux-logo| image:: _static/pb_button.png
 .. |macos-logo| image:: _static/pb_color.png
+
 
 +--------------------------------------+-----------------------------------+
 ||windows-logo1|                       |  |macos-logo1|                    |
@@ -132,3 +133,19 @@ In this section, we will describe how one can make use of these components, as w
     :align: center
     :width: 320
     :figclass: align-center
+
+Projects with MicroBlocks
+----------------------------
+
+.. image:: /../_static/pb.gif
+
+| **MicroBlocks is a live programming system that invites exploration. Click a block in the MicroBlocks IDE to see text appear.**
+
+.. image:: /../_static/pb1.gif
+
+| **Beginners and experts alike will find that MicroBlocks is a great tool exploring every aspect of PicoBricks.**
+
+.. image:: /../_static/pb2.gif
+
+
+
