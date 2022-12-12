@@ -32,3 +32,6 @@ PicoBricks Modules are Detachable
 
 Once you've explored the Pico Bricks modules, you may want to use some of them in a project. Although Pico Bricks is compact, there's no need to build the entire thing into your project. By detaching the Pico Bricks modules, you can connect just the modules you need using cables with standard, easy-to-use Grove connectors.
 
+
+.. image:: /../_static/detachable.gif
+
