@@ -1,6 +1,9 @@
 What is PicoBricks?
 ====================
 
+.. image:: /../_static/wtb.gif
+
+
 PicoBricks
 -----------
 
