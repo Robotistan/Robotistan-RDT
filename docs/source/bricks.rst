@@ -32,6 +32,8 @@ Motor Driver
 -------------------
 It is electrical equipment that adjusts the speed of induction motors by changing the frequency. In addition to speed control, it is equipped with superior protection, control and communication features.
 
+
+
 LDR
 -------------------
 LDR sensor module is used to detect the intensity of light. When there is light, the resistance of LDR will become low according to the intensity of light. The greater the intensity of light, the lower the resistance of LDR. The sensor has a potentiometer knob that can be adjusted to change the sensitivity of LDR towards light.
@@ -56,3 +58,5 @@ A buzzer or beeper is an signaling device, which produces sound.
 Protoboard
 -------------------
 A protoboard is usually a construction base for prototyping of electronics. 
+
+.. image:: /../_static/bricks.gif
