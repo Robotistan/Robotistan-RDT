@@ -2,7 +2,7 @@
 Getting Started
 ################
 
-.. image:: /../_static/started.jpg
+.. image:: /../_static/started.png
 
 
 .. toctree::
