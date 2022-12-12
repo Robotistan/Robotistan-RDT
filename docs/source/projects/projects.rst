@@ -42,6 +42,16 @@ You can realize many projects with 11 different components of Pico Bricks. Apart
      Buzz Wire Game <buzz wire game>
      Dinosaur Game <dinosaur game>
      Night and Day <night and day>
+     Voice Controlled Robot Car <Voice Controlled Car>
+     Two Axis Robot Arm <Two Axis Robot Arm>
+     Smart House <smart-house>
+     Piggy Bank <Piggy-Bank>
+     NFC Smart Door <NFC smart door>
+     Automatic Trash Bin <automatic trash bin>
+     Digital Ruler <digital ruler>
+     Air Piano <air piano>
+     Maze Solver Robot <maze solver robot>
+     Smart Greenhouse <smart greenhouse>
 
     *
 
