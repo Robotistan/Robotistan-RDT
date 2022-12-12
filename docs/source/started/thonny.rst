@@ -5,7 +5,7 @@ Thonny (MicroPython) IDE for Beginners
 
 .. figure:: ../_static/man.jpg
     :align: center
-    :width: 420
+    :width: 720
     :figclass: align-center
     
     
