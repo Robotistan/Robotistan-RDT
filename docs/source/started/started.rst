@@ -2,8 +2,12 @@
 Getting Started
 ################
 
-.. image:: /../_static/started.png
 
+.. figure:: ../_static/started.png     
+    :align: center
+    :width: 720
+    :figclass: align-center
+    
 
 .. toctree::
     :caption: PicoBricks with :
