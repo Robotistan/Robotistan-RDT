@@ -10,7 +10,7 @@ With Picobricks, you can build your circuits without cable clutter. Similarly, y
     :width: 720
     :figclass: align-center
     
-|**No soldering! There are unlimited connections.**
+| **No soldering! There are unlimited connections.**
 
 .. figure:: ../_static/cable2.jpg
     :align: center
