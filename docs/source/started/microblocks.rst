@@ -2,6 +2,9 @@
 MicroBlocks Block Programming Language
 #############################################
 
+.. image:: /../_static/kid.gif
+
+
 What MicroBlocks Is?
 --------------------
 
