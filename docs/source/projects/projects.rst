@@ -8,6 +8,20 @@ You can realize many projects with 11 different components of Pico Bricks. Apart
 
 .. image:: /../_static/alarmclock.gif
 
+.. image:: /../_static/ferriswheel.gif
+
+
+| **You can set up home automation systems with Pico Bricks.**
+
+.. image:: /../_static/toaster.gif
+
+| **Here are some projects you can do with detachable pico bricks.**
+
+.. image:: /../_static/rgb.gif
+
+.. image:: /../_static/car.gif
+
+
 
 .. toctree::
     :maxdepth: 1
