@@ -2,7 +2,16 @@
 Projects
 #########
 
+You can realize many projects with 11 different components of Pico Bricks. Apart from this, you can make projects beyond your dreams by adding unlimited components with 8 different connection types.
 
+| **You can make fun projects with Pico Bricks.**
+
+.. image:: /../_static/alarmclock.gif
+
+.. figure:: ../_static/alarmclock.gif   
+    :align: center
+    :width: 400
+    :figclass: align-center
 
 .. toctree::
     :maxdepth: 1
