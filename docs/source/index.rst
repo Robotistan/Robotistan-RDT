@@ -2,6 +2,9 @@
 Welcome to PicoBricks Documentation
 #############################################
 
+.. image:: /../_static/main.gif
+
+
 Here you will find all the relevant information about the project.
 
 
