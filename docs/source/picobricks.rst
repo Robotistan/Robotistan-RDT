@@ -35,3 +35,8 @@ Once you've explored the Pico Bricks modules, you may want to use some of them i
 
 .. image:: /../_static/detachable.gif
 
+| **Detachable Modules Can Be Reassembled**
+
+After dividing the Pico Bricks into modules, you can easily reassemble them again on the specially designed base plate.
+
+.. image:: /../_static/detachable1.gif
