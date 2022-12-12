@@ -2,6 +2,13 @@
 Thonny (MicroPython) IDE for Beginners
 #############################################
 
+
+.. figure:: ../_static/man.jpg
+    :align: center
+    :width: 420
+    :figclass: align-center
+    
+    
 Thonny IDE Setup
 ----------------
 
