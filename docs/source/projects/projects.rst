@@ -8,10 +8,6 @@ You can realize many projects with 11 different components of Pico Bricks. Apart
 
 .. image:: /../_static/alarmclock.gif
 
-.. figure:: ../_static/alarmclock.gif   
-    :align: center
-    :width: 400
-    :figclass: align-center
 
 .. toctree::
     :maxdepth: 1
