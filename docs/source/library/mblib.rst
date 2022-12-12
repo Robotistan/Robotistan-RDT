@@ -134,6 +134,8 @@ In this section, we will describe how one can make use of these components, as w
     :width: 320
     :figclass: align-center
 
+
+
 Projects with MicroBlocks
 ----------------------------
 
