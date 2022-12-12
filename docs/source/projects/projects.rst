@@ -4,18 +4,18 @@ Projects
 
 You can realize many projects with 11 different components of Pico Bricks. Apart from this, you can make projects beyond your dreams by adding unlimited components with 8 different connection types.
 
-| **You can make fun projects with Pico Bricks.**
+| **You can make fun projects with PicoBricks.**
 
 .. image:: /../_static/alarmclock.gif
 
 .. image:: /../_static/ferriswheel.gif
 
 
-| **You can set up home automation systems with Pico Bricks.**
+| **You can set up home automation systems with PicoBricks.**
 
 .. image:: /../_static/toaster.gif
 
-| **Here are some projects you can do with detachable pico bricks.**
+| **Here are some projects you can do with detachable PicoBricks.**
 
 .. image:: /../_static/rgb.gif
 
