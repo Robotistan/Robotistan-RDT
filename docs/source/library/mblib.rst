@@ -59,15 +59,10 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 .. |linux-logo3| image:: _static/pb_setrgbcolor.png
 .. |macos-logo3| image:: _static/pb_temperature.png
 
-+---------------------+-----------------+
-||windows-logo4|      ||macos-logo4|    |
-+---------------------+-----------------+
-|Turns off the RGB LED| Rescales values |
-+---------------------+-----------------+
 
 .. |windows-logo4| image:: _static/pb_turnoffrgb.png
 .. |linux-logo4| image:: _static/pb_initpins.png
-.. |macos-logo4| image:: _static/pb_rescale.png
+
 
 +----------------------+-----------------------+
 | |windows-logo3|      | |macos-logo2|         |
@@ -81,6 +76,13 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 +--------------------------+-----------------------------------------------+
 |Returns a RGB color value | Returns the light level as a percentage value |
 +--------------------------+-----------------------------------------------+
+
++---------------------+
+||windows-logo4|      |
++---------------------+
+|Turns off the RGB LED| 
++---------------------+
+
 
 Working with Library Blocks
 -----------------------------
