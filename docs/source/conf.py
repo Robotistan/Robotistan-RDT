@@ -90,7 +90,7 @@ html_logo = '_static/logo_picobricks2.png'
 html_static_path = ['_static']
 
 texinfo_documents = [
-    (master_doc, 'Robotistan', 'PicoBricks Documentation',
+    (doc, 'Robotistan', 'PicoBricks Documentation',
      author, 'SametS', 'One line description of project.',
      'PicoBricks'),
 ]
