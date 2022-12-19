@@ -89,5 +89,12 @@ html_logo = '_static/logo_picobricks2.png'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+texinfo_documents = [
+    (master_doc, 'Robotistan', 'PicoBricks Documentation',
+     author, 'SametS', 'One line description of project.',
+     'PicoBricks'),
+]
+
+
 # Style
 # pygments_style = "sphinx"
