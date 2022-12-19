@@ -8,7 +8,7 @@ In this project, we will build a simple electronic rock-paper-scissors game by u
 
 Project Details and Algorithm
 ------------------------------
-This project is perfect for beginners, as it only requires a few components. While both the wiring diagram and the associated software are easy to understand.
+This project is perfect for beginners, as it only requires a Picobricks.
 
 RULES:
 
@@ -28,30 +28,16 @@ Think about :
 
 - Use images instead of text
 
-- Using a 3D printed arrow and board.
-
 Use your imagination...
-
-Wiring Diagram
---------------
-
-+--------------------------------------+-------------------------------------------+
-|  |rock-paper-scissors|               |   |rock-paper-scissors2|                  |
-+--------------------------------------+-------------------------------------------+
-
-.. |rock-paper-scissors| image:: _static/rock-paper-scissors.png
-.. |rock-paper-scissors2| image:: _static/rock-paper-scissors2.png
-
-
     
 
 Coding the Project with MicroBlocks
 ------------------------------------
-+----------------------+
-||rock-paper-scissors1||     
-+----------------------+
++---------------------+
+||rock-paper-scissors||     
++---------------------+
 
-.. |rock-paper-scissors1| image:: _static/rock-paper-scissors1.png
+.. |rock-paper-scissors| image:: _static/rock-paper-scissors.png
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
