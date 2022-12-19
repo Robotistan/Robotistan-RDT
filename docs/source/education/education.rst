@@ -17,7 +17,7 @@ You can easily access the projects you can find in Picobricks Education Content 
      Counter Project <counter project>
      MicroBlocks Test Code <microblocks test code>
      Propeller Button <propeller button>
-     Rock-Paper-Scissors <rock paper scissors>
+     Rock-Paper-Scissors <rock paper scissor>
      Score <score>
      Turtle Project <turtle project>
      Variable Button <variable button>
