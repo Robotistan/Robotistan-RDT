@@ -26,7 +26,6 @@ Here you will find all the relevant information about the project.
    Development Environments <guides/guides>
    Getting Started <started/started>
    Projects <projects/projects>
-   Education <education/education>
    Bootloader <boatloader/boatloader>
    Guide for MicroBlocks <library/mblib>
    Datasheets <datasheet>
