@@ -5,12 +5,21 @@ Picobricks Education
 
 You can easily access the projects you can find in Picobricks Education Content here. With Picobricks, you can start your coding learning adventure quickly with the projects here and advance yourself.
 
-
+.. image:: /../_static/education.gif
 
 
 .. toctree::
     :maxdepth: 1
-    :caption: Activities From Easy To Difficult:
+    :caption: MicroBlocks Test Code:
+    
+    MicroBlocks Test Code <microblocks test code>
+    
+    *
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Activities:
     
      2-Player Score <2-player score>
      Colourful Music <colourful music>
