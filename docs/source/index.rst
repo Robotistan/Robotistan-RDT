@@ -25,7 +25,7 @@ Here you will find all the relevant information about the project.
    Connection Methods <unlimitedconnectionmethod>
    Development Environments <guides/guides>
    Getting Started <started/started>
-   Projects <projects/projects>
+   Projects <projects/microblocks test code>
    Education <education/education>
    Bootloader <boatloader/boatloader>
    Guide for MicroBlocks <library/mblib>
