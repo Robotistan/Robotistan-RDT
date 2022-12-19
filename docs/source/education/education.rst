@@ -28,11 +28,11 @@ You can realize many projects with 11 different components of Pico Bricks. Apart
     :maxdepth: 1
     :caption: Activities From Easy To Difficult:
     
-     Blink <blink>
-     Action-Reaction <action-reaction>
-     Autonomous Lighting <autonomous-lighting>
-     Thermometer <thermometer>
-     Graphic Monitor <graphic monitor>
+     2-player score <2-player score>
+     colourful music <colourful music>
+     counter project <counter project>
+     microblocks test code <microblocks test code>
+     propeller button <propeller button>
      Dominate the Rhythm <dominate the rhythm> 
      Show Your Reaction <show your reaction> 
      My Timer <my timer>  
