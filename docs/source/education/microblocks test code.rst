@@ -2,7 +2,6 @@
 MicroBlocks Test Code
 ###########
 
-Introduction
 With this test code, you can test all modules on Picobricks and learn how they work.
 
 Coding the Project with MicroBlocks
