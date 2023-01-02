@@ -1,7 +1,7 @@
 Frequently Asked Questions
 ===========================
 
-How can I get picobricks to work when I split it?
+How can I get PicoBricks to work when I split it?
 --------------------------------------------------
 
 We can use the 12 modules on the PicoBricks by separating them from the break points and plugging them into the right connectors on the PicoBricks main board with a groove cable.
@@ -141,3 +141,38 @@ To test the modules on Picobricks, R&D team has created 2 different test codes u
     
 .. tip::
  You can access the Microblocks test code by dragging the image to the Microblocks Run tab.
+ 
+ 
+ On how many different platforms can I code PicoBricks?
+-------------------------------------------------------
+
+PicoBricks, is a project development board that can be programmed on three different platforms with Microblocks, Thonny and Arduino IDE.
+
+
+ .. figure:: ../_static/main.png      
+    :align: center
+    :width: 200
+    :figclass: align-center
+    
+With MicroBlocks, we can develop projects by moving code blocks to our project page by drag-and-drop method. MicroBlocks is a block-based programming platform and is generally preferred by users with little coding knowledge, younger users or users who want to develop projects quickly.
+
+Click `here <https://github.com/Robotistan/PicoBricks/tree/main/Software/Pre-Installed%20Code/Microblocks%20Test%20Code>`_; to go to MicroBlocks online editor.
+
+
+ .. figure:: ../_static/main1.png      
+    :align: center
+    :width: 200
+    :figclass: align-center
+    
+
+We can develop projects using the MicroPython language with the thonny coding platform. MicroPython is a programming language that eliminates punctuation (syntax) errors that are frequently made in coding platforms as much as possible.
+
+
+ .. figure:: ../_static/main2.png      
+    :align: center
+    :width: 200
+    :figclass: align-center
+
+
+Arduino IDE platform is one of the most common programs used for physical programming. It allows us to develop projects using the C programming language.
+
