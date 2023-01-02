@@ -178,3 +178,28 @@ We can develop projects using the MicroPython language with the thonny coding pl
 
 Arduino IDE platform is one of the most common programs used for physical programming. It allows us to develop projects using the C programming language.
 
+
+
+How can I create a new discussion in the PicoBricks Community?
+---------------------------------------------------------------
+
+Click `here <https://community.robotistan.com/>`_; to reach the Picobricks Community page. After clicking the New Discussion tab, you can write the title and what you want to write and share it. For a more accurate assessment of your question, you can also choose a category before sharing.
+
+
+How can I reach The PicoBricks projects?
+-----------------------------------------
+
+25 projects are presented to Picobricks users as ready by the Picobricks Team.
+
+You can reach it by following the steps of `PicoBricks/Software/Examples/ <https://github.com/Robotistan/PicoBricks>`_; from Picobricks GitHub page.
+
+You can also access these projects on Picobricks Website, Robotistan INC Youtube channel and PicoBricks e-book.
+ 
+ 
+When I start splitting PicoBricks, do I have to split all the modules or can I only split one or a few modules?
+----------------------------------------------------------------------------------------------------------------
+ 
+You don’t need to split all modules to run Picobricks modules correctly. After splitting only one or a few modules, you can use the split modules by plugging them into the corresponding connector on the Raspberry Pi Pico module with grove cables.
+ 
+ 
+
