@@ -143,7 +143,7 @@ To test the modules on Picobricks, R&D team has created 2 different test codes u
  You can access the Microblocks test code by dragging the image to the Microblocks Run tab.
  
  
- On how many different platforms can I code PicoBricks?
+On how many different platforms can I code PicoBricks?
 -------------------------------------------------------
 
 PicoBricks, is a project development board that can be programmed on three different platforms with Microblocks, Thonny and Arduino IDE.
