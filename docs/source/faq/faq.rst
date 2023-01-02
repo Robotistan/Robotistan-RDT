@@ -21,7 +21,7 @@ To the picobricks.py library from the picobricks github page;
 
 You can reach it by following the steps `PicoBricks/Software/Pre-Installed Code/picobricks.py <https://github.com/Robotistan/PicoBricks/blob/main/Software/Pre-Installed%20Code/picobricks.py>`_
 
-* How to add?
+* How to add??
 
 After downloading library, you need to load the picobricks.py library into the raspberry pi pico by pressing the ctrl+shift+s key combination as described in the picture below.
 
