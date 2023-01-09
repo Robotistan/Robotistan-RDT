@@ -39,7 +39,7 @@ Sample codes on how to use the blocks have been provided. To try them out, all y
 +--------------------------------------+-----------------------------------+
 
 .. |windows-logo1| image:: _static/pb_humidity.png
-.. |linux-logo1| image:: _static/pb_lightsensor.png
+.. |linux-logo1| image:: _static/pb_lightsensorr.png
 .. |macos-logo1| image:: _static/pb_potentiometer.png
 
 
