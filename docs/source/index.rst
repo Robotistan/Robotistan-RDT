@@ -31,7 +31,7 @@ Here you will find all the relevant information about the project.
    Guide for MicroBlocks <library/mblib>
    Datasheets <datasheet>
    FAQ <faq/faq>
-   Troubleshooting <troubleshooting>
+   Troubleshooting <troubleshooting/troubleshooting>
    Copyrights and Licenses <license>
    
    
