@@ -91,7 +91,7 @@ The library consists of a set of simple services, that together allow the user t
 
 PicoBricks Library has two distinct types of block shapes:
 
-* oval: these are ``reporter blocks`` that return some kind of information back. The user would normally either assign these to a project variable or use it in a suitable input slot of other blocks. The return information type is a Number.
+* oval: these are ``reporter blocks`` that return some kind of information back. The user would normally either assign these to a project variable or use it in a suitable input slot of other blocks. The return information type can be any of the supported data types.
 
 * rectangular: these are ``command blocks`` that perform a programmed function and do not return any information.
 
