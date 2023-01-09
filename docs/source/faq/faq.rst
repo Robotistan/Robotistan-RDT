@@ -200,6 +200,11 @@ When I start splitting PicoBricks, do I have to split all the modules or can I o
 ----------------------------------------------------------------------------------------------------------------
  
 You don’t need to split all modules to run Picobricks modules correctly. After splitting only one or a few modules, you can use the split modules by plugging them into the corresponding connector on the Raspberry Pi Pico module with grove cables.
+
+What is the voltage range of the motor driver on the PicoBricks?
+-----------------------------------------------------------------
+
+The voltage range of the motor driver is 2.5-7.5V.
  
  
 
