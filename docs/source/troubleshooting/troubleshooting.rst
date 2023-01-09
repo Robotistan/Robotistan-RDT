@@ -1,7 +1,7 @@
 Troubleshooting
 ===========================
 
-1. PIR sensor reacts too late
+PIR sensor reacts too late
 ============================  
 If your PIR sensor reacts too late or it does not react without touching it, you should adjust the sensitivity of your PIR sensor. To adjust the sensitivity of your PIR   sensor, the following steps can be taken to troubleshoot it and adjust it’s sensitivity.
   
@@ -15,7 +15,7 @@ If your PIR sensor reacts too late or it does not react without touching it, you
     :figclass: align-center
     
     
-2.  Getting the error " no module named 'picobricks' ".
+Getting the error " no module named 'picobricks' ".
 =================================================
 
 If you get the error " no module named 'picobricks' " when you run your code, you need to install the picobricks.py library.
