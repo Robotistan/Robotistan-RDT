@@ -5,29 +5,30 @@ Troubleshooting
 ============================  
 If your PIR sensor reacts too late or it does not react without touching it, you should adjust the sensitivity of your PIR sensor. To adjust the sensitivity of your PIR   sensor, the following steps can be taken to troubleshoot it and adjust it’s sensitivity.
   
-- Wire the PIR sensor to the breadboard according to the circuit diagram below making sure that power supply Ground (GND) will connect to the negative (GND) pin of       the sensor and the supply positive(VIN) will connect to the positive (VCC) pin of the PIR sensor as shown below.
+- This adjustment is needed if your PIR is too sensitive or not sensitive enough (clockwise turn makes it more sensitive). However, If there is no detection when the circuit is properly wired, then the sensor is faulty.
 
-.. figure:: ../_static/pir_sensitivity.png      
-    :align: center
-    :width: 600
-    :figclass: align-center
-
-
-- Connect a resistor within the range of 0.1KΩ to 1KΩ from the OUT pin of the PIR sensor to the anode (positive) pin of an LED (any color) and connect the cathode    (negative) pin of the LED to Ground (GND). Note that the LED and the resistor can switch positions.
-
-.. figure:: ../_static/pir_sensitivity2.png      
-    :align: center
-    :width: 600
-    :figclass: align-center
 
 
 .. figure:: ../_static/pir_sensitivity1.png      
     :align: center
     :width: 600
     :figclass: align-center
+    
+    
+2.  Getting the error " no module named 'picobricks' ".
+=================================================
 
+If you get the error " no module named 'picobricks' " when you run your code, you need to install the picobricks.py library.
 
+- To install the picobricks.py library, you can follow the steps below.
 
+- 1. Open Thonny.
+- 2. Connect your PicoBricks by holding BOOTSEL button.
+- 3. Copy the picobricks.py library from `here <https://github.com/Robotistan/PicoBricks/blob/main/Software/Pre-Installed%20Code/picobricks.py>`_ and paste it into the Thonny coding area.
+
+- 4. Finally, save it into your Raspberry Pi Pico board by using ctrl+s key. After this step, you can run your code without getting any error.
+
+.. image:: /../_static/picobricks.py.gif
 
 
     
