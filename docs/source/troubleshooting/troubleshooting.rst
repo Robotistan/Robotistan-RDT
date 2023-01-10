@@ -31,5 +31,6 @@ If you get the error " no module named 'picobricks' " when you run your code, yo
 .. image:: /../_static/picobricks.py.gif
 
 
-    
+ .. note::
+  If this content is not enough to solve your problem, you can send an e-mail to support@robotistan.com.
 
