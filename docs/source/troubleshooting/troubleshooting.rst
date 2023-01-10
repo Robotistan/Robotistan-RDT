@@ -28,9 +28,14 @@ If you get the error " no module named 'picobricks' " when you run your code, yo
 
 - 4. Finally, save it into your Raspberry Pi Pico board by using ctrl+s key. After this step, you can run your code without getting any error.
 
+
+
 .. image:: /../_static/picobricks.py.gif
 
 
- .. note::
-  If this content is not enough to solve your problem, you can send an e-mail to support@robotistan.com.
+
+
+.. note::
+    If this content is not enough to solve your problem, you can send an e-mail to support@robotistan.com.
+    
 
