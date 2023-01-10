@@ -15,6 +15,7 @@ If your PIR sensor reacts too late or it does not react without touching it, you
     :figclass: align-center
     
     
+    
 Getting the error " no module named 'picobricks' ".
 ---------------------------------------------------
 
