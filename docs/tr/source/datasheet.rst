@@ -1,2 +1,0 @@
-.. include:: common/datasheet.inc
-
