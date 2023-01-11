@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Robotistan
+# This file is distributed under the same license as the PicoBricks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PicoBricks 5.3.0-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-11 09:11+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../unlimitedconnectionmethod.rst:2
+msgid "Connection Methods"
+msgstr ""
+
+#: ../../unlimitedconnectionmethod.rst:9
+msgid ""
+"With Picobricks, you can build your circuits without cable clutter. "
+"Similarly, you can get rid of code confusion by coding with the "
+"Microbloks program. With this feature, we eliminate many problems that we"
+" may encounter when starting an ordinary robotic coding education lesson,"
+" thanks to the modular structure of the Picobricks. After entering the "
+"robotic coding training, we have the opportunity to do more projects by "
+"breaking the modules on the Picobricks from the necessary places and "
+"connecting the modules to the Raspberry Pi Pico with **Groove Cables.**"
+msgstr ""
+
+#: ../../unlimitedconnectionmethod.rst:20
+msgid "No soldering! There are unlimited connections."
+msgstr ""
+

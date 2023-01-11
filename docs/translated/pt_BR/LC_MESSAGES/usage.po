@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Robotistan
+# This file is distributed under the same license as the PicoBricks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PicoBricks 5.3.0-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-11 09:11+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../usage.rst:2
+msgid "Usage"
+msgstr ""
+
+#: ../../usage.rst:7
+msgid "Installation"
+msgstr ""
+
+#: ../../usage.rst:9
+msgid "To use Lumache, first install it using pip:"
+msgstr ""
+
+#: ../../usage.rst:16
+msgid "Creating recipes"
+msgstr ""
+
+#: ../../usage.rst:18
+msgid ""
+"To retrieve a list of random ingredients, you can use the "
+"``lumache.get_random_ingredients()`` function:"
+msgstr ""
+
+#: ../../usage.rst:23
+msgid ""
+"The ``kind`` parameter should be either ``\"meat\"``, ``\"fish\"``, or "
+"``\"veggies\"``. Otherwise, :py:func:`lumache.get_random_ingredients` "
+"will raise an exception."
+msgstr ""
+
+#: ../../usage.rst:29
+msgid "For example:"
+msgstr ""
+

@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Robotistan
+# This file is distributed under the same license as the PicoBricks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PicoBricks 5.3.0-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-11 09:11+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../guides/guides.rst:3
+msgid "Development Environments"
+msgstr ""
+
+#: ../../guides/guides.rst:7
+msgid "MicroBlocks Block Programming Language"
+msgstr ""
+
+#: ../../guides/guides.rst:9
+msgid ""
+"MicroBlocks is a free, Scratch-like blocks programming language for "
+"learning physical computing with educational microcontroller boards such "
+"as the micro:bit, Adafruit Circuit Playground Express, and many others. "
+"MicroBlocks is a live environment. Click on a block and it runs "
+"immediately, right on the board. Try out commands. See and graph sensor "
+"values in real time. No more waiting for code to compile and download."
+msgstr ""
+
+#: ../../guides/guides.rst:17
+msgid "Thonny (MicroPython) IDE for Beginners"
+msgstr ""
+
+#: ../../guides/guides.rst:19
+msgid ""
+"At the heart of Picobricks is the Raspberry Pi Pico. The Thonny Raspberry"
+" Pi is a great choice for coding Pico and therefore Picobricks."
+msgstr ""
+
+#: ../../guides/guides.rst:27
+msgid ""
+"If you rename your code file to main.py, your code will run after every "
+"boot."
+msgstr ""
+
+#: ../../guides/guides.rst:30
+msgid "Arduino IDE"
+msgstr ""
+
+#: ../../guides/guides.rst:32
+msgid ""
+"Picobricks offers us the opportunity to code with Arduino C. Getting "
+"started coding the Raspberry Pi Pico at the heart of Picobricks with the "
+"widely used Arduino IDE is pretty easy."
+msgstr ""
+

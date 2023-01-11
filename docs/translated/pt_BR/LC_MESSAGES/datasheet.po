@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Robotistan
+# This file is distributed under the same license as the PicoBricks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PicoBricks 5.3.0-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-11 09:11+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../common/datasheet.inc:2
+msgid "Datasheet"
+msgstr ""
+
+#: ../../common/datasheet.inc:5
+msgid "`ESP8266`_"
+msgstr ""
+
+#: ../../common/datasheet.inc:6
+msgid "`Raspberry-Pi-Pico`_"
+msgstr ""
+
+#: ../../common/datasheet.inc:7
+msgid "`OLED-Screen`_"
+msgstr ""
+
+#: ../../common/datasheet.inc:8
+msgid "`Buzzer`_"
+msgstr ""
+
+#: ../../common/datasheet.inc:9
+msgid "`DHT11`_"
+msgstr ""
+
+#: ../../common/datasheet.inc:10
+msgid "`Relay`_"
+msgstr ""
+
+#: ../../common/datasheet.inc:11
+msgid "`WS2812`_"
+msgstr ""
+
+#: ../../common/datasheet.inc:12
+msgid "`LDR`_"
+msgstr ""
+
+#: ../../common/datasheet.inc:13
+msgid "`L9110`_"
+msgstr ""
+

@@ -1,0 +1,321 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Robotistan
+# This file is distributed under the same license as the PicoBricks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PicoBricks 5.3.0-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-11 09:11+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../library/mblib.rst:2
+msgid "Guide for MicroBlocks"
+msgstr ""
+
+#: ../../library/mblib.rst:5
+msgid "Summary of Blocks"
+msgstr ""
+
+#: ../../library/mblib.rst:7
+msgid ""
+"For each block, there is a short description entry and a detailed block "
+"and component description. You can click on block pictures in the short "
+"description table to access the details and sample codes."
+msgstr ""
+
+#: ../../library/mblib.rst:9
+msgid ""
+"Sample codes on how to use the blocks have been provided. To try them "
+"out, all you have to do is open a browser session of the MicroBlocks IDE "
+"and drag and drop them onto the editor programming area. Then you can "
+"just click on them and see the results."
+msgstr ""
+
+#: ../../library/mblib.rst:13
+msgid ""
+"To test any of the sample codes below, just drag and drop them onto the "
+"MicroBlocks IDE."
+msgstr ""
+
+#: ../../library/mblib.rst:19
+msgid "|linux-logo3|"
+msgstr ""
+
+#: ../../library/mblib.rst:59
+msgid "linux-logo3"
+msgstr ""
+
+#: ../../library/mblib.rst:19
+msgid "|macos-logo3|"
+msgstr ""
+
+#: ../../library/mblib.rst:60
+msgid "macos-logo3"
+msgstr ""
+
+#: ../../library/mblib.rst:21
+msgid "Sets the RGB LED to the selected color"
+msgstr ""
+
+#: ../../library/mblib.rst:21
+msgid "Returns the temperature in Celsius"
+msgstr ""
+
+#: ../../library/mblib.rst:25
+msgid "|windows-logo|"
+msgstr ""
+
+#: ../../library/mblib.rst:30
+msgid "windows-logo"
+msgstr ""
+
+#: ../../library/mblib.rst:25
+msgid "|linux-logo|"
+msgstr ""
+
+#: ../../library/mblib.rst:31
+msgid "linux-logo"
+msgstr ""
+
+#: ../../library/mblib.rst:27
+msgid "Makes a beep sound from the speaker"
+msgstr ""
+
+#: ../../library/mblib.rst:27
+msgid "Returns the button status as 1/0"
+msgstr ""
+
+#: ../../library/mblib.rst:32
+msgid "macos-logo"
+msgstr ""
+
+#: ../../library/mblib.rst:36
+msgid "|windows-logo1|"
+msgstr ""
+
+#: ../../library/mblib.rst:41
+msgid "windows-logo1"
+msgstr ""
+
+#: ../../library/mblib.rst:36
+msgid "|macos-logo1|"
+msgstr ""
+
+#: ../../library/mblib.rst:43
+msgid "macos-logo1"
+msgstr ""
+
+#: ../../library/mblib.rst:38
+msgid "Returns the humidity percentage value"
+msgstr ""
+
+#: ../../library/mblib.rst:38
+msgid "Returns the potentiometer value."
+msgstr ""
+
+#: ../../library/mblib.rst:42
+msgid "linux-logo1"
+msgstr ""
+
+#: ../../library/mblib.rst:47
+msgid "|windows-logo2|"
+msgstr ""
+
+#: ../../library/mblib.rst:52
+msgid "windows-logo2"
+msgstr ""
+
+#: ../../library/mblib.rst:47
+msgid "|linux-logo2|"
+msgstr ""
+
+#: ../../library/mblib.rst:53
+msgid "linux-logo2"
+msgstr ""
+
+#: ../../library/mblib.rst:49
+msgid "Sets the RGB LED to a random color"
+msgstr ""
+
+#: ../../library/mblib.rst:49
+msgid "Sets the red LED as 1/0"
+msgstr ""
+
+#: ../../library/mblib.rst:54
+msgid "macos-logo2"
+msgstr ""
+
+#: ../../library/mblib.rst:58
+msgid "windows-logo3"
+msgstr ""
+
+#: ../../library/mblib.rst:63
+msgid "windows-logo4"
+msgstr ""
+
+#: ../../library/mblib.rst:64
+msgid "linux-logo4"
+msgstr ""
+
+#: ../../library/mblib.rst:68
+msgid "|windows-logo3|"
+msgstr ""
+
+#: ../../library/mblib.rst:68
+msgid "|macos-logo2|"
+msgstr ""
+
+#: ../../library/mblib.rst:70
+msgid "Controls the DC motors"
+msgstr ""
+
+#: ../../library/mblib.rst:70
+msgid "Sets the relay as 1/0"
+msgstr ""
+
+#: ../../library/mblib.rst:75
+msgid "|macos-logo|"
+msgstr ""
+
+#: ../../library/mblib.rst:75
+msgid "|linux-logo1|"
+msgstr ""
+
+#: ../../library/mblib.rst:77
+msgid "Returns a RGB color value"
+msgstr ""
+
+#: ../../library/mblib.rst:77
+msgid "Returns the light level as a percentage value"
+msgstr ""
+
+#: ../../library/mblib.rst:81
+msgid "|windows-logo4|"
+msgstr ""
+
+#: ../../library/mblib.rst:83
+msgid "Turns off the RGB LED"
+msgstr ""
+
+#: ../../library/mblib.rst:88
+msgid "Working with Library Blocks"
+msgstr ""
+
+#: ../../library/mblib.rst:90
+msgid ""
+"The library consists of a set of simple services, that together allow the"
+" user to have complete control of the PicoBricks Board and the modules on"
+" it."
+msgstr ""
+
+#: ../../library/mblib.rst:92
+msgid "PicoBricks Library has two distinct types of block shapes:"
+msgstr ""
+
+#: ../../library/mblib.rst:94
+msgid ""
+"oval: these are ``reporter blocks`` that return some kind of information "
+"back. The user would normally either assign these to a project variable "
+"or use it in a suitable input slot of other blocks. The return "
+"information type can be any of the supported data types."
+msgstr ""
+
+#: ../../library/mblib.rst:96
+msgid ""
+"rectangular: these are ``command blocks`` that perform a programmed "
+"function and do not return any information."
+msgstr ""
+
+#: ../../library/mblib.rst:99
+msgid "Notes on Library Components"
+msgstr ""
+
+#: ../../library/mblib.rst:101
+msgid ""
+"PicoBricks board contains ten components premounted. The Library, "
+"however, only has blocks for seven of them; the OLED screen, Motor "
+"Control, and Wireless Comm components are ``not directly covered`` by the"
+" library."
+msgstr ""
+
+#: ../../library/mblib.rst:103
+msgid ""
+"In this section, we will describe how one can make use of these "
+"components, as well as some special information about them."
+msgstr ""
+
+#: ../../library/mblib.rst:105
+msgid ""
+"OLED display module is programmed by using the MicroBlocks graphics "
+"library called OLED Graphics. It is located under ``Libraries+ / Graphics"
+" / OLED Graphics.ubl`` in the IDE."
+msgstr ""
+
+#: ../../library/mblib.rst:113
+msgid ""
+"For details of the library blocks and operations, refer to  `OLED Library"
+" <https://wiki.microblocks.fun/extension_libraries/oled>`_"
+msgstr ""
+
+#: ../../library/mblib.rst:116
+msgid ""
+"For a project that describes advanced use of the library and data "
+"transfer, please refer to `SNAP to MicroBlocks "
+"<https://wiki.microblocks.fun/snap/snap2mb_img_code>`_"
+msgstr ""
+
+#: ../../library/mblib.rst:118
+msgid ""
+"MOTOR module is used to control SERVO motors and DC motors.DC Motor "
+"support is provided in the library directly. However, there is a caveat: "
+"since the motor connections are only via thee-wire cable, it is not "
+"possible to programmatically reverse the direction of the DC motors. The "
+"only way to change the direction of the DC motors is to change the way "
+"the wires are connected."
+msgstr ""
+
+#: ../../library/mblib.rst:127
+msgid ""
+"SERVO motor programming is supported via the MicroBlocks library Servo. "
+"It is located under Libraries+ / Servo.ubl in the IDE."
+msgstr ""
+
+#: ../../library/mblib.rst:130
+msgid ""
+"For a detailed project that uses the DC and Servo motors, please refer to"
+"  `PicoBricks Servo and DC Motor Control "
+"<https://wiki.microblocks.fun/picobricks/motorservo>`_"
+msgstr ""
+
+#: ../../library/mblib.rst:132
+msgid ""
+"WIRELESS COMM Module enables PicoBricks to communicate with other "
+"environments using either a WIFI module or a Bluetooth module and is "
+"connected to the Serial IO ports of the Pico."
+msgstr ""
+
+#: ../../library/mblib.rst:142
+msgid "Projects with MicroBlocks"
+msgstr ""
+
+#: ../../library/mblib.rst:146
+msgid ""
+"**MicroBlocks is a live programming system that invites exploration. "
+"Click a block in the MicroBlocks IDE to see text appear.**"
+msgstr ""
+
+#: ../../library/mblib.rst:150
+msgid ""
+"**Beginners and experts alike will find that MicroBlocks is a great tool "
+"exploring every aspect of PicoBricks.**"
+msgstr ""
+
