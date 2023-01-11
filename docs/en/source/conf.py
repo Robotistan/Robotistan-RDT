@@ -90,6 +90,8 @@ html_logo = '_static/logo_picobricks2.png'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+exclude_patterns = ['_build', 'html', 'doctrees']
+
 
 # Style
 # pygments_style = "sphinx"
