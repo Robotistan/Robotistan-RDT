@@ -15,7 +15,6 @@ import os
 import sys
 import sphinx.environment
 from docutils.utils import get_source_line
-from mock import Mock as MagicMock
 from sphinx.ext.autodoc import cut_lines
 
 # sys.path.insert(0, os.path.abspath('..'))
@@ -48,14 +47,7 @@ intersphinx_mapping = {
     'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
 }
 
-class Mock(MagicMock):
-    @classmethod
-    def __getattr__(cls, name):
-            return Mock()
 
-
-MOCK_MODULES = ['fuel']
-sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 
 def linkcode_resolve(domain, info):
