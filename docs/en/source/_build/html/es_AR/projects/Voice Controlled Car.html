@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Voice Controlled Car &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Two Axis Robot Arm" href="Two%20Axis%20Robot%20Arm.html" />
+    <link rel="prev" title="Night and Day" href="night%20and%20day.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="Two%20Axis%20Robot%20Arm.html" title="Two Axis Robot Arm"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="night%20and%20day.html" title="Night and Day"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Voice Controlled Car</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="voice-controlled-car">
+<h1>Voice Controlled Car<a class="headerlink" href="#voice-controlled-car" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In the project, the robot car kit that comes out of the set will be assembled and controlled via mobile phone.</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Developing and continuing to develop artificial intelligence applications recognize human characteristics, learn and try to behave like people. We can express <code class="docutils literal notranslate"><span class="pre">artificial</span> <span class="pre">intelligence</span></code> as software that can learn in its shortest form. Sometimes it learns the image, sometimes the sound, and sometimes by using the data it collects from the sensors. It does this thanks to the algorithms determined by the developers, and it helps in the decision-making processes in the areas it is used according to the results it has achieved. In short, artificial intelligence applications are now used in situations where the decision-making process needs to be done quickly and without errors. From the marketing field to the defense industry, from education to health, from economy to entertainment, artificial intelligence increases efficiency and reduces costs. In this project we will do with PicoBricks, we will make a 2WD car that you can control by talking. PicoBricks allows you to communicate wirelessly with 2 6V DC motors and bluetooth.</p>
+<p>The HC05 bluetooth module is a module that enables us to communicate wirelessly between PicoBricks and a mobile phone. Thanks to the mobile application installed on the mobile phone in the project, the commands sent from the phone will be transmitted to PicoBricks via the HC05 module and the robot car will move according to these data. We can direct the robot car with the forward, backward, right, left buttons from the mobile phone, as well as send data to PicoBricks with voice command. In the project, we will give voice commands to control the movements of the robot car.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/voice-controlled-car.png"><img alt="../_images/voice-controlled-car.png" src="../_images/voice-controlled-car.png" style="width: 400px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">UART</span>
+<span class="kn">from</span> <span class="nn">utime</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">uart</span> <span class="o">=</span> <span class="n">UART</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9600</span><span class="p">)</span> <span class="c1">#If connection cannot be established, try 115200.</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+<span class="n">m1</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">uart</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="n">uart</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">cmd</span><span class="o">==</span><span class="sa">b</span><span class="s1">&#39;F&#39;</span><span class="p">:</span>
+    <span class="n">m1</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">cmd</span><span class="o">==</span><span class="sa">b</span><span class="s1">&#39;R&#39;</span><span class="p">:</span>
+    <span class="n">m1</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">cmd</span><span class="o">==</span><span class="sa">b</span><span class="s1">&#39;L&#39;</span><span class="p">:</span>
+    <span class="n">m1</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">cmd</span><span class="o">==</span><span class="sa">b</span><span class="s1">&#39;S&#39;</span><span class="p">:</span>
+    <span class="n">m1</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+<span class="n">cmd</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>If you rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">Serial1</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">Serial1</span><span class="o">.</span><span class="n">available</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="n">char</span> <span class="n">sread</span> <span class="o">=</span> <span class="n">Serial1</span><span class="o">.</span><span class="n">read</span><span class="p">();</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">sread</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">sread</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Forward</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">sread</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">){</span>
+  <span class="n">Turn_Right</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">sread</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">){</span>
+  <span class="n">Turn_Left</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">sread</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span><span class="p">){</span>
+  <span class="n">Stop</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+
+  <span class="n">void</span> <span class="n">Forward</span><span class="p">(){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="n">void</span> <span class="n">Turn_Left</span><span class="p">(){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="n">void</span> <span class="n">Turn_Right</span><span class="p">(){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="n">void</span> <span class="n">Stop</span><span class="p">(){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with Microblocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="voice-controlled-car2" src="../_images/voice-controlled-car2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Voice Controlled Car</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with Microblocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="night%20and%20day.html"
+                          title="capítulo anterior">Night and Day</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="Two%20Axis%20Robot%20Arm.html"
+                          title="próximo capítulo">Two Axis Robot Arm</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/Voice Controlled Car.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="Two%20Axis%20Robot%20Arm.html" title="Two Axis Robot Arm"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="night%20and%20day.html" title="Night and Day"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Voice Controlled Car</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

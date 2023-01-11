@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MicroBlocks Block Programming Language &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Thonny (MicroPython) IDE for Beginners" href="thonny.html" />
+    <link rel="prev" title="Arduino IDE" href="arduino.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="thonny.html" title="Thonny (MicroPython) IDE for Beginners"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="arduino.html" title="Arduino IDE"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="started.html" accesskey="U">Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MicroBlocks Block Programming Language</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="microblocks-block-programming-language">
+<h1>MicroBlocks Block Programming Language<a class="headerlink" href="#microblocks-block-programming-language" title="Enlace permanente a este encabezado">¶</a></h1>
+<img alt="../_images/kid.gif" src="../_images/kid.gif" />
+<section id="what-microblocks-is">
+<h2>What MicroBlocks Is?<a class="headerlink" href="#what-microblocks-is" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>MicroBlocks is a free, Scratch-like blocks programming language for learning physical computing with educational microcontroller boards such as the micro:bit, Adafruit Circuit Playground Express, and many others. MicroBlocks is a live environment. Click on a block and it runs immediately, right on the board. Try out commands. See and graph sensor values in real time. No more waiting for code to compile and download. Want to display an animation while controlling a motor? No problem! MicroBlocks lets you write separate scripts for each task and run them at the same time. Your code is simpler to write and easier to understand. MicroBlocks runs on many different boards, but your scripts are portable. Buttons, sensors, and display blocks behave the same on all boards with the relevant hardware. Once you run the code in MicroBlocks, you can disconnect the USB and feed the Picobricks with a different power source. The code on the card will work automatically.</p>
+<p>To program Picobricks with MicroBlocks, let’s open <a class="reference external" href="https://microblocks.fun/">MicroBlocks Website</a>  in the browser (Google Chrome and Edge browsers are recommended).</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks.png"><img alt="../_images/microblocks.png" src="../_images/microblocks.png" style="width: 720px;" /></a>
+</figure>
+<p>You don’t need to install anything to run MicroBlocks in a Chrome or Edge browser; you can run the online editor by clicking the Run button in the menu at the top right of the screen. Alternatively, by clicking the Download button, you can download an off-line version suitable for your operating system and install it on your computer.</p>
+<p>You can save MicroBlocks Web editor in your browser and use it without internet access. Run MicroBlocks in your browser to register the MicroBlocks Web app, then click the install button in the upper-right corner of your browser’s URL bar.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks1.png"><img alt="../_images/microblocks1.png" src="../_images/microblocks1.png" style="width: 720px;" /></a>
+</figure>
+</section>
+<section id="ide-introduction">
+<h2>IDE Introduction<a class="headerlink" href="#ide-introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>When you open the MicroBlocks program, you will see the IDE image shown below. You can review the explanation of the IDE components below. For a detailed and most current description of the IDE, please refer to our User Guide in our WIKI.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks3.png"><img alt="../_images/microblocks3.png" src="../_images/microblocks3.png" style="width: 720px;" /></a>
+</figure>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Menu</span> <span class="pre">Bar:</span></code> In this section, the first button from left to right allows us to change the language option of the program. The second button is the menu where we can see the operational settings of MicroBlocks and the firmware update selection,  while the third button offers the File related options. The fourth button opens a graph window used by the graph block to plot data, while the fifth rightmost button is used to connect to the  Picobricks via the USB interface..</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Block</span> <span class="pre">Categories:</span></code> This field contains the categories of blocks used for programming in MicroBlocks. Categories are grouped using different colors. As the categories are selected, the relevant blocks will be listed in the Blocks Palette (Field 3).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Blocks</span> <span class="pre">Palette:</span></code> As selections are made in the Block categories field, blocks with specific functions will be listed in this field. code are written by dragging and dropping the blocks in this area to the Scripting area number 4.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Scripting</span> <span class="pre">Area:</span></code> This is the area where all coding activities take place. Users drag and drop blocks into this area to create scripts and custom blocks (functions).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Start/Stop</span> <span class="pre">Buttons:</span></code> This area contains two icons, Start and Stop, which are used to control the MicroBlocks programs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Library</span> <span class="pre">List:</span></code> The contents of this area reflects the various libraries that are loaded depending on the requirements of the user scripts and micro devices.</p></li>
+</ul>
+</section>
+<section id="microblocks-picobricks-connection-and-operation">
+<h2>MicroBlocks-Picobricks Connection and Operation<a class="headerlink" href="#microblocks-picobricks-connection-and-operation" title="Enlace permanente a este encabezado">¶</a></h2>
+<ul class="simple">
+<li><p>Connecting and Updating the Firmware in the Offline Editor</p></li>
+</ul>
+<p>To connect Picobricks to the offline editor, you must connect the card to your computer with the USB cable while <code class="docutils literal notranslate"><span class="pre">holding</span> <span class="pre">the</span> <span class="pre">white</span> <span class="pre">BOOTSEL</span> <span class="pre">button</span></code> on the Raspberry Pi Pico.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/arduino3.png"><img alt="../_images/arduino3.png" src="../_images/arduino3.png" style="width: 420px;" /></a>
+</figure>
+<p>Open the MicroBlocks offline editor and from the MicroBlocks menu, click the MicroBlocks button (gear icon), then click update firmware on board.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks2.png"><img alt="../_images/microblocks2.png" src="../_images/microblocks2.png" style="width: 420px;" /></a>
+</figure>
+<p>You will be presented with a Pico board type selection. Select RP2040(Pico). Firmware installation will only take a few seconds and when finished, MicroBlocks will automatically connect to Picobricks.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks4.png"><img alt="../_images/microblocks4.png" src="../_images/microblocks4.png" style="width: 220px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>Connecting and Updating the Firmware in the Online Editor</p></li>
+</ul>
+<p>A few extra steps are required to connect Picobricks to the online editor. For security reasons, the scanner cannot access the card’s USB drive without prompting the user. First, click the MicroBlocks button (gear icon) from the menu, then click the update firmware on board option and select the card type by clicking RP2040 (Pico) from the drop-down list.</p>
+<p>When the card is selected, the Firmware Install window will open displaying the following message.</p>
+<p>Now, while holding down the white BOOTSEL button on the Pico, connect the card to your computer.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks5.png"><img alt="../_images/microblocks5.png" src="../_images/microblocks5.png" style="width: 220px;" /></a>
+</figure>
+<p>Click the OK button on the displayed message and it will automatically open the system file manager window positioned to the RPI-RP2 drive with the firmware file named vm_pico.uf2 selected.</p>
+<p>Click the Save button and the firmware update will complete.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks6.png"><img alt="../_images/microblocks6.png" src="../_images/microblocks6.png" style="width: 720px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>Connecting for normal operations (Write &amp; Edit programs):</p></li>
+</ul>
+<p>Clicking the Connect button will display the system USB ports where the micro devices are plugged in. In this window, you can connect Picobricks to MicroBlocks by first selecting the Pico device and then clicking the Connect buttons. When the connection is successful, a green circle will appear behind the USB icon.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks18.png"><img alt="../_images/microblocks18.png" src="../_images/microblocks18.png" style="width: 720px;" /></a>
+</figure>
+<p>MicroBlocks is a real-time coding editor. There is no process of compiling and uploading the code to the card after they are written. When you click on the code blocks, the code will run.</p>
+<p>To use any of the PicoBricks modules, you first, you need to import Picobricks library into the Microblocks editor. You have to click the Add Library button for this.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks8.png"><img alt="../_images/microblocks8.png" src="../_images/microblocks8.png" style="width: 720px;" /></a>
+</figure>
+<p>In the File Open window, click the Kits and Boards button to open the list of supported devices.Click PicoBricks from the drop-down list, and then click the Open button.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks9.png"><img alt="../_images/microblocks9.png" src="../_images/microblocks9.png" style="width: 720px;" /></a>
+</figure>
+<p>If all goes well, the PicoBricks library and code blocks will be displayed in the Code blocks panel.In all the Project examples, whenever you see a block name starting with PicoBricks, it will be located in the PicoBricks Library menu.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks10.png"><img alt="../_images/microblocks10.png" src="../_images/microblocks10.png" style="width: 520px;" /></a>
+</figure>
+</section>
+<section id="picobricks-firmware">
+<h2>PicoBricks Firmware<a class="headerlink" href="#picobricks-firmware" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>If you have previously updated PicoBricks Firmware, you can connect by clicking the USB icon. If you are going to connect MicroBlocks to Picobricks for the first time, you can follow the steps in section 1.1.2.</p>
+<p>It is a good idea to check from time to time if there is a new version of the IDE or the Pico Firmware. You can verify the version you are running by selecting MicroBlocks Options (wheel icon) / about in the menu. You should see a display like:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/microblocks11.png"><img alt="../_images/microblocks11.png" src="../_images/microblocks11.png" style="width: 520px;" /></a>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">MicroBlocks Block Programming Language</a><ul>
+<li><a class="reference internal" href="#what-microblocks-is">What MicroBlocks Is?</a></li>
+<li><a class="reference internal" href="#ide-introduction">IDE Introduction</a></li>
+<li><a class="reference internal" href="#microblocks-picobricks-connection-and-operation">MicroBlocks-Picobricks Connection and Operation</a></li>
+<li><a class="reference internal" href="#picobricks-firmware">PicoBricks Firmware</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="arduino.html"
+                          title="capítulo anterior">Arduino IDE</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="thonny.html"
+                          title="próximo capítulo">Thonny (MicroPython) IDE for Beginners</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/started/microblocks.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="thonny.html" title="Thonny (MicroPython) IDE for Beginners"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="arduino.html" title="Arduino IDE"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="started.html" >Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MicroBlocks Block Programming Language</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Bootloader &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Guide for MicroBlocks" href="../library/mblib.html" />
+    <link rel="prev" title="Variable Button" href="../education/variable%20button.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../library/mblib.html" title="Guide for MicroBlocks"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="../education/variable%20button.html" title="Variable Button"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bootloader</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="bootloader">
+<h1>Bootloader<a class="headerlink" href="#bootloader" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="bootsel">
+<h2>BOOTSEL<a class="headerlink" href="#bootsel" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Pico’s BOOTSEL mode lives in read-only memory inside the RP2040 chip, and can’t be overwritten accidentally. No matter what, if you hold down the BOOTSEL button when you plug in your Pico, it will appear as a drive onto which you can drag a new UF2 file. There is no way to brick the board through software. However, there are some circumstances where you might want to make sure your Flash memory is empty. You can do this by dragging and dropping a special UF2 binary onto your Pico when it is in mass storage mode.</p>
+<ul class="simple">
+<li><p>Download the MicroPython <code class="docutils literal notranslate"><span class="pre">UF2</span> <span class="pre">file</span></code> from the Raspberry Pi website</p></li>
+<li><p>Hold down the <code class="docutils literal notranslate"><span class="pre">BOOTSEL</span></code> button on your Pico and plug it into your computer’s USB port.</p></li>
+<li><p>Open Explorer, and open the <code class="docutils literal notranslate"><span class="pre">RPI-RP2</span> <span class="pre">directory</span></code> like you would any other hard drive</p></li>
+<li><p>Drag and drop the <code class="docutils literal notranslate"><span class="pre">UF2</span> <span class="pre">file</span></code> into the <code class="docutils literal notranslate"><span class="pre">RPI-RP2</span> <span class="pre">directory</span></code></p></li>
+</ul>
+</section>
+<section id="reset-flash-memory">
+<h2>Reset Flash Memory<a class="headerlink" href="#reset-flash-memory" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>The Raspberry Pi Pico is a fantastic piece of technology, but it does have one flaw: <code class="docutils literal notranslate"><span class="pre">there</span> <span class="pre">is</span> <span class="pre">no</span> <span class="pre">reset</span> <span class="pre">button</span></code>. How important is this omission? Sometimes our code can go away, or we need to flash new firmware to our Pico.</p>
+<p>When this happens we have to unplug the Pico and plug it back in again in order to reset it. If we pull out the micro USB lead, a mechanical connection which is rated for a finite number of insertions, too many times, we could wear it out. If we have the Pico connected to a powered USB hub with on / off buttons, we can press the button on that, but what if we don’t.</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>With very little equipment, and zero code we can build a simple button to reset our Pico ready for the next project.</p>
+</div>
+</section>
+<section id="reset-button-project">
+<h2>Reset Button Project<a class="headerlink" href="#reset-button-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>What You Need For This</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td colspan="2"><p>A Raspberry Pi Pico</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p>2 x Male to Male Jumper Wires</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p>Breadboard</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p>Pushbutton</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li><p>Place the Raspberry Pi Pico into the breadboard so that the micro USB port hangs over <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">end</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">breadboard.</span></code></p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pico1.png"><img alt="../_images/pico1.png" src="../_images/pico1.png" style="width: 520px;" /></a>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Insert a <code class="docutils literal notranslate"><span class="pre">push</span> <span class="pre">button</span></code> as you see in the image</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pico2.png"><img alt="../_images/pico2.png" src="../_images/pico2.png" style="width: 520px;" /></a>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Connect one of the jumper wires to the GND pin and the right leg of the button, and connect the other to the RUN pin and the left leg of the button.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pico3.png"><img alt="../_images/pico3.png" src="../_images/pico3.png" style="width: 520px;" /></a>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Our reset button is ready to use.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>You can also check <a class="reference external" href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#resetting-flash-memory">Raspberry Pi Website</a> for more information.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Bootloader</a><ul>
+<li><a class="reference internal" href="#bootsel">BOOTSEL</a></li>
+<li><a class="reference internal" href="#reset-flash-memory">Reset Flash Memory</a></li>
+<li><a class="reference internal" href="#reset-button-project">Reset Button Project</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="../education/variable%20button.html"
+                          title="capítulo anterior">Variable Button</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="../library/mblib.html"
+                          title="próximo capítulo">Guide for MicroBlocks</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/boatloader/boatloader.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../library/mblib.html" title="Guide for MicroBlocks"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="../education/variable%20button.html" title="Variable Button"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bootloader</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

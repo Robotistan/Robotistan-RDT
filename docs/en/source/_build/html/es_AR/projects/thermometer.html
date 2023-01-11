@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Thermometer &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Graphic Monitor" href="graphic%20monitor.html" />
+    <link rel="prev" title="Autonomous Lighting" href="autonomous-lighting.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="graphic%20monitor.html" title="Graphic Monitor"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="autonomous-lighting.html" title="Autonomous Lighting"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Thermometer</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="thermometer">
+<h1>Thermometer<a class="headerlink" href="#thermometer" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In this project, you will prepare a thermometer with Picobricks that will display the ambient temperature on the OLED screen.</p>
+<p>Sensors are the sense organs of electronic systems. We use our skin to feel, our eyes to see, our ears to hear, our tongue to taste, and our nose to smell. There are already many sense organs (sensors) in the picobrix. Also, new ones can be added. You can interact with the environment using humidity, temperature, light and many more sensors. Picobricks can measure the ambient temperature without the need for any other environmental component. Ambient temperature is used in greenhouses, incubators, in environments used for the transport of drugs, briefly in situations where the temperature change must be constantly monitored. If you are going to do an operation on temperature change in your projects, you should know how to measure the ambient temperature.</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Picobricks has a DHT11 module. This module can sense the temperature and humidity in the environment and send data to the microcontroller. In this project, we will write the necessary codes to print the temperature values measured by the DHT11 temperature and humidity sensor on the OLED screen.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thermometer.png"><img alt="../_images/thermometer.png" src="../_images/thermometer.png" style="width: 500px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thermometer1.png"><img alt="../_images/thermometer1.png" src="../_images/thermometer1.png" style="width: 520px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span><span class="n">I2C</span><span class="p">,</span><span class="n">ADC</span> <span class="c1">#to acces the hardware picobricks</span>
+<span class="kn">from</span> <span class="nn">picobricks</span> <span class="kn">import</span> <span class="n">SSD1306_I2C</span><span class="p">,</span> <span class="n">DHT11</span> <span class="c1">#oled library</span>
+<span class="kn">import</span> <span class="nn">utime</span> <span class="c1">#time library</span>
+<span class="c1">#to acces the hardware picobricks</span>
+<span class="n">WIDTH</span><span class="o">=</span><span class="mi">128</span>
+<span class="n">HEIGHT</span><span class="o">=</span><span class="mi">64</span>
+<span class="c1">#define the weight and height picobricks</span>
+
+<span class="n">sda</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">scl</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1">#we define sda and scl pins for inter-path communication</span>
+<span class="n">i2c</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sda</span><span class="o">=</span><span class="n">sda</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">scl</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">2000000</span><span class="p">)</span><span class="c1">#determine the frequency values</span>
+<span class="n">oled</span><span class="o">=</span><span class="n">SSD1306_I2C</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">HEIGHT</span><span class="p">,</span> <span class="n">i2c</span><span class="p">)</span>
+<span class="n">pico_temp</span><span class="o">=</span><span class="n">DHT11</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+<span class="n">current_time</span><span class="o">=</span><span class="n">utime</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">utime</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">current_time</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">):</span>
+      <span class="n">current_time</span> <span class="o">=</span> <span class="n">utime</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+      <span class="n">pico_temp</span><span class="o">.</span><span class="n">measure</span><span class="p">()</span>
+      <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="c1">#clear OLED</span>
+      <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+      <span class="n">temperature</span><span class="o">=</span><span class="n">pico_temp</span><span class="o">.</span><span class="n">temperature</span>
+      <span class="n">humidity</span><span class="o">=</span><span class="n">pico_temp</span><span class="o">.</span><span class="n">humidity</span>
+      <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Temperature: &quot;</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="c1">#print &quot;Temperature: &quot; on the OLED at x=15 y=10</span>
+      <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">temperature</span><span class="p">)),</span><span class="mi">55</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+      <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Humidty: &quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+      <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">humidity</span><span class="p">)),</span><span class="mi">55</span><span class="p">,</span><span class="mi">55</span><span class="p">)</span>
+      <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span><span class="c1">#show on OLED</span>
+      <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="c1">#wait for a half second</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>If you rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;Wire.h&gt;</span>
+<span class="c1">#include &lt;DHT.h&gt;</span>
+<span class="c1">#include &quot;ACROBOTIC_SSD1306.h&quot;</span>
+<span class="c1">#define DHTPIN 11</span>
+<span class="c1">#define DHTTYPE DHT11</span>
+<span class="o">//</span><span class="n">define</span> <span class="n">the</span> <span class="n">library</span>
+
+<span class="n">DHT</span> <span class="n">dht</span><span class="p">(</span><span class="n">DHTPIN</span><span class="p">,</span> <span class="n">DHTTYPE</span><span class="p">);</span>
+<span class="nb">float</span> <span class="n">temperature</span><span class="p">;</span>
+<span class="o">//</span><span class="n">define</span> <span class="n">the</span> <span class="n">temperature</span> <span class="n">veriable</span>
+
+<span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+<span class="o">//</span><span class="n">define</span> <span class="n">dht</span> <span class="n">sensor</span> <span class="ow">and</span> <span class="n">Oled</span> <span class="n">screen</span>
+<span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="n">dht</span><span class="o">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="n">Wire</span><span class="o">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">clearDisplay</span><span class="p">();</span>
+   <span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="n">dht</span><span class="o">.</span><span class="n">readTemperature</span><span class="p">();</span>
+<span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Temp: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">setTextXY</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">putString</span><span class="p">(</span><span class="s2">&quot;Temperature: &quot;</span><span class="p">);</span>
+<span class="o">//</span><span class="nb">print</span> <span class="s2">&quot;Temperature: &quot;</span> <span class="n">on</span> <span class="n">the</span> <span class="n">OLED</span> <span class="n">at</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">setTextXY</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">putString</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">temperature</span><span class="p">));</span>
+<span class="o">//</span><span class="nb">print</span> <span class="n">the</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">temperature</span> <span class="n">sensor</span> <span class="n">to</span> <span class="n">the</span> <span class="n">oled</span> <span class="n">screen</span> <span class="n">at</span> <span class="n">x</span><span class="o">=</span><span class="mi">4</span> <span class="n">y</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with MicroBlocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="thermometer2" src="../_images/thermometer2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Thermometer</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="autonomous-lighting.html"
+                          title="capítulo anterior">Autonomous Lighting</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="graphic%20monitor.html"
+                          title="próximo capítulo">Graphic Monitor</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/thermometer.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="graphic%20monitor.html" title="Graphic Monitor"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="autonomous-lighting.html" title="Autonomous Lighting"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Thermometer</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

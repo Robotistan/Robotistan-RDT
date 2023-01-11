@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Magic Lamp &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Smart Cooler" href="smart%20cooler.html" />
+    <link rel="prev" title="Know Your Color" href="know%20your%20color.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="smart%20cooler.html" title="Smart Cooler"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="know%20your%20color.html" title="Know Your Color"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Magic Lamp</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="magic-lamp">
+<h1>Magic Lamp<a class="headerlink" href="#magic-lamp" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In this project, we will turn a lamp we use at home on and off with sound. In our project, which we will build using the Picobricks sound level sensor, we will perform the on-off operations by making a clap sound. As in the previous projects, in projects where sensors are used, before we start to write the codes, it will make your progress easier to see what values the sensor sends in the operations we want to do by just operating the sensor, and then writing the codes of the project based on these values.</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Most of us have seen lamps flashing magically or doors opening and closing with the sound of clapping in movies. There are set assistants who close these doors and turn off the lamps in the shootings. What if we did this automatically? There are sensors that convert the sound intensity change that we expect to occur in the environment into an electrical signal. These are called sound sensors. In this project, you will learn how to use the Relay module and sound level sensor with Picobiricks, as well as to control the status while preparing a lighting lamp assembly that can flash with clap.</p>
+<p>In this project, we will first read the MicroBlocks <code class="docutils literal notranslate"><span class="pre">say123</span> <span class="pre">block</span></code> sound intensity sensor values and determine the amount of sound required for the lamp to turn on and off. Then, when this sound level is reached, we will open the relay on the Picobricks and make the lamp connected to the relay light up. Relays can control <code class="docutils literal notranslate"><span class="pre">220</span> <span class="pre">volt</span></code> alternating current by turning it on and off. We will again use the sound sensor data to turn the opened lamp back off. Here, we need to use a variable for the lamp to turn on when off and turn off when it is on, with the same amount of sound.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/magic-lamp.png"><img alt="../_images/magic-lamp.png" src="../_images/magic-lamp.png" style="width: 400px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/magic-lamp1.png"><img alt="../_images/magic-lamp1.png" src="../_images/magic-lamp1.png" style="width: 520px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span> <span class="c1">#to access the hardware on the pico</span>
+<span class="n">sensor</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span> <span class="c1">#initialize digital pin 1 as an INPUT for Sensor</span>
+<span class="n">led</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span><span class="c1">#initialize digital pin 7 as an OUTPUT for LED</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="c1">#When sensor value is &#39;0&#39;, the relay will be &#39;1&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">sensor</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Ifyou rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+<span class="o">//</span> <span class="n">put</span> <span class="n">your</span> <span class="n">setup</span> <span class="n">code</span> <span class="n">here</span><span class="p">,</span> <span class="n">to</span> <span class="n">run</span> <span class="n">once</span><span class="p">:</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="o">//</span><span class="n">define</span> <span class="n">the</span> <span class="nb">input</span> <span class="ow">and</span> <span class="n">output</span> <span class="n">pins</span>
+    <span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="o">//</span> <span class="n">put</span> <span class="n">your</span> <span class="n">main</span> <span class="n">code</span> <span class="n">here</span><span class="p">,</span> <span class="n">to</span> <span class="n">run</span> <span class="n">repeatedly</span><span class="p">:</span>
+
+
+<span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with MicroBlocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="magic-lamp2" src="../_images/magic-lamp2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Magic Lamp</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="know%20your%20color.html"
+                          title="capítulo anterior">Know Your Color</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="smart%20cooler.html"
+                          title="próximo capítulo">Smart Cooler</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/magic lamp.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="smart%20cooler.html" title="Smart Cooler"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="know%20your%20color.html" title="Know Your Color"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Magic Lamp</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

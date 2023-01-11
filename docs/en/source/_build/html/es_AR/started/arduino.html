@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Arduino IDE &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="MicroBlocks Block Programming Language" href="microblocks.html" />
+    <link rel="prev" title="Getting Started" href="started.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="microblocks.html" title="MicroBlocks Block Programming Language"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="started.html" title="Getting Started"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="started.html" accesskey="U">Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Arduino IDE</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="arduino-ide">
+<h1>Arduino IDE<a class="headerlink" href="#arduino-ide" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="installation-arduino-ide">
+<h2>Installation Arduino IDE<a class="headerlink" href="#installation-arduino-ide" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Picobricks offers us the opportunity to code with Arduino C. Getting started coding the Raspberry Pi Pico at the heart of Picobricks with the widely used Arduino IDE is pretty easy.</p>
+<p>Download the Arduino IDE 1.8.x setup file from <a class="reference external" href="https://www.arduino.cc/en/software">Arduino Website</a> to your computer and install it.</p>
+<p>First you need to add Raspberry Pi Pico to Arduino IDE. Start the Arduino IDE. Then go to <code class="docutils literal notranslate"><span class="pre">Tools&gt;Board&gt;Boards</span> <span class="pre">Manager</span></code>.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/arduino.png"><img alt="../_images/arduino.png" src="../_images/arduino.png" style="width: 720px;" /></a>
+</figure>
+<p>Write <code class="docutils literal notranslate"><span class="pre">“Raspberry</span> <span class="pre">Pi</span> <span class="pre">Pico”</span></code> in field 1. After waiting for a while, click on the Arduino Mbed OS RP2040 Boards option and click the install button in field 2.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/arduino2.png"><img alt="../_images/arduino2.png" src="../_images/arduino2.png" style="width: 720px;" /></a>
+</figure>
+<p>During all these installations, you must accept the approvals it will ask you for. When the installation is complete and click the close button, you will have added Pico to the Arduino IDE.</p>
+</section>
+<section id="writing-and-running-code-with-arduino-ide">
+<h2>Writing and Running Code with Arduino IDE<a class="headerlink" href="#writing-and-running-code-with-arduino-ide" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>When you want to code Pico with Arduino IDE, you just have to connect it to your computer by <code class="docutils literal notranslate"><span class="pre">holding</span> <span class="pre">the</span> <span class="pre">BOOTSEL</span> <span class="pre">button</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">time.</span></code></p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/arduino3.png"><img alt="../_images/arduino3.png" src="../_images/arduino3.png" style="width: 720px;" /></a>
+</figure>
+<p>In this way, Pico will be connected in bootloader mode and recognized by your computer as external memory. Connect Pico to your computer by holding down the Bootsel button. After seeing Pico as the computer’s flash memory, activate your card by going to <code class="docutils literal notranslate"><span class="pre">Tools&gt;Board&gt;Arduino</span> <span class="pre">Mbed</span> <span class="pre">OS</span> <span class="pre">RP2040</span> <span class="pre">boards&gt;</span> <span class="pre">Raspberry</span> <span class="pre">Pi</span> <span class="pre">Pico.</span></code></p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/arduino4.png"><img alt="../_images/arduino4.png" src="../_images/arduino4.png" style="width: 720px;" /></a>
+</figure>
+<p>Write the code in the field number 1 below and follow the <code class="docutils literal notranslate"><span class="pre">File&gt;Save</span></code> path and save it anywhere on your computer with the name <code class="docutils literal notranslate"><span class="pre">&quot;Blink&quot;.</span></code></p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/arduino5.png"><img alt="../_images/arduino5.png" src="../_images/arduino5.png" style="width: 720px;" /></a>
+</figure>
+<p>After the saving process, we must click the <code class="docutils literal notranslate"><span class="pre">&quot;Upload&quot;</span></code> button in the 1st field to compile the code and save it in Pico. When we see Done uploading at the bottom, our code will run in Pico and the built-in LED will blink at 1-second intervals. Important Note: While coding Picobricks with Arduino IDE, connect it to your computer by pressing the BOOTSEL button at the first pass from Micropython or Microblocks firmware. You do not need to press BOOTSEL for subsequent code uploads. Enjoyable projects :)</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/arduino6.png"><img alt="../_images/arduino6.png" src="../_images/arduino6.png" style="width: 220px;" /></a>
+</figure>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>void setup<span class="o">()</span> <span class="o">{</span>
+// put your setup code here, to run once:
+pinMode<span class="o">(</span><span class="m">7</span>, OUTPUT<span class="o">)</span><span class="p">;</span> // initialize digital pin <span class="m">7</span> as an output
+  <span class="o">}</span>
+void loop<span class="o">()</span> <span class="o">{</span>
+  // put your main code here, to run repeatedly:
+  digitalWrite<span class="o">(</span><span class="m">7</span>, HIGH<span class="o">)</span><span class="p">;</span> //turn the LED on by making the voltage HIGH
+  delay<span class="o">(</span><span class="m">500</span><span class="o">)</span><span class="p">;</span> //wait <span class="k">for</span> a half second
+  digitalWrite<span class="o">(</span><span class="m">7</span>, LOW<span class="o">)</span><span class="p">;</span> //turn the LED on by making the voltage LOW
+  delay<span class="o">(</span><span class="m">500</span><span class="o">)</span><span class="p">;</span> //wait <span class="k">for</span> a half second
+  <span class="o">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Arduino IDE</a><ul>
+<li><a class="reference internal" href="#installation-arduino-ide">Installation Arduino IDE</a></li>
+<li><a class="reference internal" href="#writing-and-running-code-with-arduino-ide">Writing and Running Code with Arduino IDE</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="started.html"
+                          title="capítulo anterior">Getting Started</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="microblocks.html"
+                          title="próximo capítulo">MicroBlocks Block Programming Language</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/started/arduino.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="microblocks.html" title="MicroBlocks Block Programming Language"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="started.html" title="Getting Started"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="started.html" >Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Arduino IDE</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

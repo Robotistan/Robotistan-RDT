@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Frequently Asked Questions &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Troubleshooting" href="../troubleshooting/troubleshooting.html" />
+    <link rel="prev" title="Datasheet" href="../datasheet.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../troubleshooting/troubleshooting.html" title="Troubleshooting"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="../datasheet.html" title="Datasheet"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Frequently Asked Questions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="frequently-asked-questions">
+<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="how-can-i-get-picobricks-to-work-when-i-split-it">
+<h2>How can I get PicoBricks to work when I split it?<a class="headerlink" href="#how-can-i-get-picobricks-to-work-when-i-split-it" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>We can use the 12 modules on the PicoBricks by separating them from the break points and plugging them into the right connectors on the PicoBricks main board with a groove cable.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/faq.png"><img alt="../_images/faq.png" src="../_images/faq.png" style="width: 620px;" /></a>
+</figure>
+</section>
+<section id="do-i-need-to-add-the-picobricks-py-library-when-making-a-project-with-thonny">
+<h2>Do I need to add the picobricks.py library when making a project with Thonny?<a class="headerlink" href="#do-i-need-to-add-the-picobricks-py-library-when-making-a-project-with-thonny" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>You can develop projects using different libraries, but you are required to use the picobricks.py library. In addition, the picobricks.py library is used in 25 projects included in the e-book.</p>
+<p>To the picobricks.py library from the picobricks github page;</p>
+<p>You can reach it by following the steps <a class="reference external" href="https://github.com/Robotistan/PicoBricks/blob/main/Software/Pre-Installed%20Code/picobricks.py">PicoBricks/Software/Pre-Installed Code/picobricks.py</a></p>
+<ul class="simple">
+<li><p>How to add?</p></li>
+</ul>
+<p>After downloading library, you need to load the picobricks.py library into the raspberry pi pico by pressing the ctrl+shift+s key combination as described in the picture below.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/faq1.png"><img alt="../_images/faq1.png" src="../_images/faq1.png" style="width: 620px;" /></a>
+</figure>
+</section>
+<section id="should-i-bootsel-every-time-when-i-use-picobricks">
+<h2>Should I BOOTSEL every time when I use PicoBricks?<a class="headerlink" href="#should-i-bootsel-every-time-when-i-use-picobricks" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>You don’t need to BOOTSEL every time, if you don’t switch between coding platforms, you don’t need to BOOTSEL when you reconnect picobricks to the coding platform you developed the last project on. However, if you switch to a different platform, you need to BOOTSEL your card.</p>
+</section>
+<section id="how-can-i-test-picobricks-boards-and-modules">
+<h2>How can I test Picobricks boards and modules?<a class="headerlink" href="#how-can-i-test-picobricks-boards-and-modules" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>To test the modules on Picobricks, R&amp;D team has created 2 different test codes using Thonny and Microblocks platforms. You can test by using these test codes.</p>
+<p><a class="reference external" href="https://github.com/Robotistan/PicoBricks/blob/main/Software/Pre-Installed%20Code/test.py">For Thonny</a>;</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>If you rename test.py to main.py, your code will run after every boot.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from utime import sleep
+import <span class="nb">time</span>
+from machine import Pin, I2C, PWM, ADC
+from picobricks import SSD1306_I2C, WS2812, DHT11
+import framebuf
+import random
+
+<span class="nv">WIDTH</span>  <span class="o">=</span> <span class="m">128</span>   <span class="c1"># oled display width</span>
+<span class="nv">HEIGHT</span> <span class="o">=</span> <span class="m">64</span>    <span class="c1"># oled display height</span>
+
+
+def button_push<span class="o">(</span>event<span class="o">)</span>:
+    <span class="k">if</span> button.value<span class="o">()</span> <span class="o">==</span> <span class="m">1</span>:
+        oled.text<span class="o">(</span><span class="s2">&quot;BUTTON : 1&quot;</span>, <span class="m">0</span>, <span class="m">10</span><span class="o">)</span>
+        oled.show<span class="o">()</span>
+        motor_1.high<span class="o">()</span>
+        motor_2.high<span class="o">()</span>
+        time.sleep<span class="o">(</span><span class="m">0</span>.5<span class="o">)</span>
+        motor_1.low<span class="o">()</span>
+        motor_2.low<span class="o">()</span>
+
+<span class="nv">i2c</span> <span class="o">=</span> I2C<span class="o">(</span><span class="m">0</span>, <span class="nv">scl</span><span class="o">=</span>Pin<span class="o">(</span><span class="m">5</span><span class="o">)</span>, <span class="nv">sda</span><span class="o">=</span>Pin<span class="o">(</span><span class="m">4</span><span class="o">)</span>, <span class="nv">freq</span><span class="o">=</span><span class="m">200000</span><span class="o">)</span>   <span class="c1"># Init I2C using pins (default I2C0 pins)</span>
+<span class="nv">oled</span> <span class="o">=</span> SSD1306_I2C<span class="o">(</span>WIDTH, HEIGHT, i2c, <span class="nv">addr</span><span class="o">=</span>0x3c<span class="o">)</span>   <span class="c1"># Init oled display</span>
+<span class="nv">buzzer</span> <span class="o">=</span> PWM<span class="o">(</span>Pin<span class="o">(</span><span class="m">20</span><span class="o">))</span>
+buzzer.duty_u16<span class="o">(</span><span class="m">0</span><span class="o">)</span>
+<span class="nv">relay</span> <span class="o">=</span> Pin<span class="o">(</span><span class="m">12</span>, Pin.OUT<span class="o">)</span>
+<span class="nv">button</span> <span class="o">=</span> Pin<span class="o">(</span><span class="m">10</span>, Pin.IN<span class="o">)</span>
+<span class="nv">motor_1</span> <span class="o">=</span> Pin<span class="o">(</span><span class="m">21</span>, Pin.OUT<span class="o">)</span>
+<span class="nv">motor_2</span> <span class="o">=</span> Pin<span class="o">(</span><span class="m">22</span>, Pin.OUT<span class="o">)</span>
+<span class="nv">pot</span> <span class="o">=</span> ADC<span class="o">(</span><span class="m">26</span><span class="o">)</span>
+<span class="nv">light_level</span> <span class="o">=</span> ADC<span class="o">(</span><span class="m">27</span><span class="o">)</span>
+<span class="nv">conversion_factor</span> <span class="o">=</span> <span class="m">3</span>.3 / <span class="o">(</span><span class="m">65535</span><span class="o">)</span>
+<span class="nv">dht_sensor</span> <span class="o">=</span> DHT11<span class="o">(</span>Pin<span class="o">(</span><span class="m">11</span><span class="o">))</span>
+<span class="nv">led</span> <span class="o">=</span> Pin<span class="o">(</span><span class="m">7</span>, Pin.OUT<span class="o">)</span>
+<span class="nv">ws</span> <span class="o">=</span> WS2812<span class="o">(</span><span class="m">6</span>, <span class="nv">brightness</span><span class="o">=</span><span class="m">0</span>.4<span class="o">)</span>
+<span class="nv">RED</span> <span class="o">=</span> <span class="o">(</span><span class="m">255</span>, <span class="m">0</span>, <span class="m">0</span><span class="o">)</span>
+<span class="nv">GREEN</span> <span class="o">=</span> <span class="o">(</span><span class="m">0</span>, <span class="m">255</span>, <span class="m">0</span><span class="o">)</span>
+<span class="nv">BLUE</span> <span class="o">=</span> <span class="o">(</span><span class="m">0</span>, <span class="m">0</span>, <span class="m">255</span><span class="o">)</span>
+<span class="nv">COLORS</span> <span class="o">=</span> <span class="o">(</span>RED, GREEN, BLUE<span class="o">)</span>
+
+<span class="k">for</span> color <span class="k">in</span> COLORS:
+        ws.pixels_fill<span class="o">(</span>color<span class="o">)</span>
+        ws.pixels_show<span class="o">()</span>
+        time.sleep<span class="o">(</span><span class="m">0</span>.1<span class="o">)</span>
+ws.pixels_fill<span class="o">((</span><span class="m">0</span>,0,0<span class="o">))</span>
+ws.pixels_show<span class="o">()</span>
+
+buzzer.duty_u16<span class="o">(</span><span class="m">2000</span><span class="o">)</span>
+buzzer.freq<span class="o">(</span><span class="m">831</span><span class="o">)</span>
+time.sleep<span class="o">(</span><span class="m">0</span>.5<span class="o">)</span>
+buzzer.duty_u16<span class="o">(</span><span class="m">0</span><span class="o">)</span>
+time.sleep<span class="o">(</span><span class="m">0</span>.5<span class="o">)</span>
+relay.high<span class="o">()</span>
+time.sleep<span class="o">(</span><span class="m">0</span>.5<span class="o">)</span>
+relay.low<span class="o">()</span>
+time.sleep<span class="o">(</span><span class="m">0</span>.5<span class="o">)</span>
+led.high<span class="o">()</span>
+time.sleep<span class="o">(</span><span class="m">0</span>.5<span class="o">)</span>
+led.low<span class="o">()</span>
+time.sleep<span class="o">(</span><span class="m">0</span>.5<span class="o">)</span>
+
+
+<span class="nv">dht_read_time</span> <span class="o">=</span> time.time<span class="o">()</span>
+button.irq<span class="o">(</span><span class="nv">trigger</span><span class="o">=</span>Pin.IRQ_RISING, <span class="nv">handler</span><span class="o">=</span>button_push<span class="o">)</span>
+
+<span class="k">while</span> True:
+    <span class="k">if</span> time.time<span class="o">()</span> - dht_read_time &gt;<span class="o">=</span> <span class="m">3</span>:
+        <span class="nv">dht_read_time</span> <span class="o">=</span> time.time<span class="o">()</span>
+        try:
+            dht_sensor.measure<span class="o">()</span>
+        except Exception as e:
+            print<span class="o">(</span><span class="s2">&quot;Warning: could not measure: &quot;</span> + str<span class="o">(</span>e<span class="o">))</span>
+
+    oled.fill<span class="o">(</span><span class="m">0</span><span class="o">)</span>
+    oled.text<span class="o">(</span><span class="s2">&quot;POT:      {0:.2f}V&quot;</span>.format<span class="o">(</span>pot.read_u16<span class="o">()</span> * conversion_factor<span class="o">)</span>,0,20<span class="o">)</span> <span class="c1"># round(pot.read_u16() * conversion_factor, 2)</span>
+    oled.text<span class="o">(</span><span class="s2">&quot;LIGHT:    {0:.2f}%&quot;</span>.format<span class="o">((</span><span class="m">65535</span>.0 - light_level.read_u16<span class="o">())</span>/650.0<span class="o">)</span>,0,30<span class="o">)</span>
+    oled.text<span class="o">(</span><span class="s2">&quot;TEMP:     {0:.2f}C&quot;</span>.format<span class="o">(</span>dht_sensor.temperature<span class="o">)</span>,0,40<span class="o">)</span>
+    oled.text<span class="o">(</span><span class="s2">&quot;HUMIDITY: {0:.1f}%&quot;</span>.format<span class="o">(</span>dht_sensor.humidity<span class="o">)</span>,0,50<span class="o">)</span>
+    oled.show<span class="o">()</span>
+    time.sleep<span class="o">(</span><span class="m">1</span><span class="o">)</span>
+    oled.fill<span class="o">(</span><span class="m">0</span><span class="o">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/Robotistan/PicoBricks/tree/main/Software/Pre-Installed%20Code/Microblocks%20Test%20Code">For MicroBlocks</a>;</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/faq5.png"><img alt="../_images/faq5.png" src="../_images/faq5.png" style="width: 720px;" /></a>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>You can access the Microblocks test code by dragging the image to the Microblocks Run tab.</p>
+</div>
+</section>
+<section id="on-how-many-different-platforms-can-i-code-picobricks">
+<h2>On how many different platforms can I code PicoBricks?<a class="headerlink" href="#on-how-many-different-platforms-can-i-code-picobricks" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>PicoBricks, is a project development board that can be programmed on three different platforms with Microblocks, Thonny and Arduino IDE.</p>
+<blockquote>
+<div><figure class="align-center">
+<a class="reference internal image-reference" href="../_images/main.png"><img alt="../_images/main.png" src="../_images/main.png" style="width: 200px;" /></a>
+</figure>
+</div></blockquote>
+<p>With MicroBlocks, we can develop projects by moving code blocks to our project page by drag-and-drop method. MicroBlocks is a block-based programming platform and is generally preferred by users with little coding knowledge, younger users or users who want to develop projects quickly.</p>
+<p>Click <a class="reference external" href="https://github.com/Robotistan/PicoBricks/tree/main/Software/Pre-Installed%20Code/Microblocks%20Test%20Code">here</a>; to go to MicroBlocks online editor.</p>
+<blockquote>
+<div><figure class="align-center">
+<a class="reference internal image-reference" href="../_images/main1.png"><img alt="../_images/main1.png" src="../_images/main1.png" style="width: 200px;" /></a>
+</figure>
+</div></blockquote>
+<p>We can develop projects using the MicroPython language with the thonny coding platform. MicroPython is a programming language that eliminates punctuation (syntax) errors that are frequently made in coding platforms as much as possible.</p>
+<blockquote>
+<div><figure class="align-center">
+<a class="reference internal image-reference" href="../_images/main2.png"><img alt="../_images/main2.png" src="../_images/main2.png" style="width: 200px;" /></a>
+</figure>
+</div></blockquote>
+<p>Arduino IDE platform is one of the most common programs used for physical programming. It allows us to develop projects using the C programming language.</p>
+</section>
+<section id="how-can-i-create-a-new-discussion-in-the-picobricks-community">
+<h2>How can I create a new discussion in the PicoBricks Community?<a class="headerlink" href="#how-can-i-create-a-new-discussion-in-the-picobricks-community" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Click <a class="reference external" href="https://community.robotistan.com/">here</a>; to reach the Picobricks Community page. After clicking the New Discussion tab, you can write the title and what you want to write and share it. For a more accurate assessment of your question, you can also choose a category before sharing.</p>
+</section>
+<section id="how-can-i-reach-the-picobricks-projects">
+<h2>How can I reach The PicoBricks projects?<a class="headerlink" href="#how-can-i-reach-the-picobricks-projects" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>25 projects are presented to Picobricks users as ready by the Picobricks Team.</p>
+<p>You can reach it by following the steps of <a class="reference external" href="https://github.com/Robotistan/PicoBricks">PicoBricks/Software/Examples/</a>; from Picobricks GitHub page.</p>
+<p>You can also access these projects on Picobricks Website, Robotistan INC Youtube channel and PicoBricks e-book.</p>
+</section>
+<section id="when-i-start-splitting-picobricks-do-i-have-to-split-all-the-modules-or-can-i-only-split-one-or-a-few-modules">
+<h2>When I start splitting PicoBricks, do I have to split all the modules or can I only split one or a few modules?<a class="headerlink" href="#when-i-start-splitting-picobricks-do-i-have-to-split-all-the-modules-or-can-i-only-split-one-or-a-few-modules" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>You don’t need to split all modules to run Picobricks modules correctly. After splitting only one or a few modules, you can use the split modules by plugging them into the corresponding connector on the Raspberry Pi Pico module with grove cables.</p>
+</section>
+<section id="what-is-the-voltage-range-of-the-motor-driver-on-the-picobricks">
+<h2>What is the voltage range of the motor driver on the PicoBricks?<a class="headerlink" href="#what-is-the-voltage-range-of-the-motor-driver-on-the-picobricks" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>The voltage range of the motor driver is 2.5-7.5V.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Frequently Asked Questions</a><ul>
+<li><a class="reference internal" href="#how-can-i-get-picobricks-to-work-when-i-split-it">How can I get PicoBricks to work when I split it?</a></li>
+<li><a class="reference internal" href="#do-i-need-to-add-the-picobricks-py-library-when-making-a-project-with-thonny">Do I need to add the picobricks.py library when making a project with Thonny?</a></li>
+<li><a class="reference internal" href="#should-i-bootsel-every-time-when-i-use-picobricks">Should I BOOTSEL every time when I use PicoBricks?</a></li>
+<li><a class="reference internal" href="#how-can-i-test-picobricks-boards-and-modules">How can I test Picobricks boards and modules?</a></li>
+<li><a class="reference internal" href="#on-how-many-different-platforms-can-i-code-picobricks">On how many different platforms can I code PicoBricks?</a></li>
+<li><a class="reference internal" href="#how-can-i-create-a-new-discussion-in-the-picobricks-community">How can I create a new discussion in the PicoBricks Community?</a></li>
+<li><a class="reference internal" href="#how-can-i-reach-the-picobricks-projects">How can I reach The PicoBricks projects?</a></li>
+<li><a class="reference internal" href="#when-i-start-splitting-picobricks-do-i-have-to-split-all-the-modules-or-can-i-only-split-one-or-a-few-modules">When I start splitting PicoBricks, do I have to split all the modules or can I only split one or a few modules?</a></li>
+<li><a class="reference internal" href="#what-is-the-voltage-range-of-the-motor-driver-on-the-picobricks">What is the voltage range of the motor driver on the PicoBricks?</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="../datasheet.html"
+                          title="capítulo anterior">Datasheet</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="../troubleshooting/troubleshooting.html"
+                          title="próximo capítulo">Troubleshooting</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/faq/faq.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../troubleshooting/troubleshooting.html" title="Troubleshooting"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="../datasheet.html" title="Datasheet"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Frequently Asked Questions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

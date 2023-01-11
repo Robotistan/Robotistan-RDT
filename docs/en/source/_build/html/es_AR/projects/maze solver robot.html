@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Maze Solver Robot &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Smart Greenhouse" href="smart%20greenhouse.html" />
+    <link rel="prev" title="Air Piano" href="air%20piano.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="smart%20greenhouse.html" title="Smart Greenhouse"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="air%20piano.html" title="Air Piano"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Maze Solver Robot</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="maze-solver-robot">
+<h1>Maze Solver Robot<a class="headerlink" href="#maze-solver-robot" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In the maze solving robot project, we will use the 2WD robot car kit that comes out of the set.</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Coding education is as old as the history of programming languages. Today, different products are used to popularize coding education and make it exciting and fun. The first of these is educational robots. Preparing and coding robots improves children’s <code class="docutils literal notranslate"><span class="pre">engineering</span></code> and <code class="docutils literal notranslate"><span class="pre">coding</span></code> skills. Robotics competitions are organized by institutions and organizations to popularize coding education and encourage teachers and students. One of these competitions is the Maze Solver Robot competitions. These robots firstly learn the destination by wandering around the maze and return to the starting point. Then, when they start the labyrinth again, they try to reach their destination in the shortest way possible. Robots use distance sensors while learning about the maze. Infrared or ultrasonic sensors are used in these robots. Smart robot vacuums used in homes and workplaces also work with logic close to the algorithms of maze-solver robots. Thanks to their algorithms that constantly check and map the obstacles, they try to do it completely and without crashing. Most of the smart vacuums are equipped with LIDAR and infrared sensors, which make high-precision laser measurements for distance measurement and obstacle detection. In this project, we will make a simple robot with PicoBricks that you can prepare for maze solver robot competitions.</p>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">HC-SR04</span> <span class="pre">ultrasonic</span> <span class="pre">distance</span> <span class="pre">sensor</span></code> so that the robot can detect the distance in front of it and decide its movements on its own. In the maze, the robot will detect the distance in front of the car and move forward if it is empty. If the distance is less than 5 cm, the car will turn right, measure the distance again, if the distance on the right is greater than 5 cm, it will continue on its way, if it is less, it will turn left and move forward. In this way, by turning right and left, we will enable the vehicle to move forward and exit the maze through the empty roads in the maze.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/maze-solver-robot.png"><img alt="../_images/maze-solver-robot.png" src="../_images/maze-solver-robot.png" style="width: 400px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">from</span> <span class="nn">utime</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">utime</span>
+<span class="c1">#define libraries</span>
+
+<span class="n">trigger</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">echo</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+<span class="c1">#define sensor pins</span>
+
+<span class="n">m1</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="c1">#define dc motor pins</span>
+
+<span class="n">m1</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+<span class="n">signaloff</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">signalon</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">getDistance</span><span class="p">():</span>
+<span class="n">trigger</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+<span class="n">utime</span><span class="o">.</span><span class="n">sleep_us</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">trigger</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+<span class="n">utime</span><span class="o">.</span><span class="n">sleep_us</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trigger</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">echo</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+   <span class="n">signaloff</span> <span class="o">=</span> <span class="n">utime</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">echo</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+   <span class="n">signalon</span> <span class="o">=</span> <span class="n">utime</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+<span class="n">timepassed</span> <span class="o">=</span> <span class="n">signalon</span> <span class="o">-</span> <span class="n">signaloff</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="p">(</span><span class="n">timepassed</span> <span class="o">*</span> <span class="mf">0.0343</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="k">return</span> <span class="n">distance</span>
+<span class="c1">#calculate distance</span>
+
+<span class="n">measure</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+<span class="n">measure</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">getDistance</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">measure</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">measure</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">:</span>
+    <span class="n">m1</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#if the distance is higher than 5, the wheels go straight</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">m1</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">m1</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">measure</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">getDistance</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">measure</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">:</span>
+        <span class="n">m1</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">m1</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+    <span class="n">m2</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="c1">#If the distance is less than 5, wait, move in any direction; if the distance is less than 5, move in the opposite direction</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>If you rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;NewPing.h&gt;</span>
+
+<span class="c1">#define TRIGGER_PIN  15</span>
+<span class="c1">#define ECHO_PIN     14</span>
+<span class="c1">#define MAX_DISTANCE 400</span>
+<span class="o">//</span><span class="n">define</span> <span class="n">sensor</span> <span class="n">pins</span>
+
+<span class="n">NewPing</span> <span class="n">sonar</span><span class="p">(</span><span class="n">TRIGGER_PIN</span><span class="p">,</span> <span class="n">ECHO_PIN</span><span class="p">,</span> <span class="n">MAX_DISTANCE</span><span class="p">);</span>
+
+<span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span> <span class="o">//</span><span class="n">define</span> <span class="n">dc</span> <span class="n">motor</span> <span class="n">pins</span>
+    <span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="nb">int</span> <span class="n">distance</span><span class="o">=</span><span class="n">sonar</span><span class="o">.</span><span class="n">ping_cm</span><span class="p">();</span>
+<span class="n">Forward</span><span class="p">();</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">distance</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">){</span>
+
+<span class="n">Stop</span><span class="p">();</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="n">Turn_Right</span><span class="p">();</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="nb">int</span> <span class="n">distance</span><span class="o">=</span><span class="n">sonar</span><span class="o">.</span><span class="n">ping_cm</span><span class="p">();</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">distance</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">){</span>
+  <span class="n">Stop</span><span class="p">();</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+  <span class="n">Turn_Left</span><span class="p">();</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+  <span class="o">//</span> <span class="n">If</span> <span class="n">the</span> <span class="n">distance</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="mi">5</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">turn</span> <span class="n">right</span><span class="p">;</span> <span class="k">if</span> <span class="n">the</span> <span class="n">distance</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="mi">5</span> <span class="n">again</span><span class="p">,</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">opposite</span> <span class="n">direction</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">Forward</span><span class="p">(){</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span> <span class="o">//</span><span class="k">if</span> <span class="n">the</span> <span class="n">distance</span> <span class="ow">is</span> <span class="n">higher</span> <span class="n">than</span> <span class="mi">5</span><span class="p">,</span> <span class="n">go</span> <span class="n">straight</span>
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">Turn_Left</span><span class="p">(){</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span> <span class="o">//</span><span class="n">turn</span> <span class="n">left</span>
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">Turn_Right</span><span class="p">(){</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>  <span class="o">//</span><span class="n">turn</span> <span class="n">right</span>
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">Stop</span><span class="p">(){</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span> <span class="o">//</span><span class="n">wait</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with MicroBlocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="maze-solver-robot1" src="../_images/maze-solver-robot1.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Maze Solver Robot</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="air%20piano.html"
+                          title="capítulo anterior">Air Piano</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="smart%20greenhouse.html"
+                          title="próximo capítulo">Smart Greenhouse</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/maze solver robot.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="smart%20greenhouse.html" title="Smart Greenhouse"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="air%20piano.html" title="Air Piano"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Maze Solver Robot</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

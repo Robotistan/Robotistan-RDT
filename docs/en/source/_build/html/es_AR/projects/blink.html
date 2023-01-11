@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Blink &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Action-Reaction" href="action-reaction.html" />
+    <link rel="prev" title="Projects" href="projects.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="action-reaction.html" title="Action-Reaction"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="projects.html" title="Projects"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Blink</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="blink">
+<h1>Blink<a class="headerlink" href="#blink" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In real life, the employee, who has just started to learn the job, first undertakes the most basic task.The cleaner first learns to use the broom, the cook learns to use the kitchen utensils, the waiter to carry a tray. We can come up with many examples. The first code written by newcomers to software development is known as <code class="docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">World&quot;</span></code>. Printing «Hello World» as soon as the program starts on the screen or console window in the language they use is the first step in programming. Like a baby starting to crawl…</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Hello</span> <span class="n">World</span>
+</pre></div>
+</div>
+<p>The first step in physical computing is the Blink application: controlling the on/off status of a LED. By simply connecting an LED to the microprocessor board, the code keeps the LED blinking continuously. Ask people who have developed themselves in the field of robotics programming how they got to this level. The answer they will give you starts like this; it all started with a flashing LED!</p>
+<p>LEDs are the language of electronic devices. Thanks to the LEDs, the programmer tells the users at which stage of the task the device is, what the problem is, if any, and which options are active. In this project, you will learn the types of LEDs on the Picobricks and learn how to turn them on and off.</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>There are 1 x 5mm red LED and 1 x WS2812B RGB LED on Picobricks. While normal LEDs light up in one color, RGB LEDs can light up in many different colors. In this project we will use the red LED on PicoBricks.</p>
+<p>We will write code to turn on the red LED and turn it off after a certain time. We will adjust our code to repeat this process continuously.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/blink1.png"><img alt="../_images/blink1.png" src="../_images/blink1.png" style="width: 520px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/blink2.png"><img alt="../_images/blink2.png" src="../_images/blink2.png" style="width: 520px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span> <span class="c1">#to access the hardware</span>
+<span class="n">on</span> <span class="n">the</span> <span class="n">pico</span>
+<span class="kn">import</span> <span class="nn">utime</span> <span class="c1">#time library</span>
+<span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span> <span class="c1">#initialize digital pin 7 as an output for LED</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span> <span class="c1">#while loop</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span> <span class="c1">#LED on&amp;off status</span>
+    <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1">#wait for a half second</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>If you rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+ <span class="o">//</span> <span class="n">put</span> <span class="n">your</span> <span class="n">setup</span> <span class="n">code</span> <span class="n">here</span><span class="p">,</span> <span class="n">to</span> <span class="n">run</span> <span class="n">once</span><span class="p">:</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span> <span class="o">//</span> <span class="n">initialize</span> <span class="n">digital</span> <span class="n">pin</span> <span class="mi">7</span> <span class="k">as</span> <span class="n">an</span> <span class="n">output</span>
+ <span class="p">}</span>
+ <span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">put</span> <span class="n">your</span> <span class="n">main</span> <span class="n">code</span> <span class="n">here</span><span class="p">,</span> <span class="n">to</span> <span class="n">run</span> <span class="n">repeatedly</span><span class="p">:</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span> <span class="o">//</span><span class="n">turn</span> <span class="n">the</span> <span class="n">LED</span> <span class="n">on</span> <span class="n">by</span> <span class="n">making</span> <span class="n">the</span> <span class="n">voltage</span> <span class="n">HIGH</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> <span class="o">//</span><span class="n">wait</span> <span class="k">for</span> <span class="n">a</span> <span class="n">half</span> <span class="n">second</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span> <span class="o">//</span><span class="n">turn</span> <span class="n">the</span> <span class="n">LED</span> <span class="n">on</span> <span class="n">by</span> <span class="n">making</span> <span class="n">the</span> <span class="n">voltage</span> <span class="n">LOW</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> <span class="o">//</span><span class="n">wait</span> <span class="k">for</span> <span class="n">a</span> <span class="n">half</span> <span class="n">second</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with MicroBlocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Drag and drop the <code class="docutils literal notranslate"><span class="pre">when</span> <span class="pre">started</span> <span class="pre">block</span></code> from the <code class="docutils literal notranslate"><span class="pre">Control</span></code> category to the Scripting area.</p></li>
+</ol>
+<p>This block executes the code under it whenever the Start button is clicked</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/blink33.png"><img alt="../_images/blink33.png" src="../_images/blink33.png" style="width: 220px;" /></a>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Then, drag the <code class="docutils literal notranslate"><span class="pre">forever</span></code> block from the <code class="docutils literal notranslate"><span class="pre">Control</span></code> category and add it under the when started block.</p></li>
+</ol>
+<p>Forever block will execute the blocks placed within it non-stop (forever, as the name implies).</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/blink4.png"><img alt="../_images/blink4.png" src="../_images/blink4.png" style="width: 220px;" /></a>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Drag the PicoBricks <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">red</span> <span class="pre">LED</span> <span class="pre">block</span></code> and drop it into the <code class="docutils literal notranslate"><span class="pre">forever</span></code> block.The boolean TRUE (green) selection in the block will make the LED turn on. Alternatively, the FALSE (red) selection will make the LED go off.</p></li>
+</ol>
+<p>Test if the red LED is lit by pressing the <code class="docutils literal notranslate"><span class="pre">start</span></code> button</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/blink5.png"><img alt="../_images/blink5.png" src="../_images/blink5.png" style="width: 220px;" /></a>
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>Now, to turn off the red LED, click once on the boolean control in the block to set it to red. This setting means FALSE and should turn off the LED.</p></li>
+</ol>
+<p>Test whether the LED goes out by pressing the Start button again.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/blink6.png"><img alt="../_images/blink6.png" src="../_images/blink6.png" style="width: 220px;" /></a>
+</figure>
+<ol class="arabic simple" start="5">
+<li><p>Now, we will modify our code to make the LED go on and off by itself at certain time intervals.</p></li>
+</ol>
+<p>Drag the <code class="docutils literal notranslate"><span class="pre">wait</span> <span class="pre">500</span> <span class="pre">millisecs</span></code> block from the <code class="docutils literal notranslate"><span class="pre">Control</span></code> category and add it below the <code class="docutils literal notranslate"><span class="pre">PicoBricks</span> <span class="pre">set</span> <span class="pre">red</span> <span class="pre">LED</span></code> block.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/blink7.png"><img alt="../_images/blink7.png" src="../_images/blink7.png" style="width: 220px;" /></a>
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Then add the <code class="docutils literal notranslate"><span class="pre">Picobricks</span> <span class="pre">set</span> <span class="pre">red</span> <span class="pre">LED</span> <span class="pre">block</span></code> again under the <code class="docutils literal notranslate"><span class="pre">wait</span> <span class="pre">500</span> <span class="pre">millisecs</span></code> block and set the boolean control to False.</p></li>
+</ol>
+<p>Add another wait <code class="docutils literal notranslate"><span class="pre">500</span> <span class="pre">millisecs</span></code> block to the bottom.</p>
+<p>When you press the <code class="docutils literal notranslate"><span class="pre">start</span></code> button, you will see the red LED blink at 500 millisecond intervals.
+The number 500 in the <code class="docutils literal notranslate"><span class="pre">wait</span> <span class="pre">500</span> <span class="pre">millisecs</span></code> block represents milliseconds. You can change this number as you wish. One second is 1000 milliseconds.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/blink8.png"><img alt="../_images/blink8.png" src="../_images/blink8.png" style="width: 220px;" /></a>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Blink</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="projects.html"
+                          title="capítulo anterior">Projects</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="action-reaction.html"
+                          title="próximo capítulo">Action-Reaction</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/blink.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="action-reaction.html" title="Action-Reaction"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="projects.html" title="Projects"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Blink</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

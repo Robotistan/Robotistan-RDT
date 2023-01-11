@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>My Timer &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Alarm Clock" href="alarm%20clock.html" />
+    <link rel="prev" title="Show Your Reaction" href="show%20your%20reaction.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="alarm%20clock.html" title="Alarm Clock"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="show%20your%20reaction.html" title="Show Your Reaction"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">My Timer</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="my-timer">
+<h1>My Timer<a class="headerlink" href="#my-timer" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In this project, you will make your own time measuring device using Picobricks, OLED display, button and potentiometer modules. A Timer…</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Measuring time is a simple but important task that we do in our daily lives without realizing it. A surgeon in surgery, a business person trying to catch up with a meeting, an athlete trying to win, a student trying to finish an exam or a chess match… Smart wrist watches, phones and even professional chronometers are used to measure time. Time is a variable that should be used very accurately in electronic systems. For example, a washing machine; how long the drum will rotate clockwise, how much counterclockwise, how many seconds water must flow in order to dissolve the detergent are tasks done by measuring time. To develop projects where time is of the essence, you need to know how to use it.</p>
+<p>When Picobricks starts, let’s put a statement on the screen that introduces the project and contains instructions. As the user turns the potentiometer, it will set a time in the range of <code class="docutils literal notranslate"><span class="pre">0-60</span> <span class="pre">minutes</span></code>. When the user presses the button of Picobricks after deciding the time with the potentiometer, it will start counting down in minutes and seconds on the screen. If the button is pressed while the time is running backwards, the Timer will stop and show the remaining time on the screen. If the minute, second and second value reaches zero without pressing the button, a notification stating that the time has expired will be displayed on the screen and the program will be stopped.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/my-timer.png"><img alt="../_images/my-timer.png" src="../_images/my-timer.png" style="width: 500px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/my-timer1.png"><img alt="../_images/my-timer1.png" src="../_images/my-timer1.png" style="width: 520px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">I2C</span><span class="p">,</span> <span class="n">ADC</span><span class="p">,</span> <span class="n">Timer</span> <span class="c1">#to acces the hardware picobricks</span>
+<span class="kn">from</span> <span class="nn">picobricks</span> <span class="kn">import</span> <span class="n">SSD1306_I2C</span> <span class="c1">#oled library</span>
+<span class="kn">import</span> <span class="nn">utime</span> <span class="c1">#time library</span>
+
+<span class="n">WIDTH</span>  <span class="o">=</span> <span class="mi">128</span>
+<span class="n">WEIGHT</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="c1">#define the width and height values</span>
+
+<span class="n">sda</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">scl</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1">#we define sda and scl pins for inter-path communication</span>
+<span class="n">i2c</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sda</span><span class="o">=</span><span class="n">sda</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">scl</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span><span class="c1">#determine the frequency values</span>
+
+<span class="n">oled</span> <span class="o">=</span> <span class="n">SSD1306_I2C</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">i2c</span><span class="p">)</span>
+<span class="n">pot</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">26</span><span class="p">))</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">PULL_DOWN</span><span class="p">)</span>
+<span class="c1">#determine our input and output pins</span>
+
+<span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#Show on OLED</span>
+
+<span class="n">time</span><span class="o">=</span><span class="n">Timer</span><span class="p">()</span>
+<span class="n">time2</span><span class="o">=</span><span class="n">Timer</span><span class="p">()</span>
+<span class="n">time3</span><span class="o">=</span><span class="n">Timer</span><span class="p">()</span>
+<span class="c1">#define timers</span>
+
+<span class="k">def</span> <span class="nf">minute</span><span class="p">(</span><span class="n">timer</span><span class="p">):</span>
+ <span class="k">global</span> <span class="n">setTimer</span>
+ <span class="n">setTimer</span> <span class="o">-=</span><span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">second</span><span class="p">(</span><span class="n">timer</span><span class="p">):</span>
+ <span class="k">global</span> <span class="n">sec</span>
+ <span class="n">sec</span><span class="o">-=</span><span class="mi">1</span>
+ <span class="k">if</span> <span class="n">sec</span><span class="o">==-</span><span class="mi">1</span><span class="p">:</span>
+     <span class="n">sec</span><span class="o">=</span><span class="mi">59</span>
+
+<span class="k">def</span> <span class="nf">msecond</span><span class="p">(</span><span class="n">timer</span><span class="p">):</span>
+ <span class="k">global</span> <span class="n">msec</span>
+ <span class="n">msec</span><span class="o">-=</span><span class="mi">1</span>
+ <span class="k">if</span> <span class="n">msec</span><span class="o">==-</span><span class="mi">1</span><span class="p">:</span>
+     <span class="n">msec</span><span class="o">=</span><span class="mi">99</span>
+<span class="c1">#We determine the increments of the minute-second and millisecond values.</span>
+<span class="n">sec</span><span class="o">=</span><span class="mi">59</span>
+<span class="n">msec</span><span class="o">=</span><span class="mi">99</span>
+
+<span class="k">global</span> <span class="n">setTimer</span>
+
+<span class="k">while</span> <span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+ <span class="n">setTimer</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">pot</span><span class="o">.</span><span class="n">read_u16</span><span class="p">()</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span><span class="o">/</span><span class="mi">65536</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Set timer:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">setTimer</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; min&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#If the button is not pressed, the value determined by the potentiometer is printed on the OLED screen.</span>
+
+<span class="n">setTimer</span><span class="o">-=</span><span class="mi">1</span>
+
+<span class="n">time</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span><span class="n">period</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">minute</span><span class="p">)</span>
+<span class="n">time2</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span><span class="n">period</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">second</span><span class="p">)</span>
+<span class="n">time3</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span><span class="n">period</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">msecond</span><span class="p">)</span>
+<span class="c1">#We determine the periods of minutes, seconds and milliseconds.</span>
+<span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span><span class="c1">#wait for 0.2 second</span>
+
+<span class="k">while</span> <span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;min:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">setTimer</span><span class="p">),</span><span class="mi">50</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;sec:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sec</span><span class="p">),</span><span class="mi">50</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;ms:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">msec</span><span class="p">),</span><span class="mi">50</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.008</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ <span class="k">if</span><span class="p">(</span><span class="n">setTimer</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">sec</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">msec</span><span class="o">==</span><span class="mi">99</span><span class="p">):</span>
+     <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+     <span class="n">msec</span><span class="o">=</span><span class="mi">0</span>
+     <span class="k">break</span><span class="p">;</span>
+ <span class="c1">#When the button is pressed, it prints the min-sec-ms values ​​to the OLED screen in the determined x and y coordinates.</span>
+
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">setTimer</span><span class="p">),</span><span class="mi">60</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sec</span><span class="p">),</span><span class="mi">60</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">msec</span><span class="p">),</span><span class="mi">60</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Time is Over!&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">48</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ <span class="c1">#Print the minutes, seconds, milliseconds and &quot;Time is Over&quot; values ​​to the X and Y coordinates determi</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>If you rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#include &lt;Wire.h&gt;
+#include &quot;ACROBOTIC_SSD1306.h&quot;
+
+int minute;
+int second = 59;
+int milisecond = 9;
+int setTimer;
+
+void setup() {
+// put your setup code here, to run once:
+pinMode(10,INPUT);
+pinMode(26,INPUT);
+
+Wire.begin();
+oled.init();
+oled.clearDisplay();
+
+
+  }
+
+void loop() {
+// put your main code here, to run repeatedly:
+oled.setTextXY(1,2);
+oled.putString(&quot;&lt;&lt;My Timer&gt;&gt;&quot;);
+oled.setTextXY(3,1);
+oled.putString(&quot;Please use the&quot;);
+oled.setTextXY(4,1);
+oled.putString(&quot;Potantiometer&quot;);
+oled.setTextXY(5,0);
+oled.putString(&quot;to set the Timer&quot;);
+delay(3000);
+oled.clearDisplay();
+
+  while(!(digitalRead(10) == 1))
+  {
+  setTimer = (analogRead(26)*60)/1023;
+  oled.setTextXY(3,1);
+  oled.putString(&quot;set to:&quot;);
+  oled.setTextXY(3,8);
+  oled.putString(String(setTimer));
+  oled.setTextXY(3,11);
+  oled.putString(&quot;min.&quot;);
+  }
+  oled.clearDisplay();
+  oled.setTextXY(1,1);
+  oled.putString(&quot;The Countdown&quot;);
+  oled.setTextXY(2,3);
+  oled.putString(&quot;has begin!&quot;);
+
+  while(!(digitalRead(10) == 1))
+      {
+  milisecond = 9- (millis()%100)/10;
+  second = 59-(millis()%60000)/1000;
+  minute = (setTimer-1)-((millis()%360000)/60000);
+
+  oled.setTextXY(5,3);
+  oled.putString(String(minute));
+  oled.setTextXY(5,8);
+  oled.putString(String(second));
+  oled.setTextXY(5,13);
+  oled.putString(String(milisecond));
+  oled.setTextXY(5,6);
+  oled.putString(&quot;:&quot;);
+  oled.setTextXY(5,11);
+  oled.putString(&quot;:&quot;);
+      }
+  oled.setTextXY(5,3);
+  oled.putString(String(minute));
+  oled.setTextXY(5,8);
+  oled.putString(String(second));
+  oled.setTextXY(5,13);
+  oled.putString(String(milisecond));
+  oled.setTextXY(5,6);
+  oled.putString(&quot;:&quot;);
+  oled.setTextXY(5,11);
+  oled.putString(&quot;:&quot;);
+  delay(10000);
+
+  if (minute==0 &amp; second==0 &amp; milisecond==0){
+
+  oled.setTextXY(5,3);
+  oled.putString(String(minute));
+  oled.setTextXY(5,8);
+  oled.putString(String(second));
+  oled.setTextXY(5,13);
+  oled.putString(String(milisecond));
+  oled.setTextXY(5,6);
+  oled.putString(&quot;:&quot;);
+  oled.setTextXY(5,11);
+  oled.putString(&quot;:&quot;);
+  oled.putString(&quot;-finished-&quot;);
+  oled.setTextXY(7,5);
+  delay(10000);
+  }
+
+
+      }
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with MicroBlocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="my-timer2" src="../_images/my-timer2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">My Timer</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="show%20your%20reaction.html"
+                          title="capítulo anterior">Show Your Reaction</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="alarm%20clock.html"
+                          title="próximo capítulo">Alarm Clock</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/my timer.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="alarm%20clock.html" title="Alarm Clock"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="show%20your%20reaction.html" title="Show Your Reaction"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">My Timer</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

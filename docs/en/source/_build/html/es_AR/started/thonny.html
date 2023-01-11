@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Thonny (MicroPython) IDE for Beginners &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Projects" href="../projects/projects.html" />
+    <link rel="prev" title="MicroBlocks Block Programming Language" href="microblocks.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../projects/projects.html" title="Projects"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="microblocks.html" title="MicroBlocks Block Programming Language"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="started.html" accesskey="U">Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Thonny (MicroPython) IDE for Beginners</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="thonny-micropython-ide-for-beginners">
+<h1>Thonny (MicroPython) IDE for Beginners<a class="headerlink" href="#thonny-micropython-ide-for-beginners" title="Enlace permanente a este encabezado">¶</a></h1>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/man.jpg"><img alt="../_images/man.jpg" src="../_images/man.jpg" style="width: 720px;" /></a>
+</figure>
+<section id="thonny-ide-setup">
+<h2>Thonny IDE Setup<a class="headerlink" href="#thonny-ide-setup" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>At the heart of Picobricks is the Raspberry Pi Pico. The Thonny Raspberry Pi is a great choice for coding Pico and therefore Picobricks.
+Visit <a class="reference external" href="https://thonny.org/">Thonny Website</a> Select the version suitable for your system and download it to your computer. Then perform the installation. You can also install the Thonny IDE, using the command “ $ pip install thonny “</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install thonny
+</pre></div>
+</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thonny.png"><img alt="../_images/thonny.png" src="../_images/thonny.png" style="width: 420px;" /></a>
+</figure>
+</section>
+<section id="thonny-ide-interface">
+<h2>Thonny IDE Interface<a class="headerlink" href="#thonny-ide-interface" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thonny1.png"><img alt="../_images/thonny1.png" src="../_images/thonny1.png" style="width: 920px;" /></a>
+</figure>
+<p>A: Opens an empty script file.
+B: Allows you to open an existing code file.
+C: Allows you to save changes to the code file you are working on.
+D: Runs the code you wrote in the interpreter environment you specify.
+E: Allows you to check for errors in your code.
+F: Allows you to run lines of code in order to debug.
+G: Lets you navigate through the commands in the line of code while debugging.
+H: Lets you exit debug.
+I: Allows you to switch from debug mode to run mode.
+J: Makes the code stop executing.</p>
+</section>
+<section id="upload-micropython-firmware-to-raspberry-pi-pico">
+<h2>Upload MicroPython Firmware to Raspberry Pi Pico<a class="headerlink" href="#upload-micropython-firmware-to-raspberry-pi-pico" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In order for Raspberry Pi Pico to understand the MicroPython code we will write, we must install a special operating system for it. We call this firmware. Open the Thonny editor and click Select interpreter from the Run menu.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thonny3.png"><img alt="../_images/thonny3.png" src="../_images/thonny3.png" style="width: 720px;" /></a>
+</figure>
+<p>Select the Raspberry Pi Pico from the drop-down list shown in area 1. Leave the 2nd area as in the image, click on the 3rd area.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thonny2.png"><img alt="../_images/thonny2.png" src="../_images/thonny2.png" style="width: 520px;" /></a>
+</figure>
+<p>Connect Pico to your computer’s USB port with a cable while <code class="docutils literal notranslate"><span class="pre">holding</span> <span class="pre">down</span> <span class="pre">the</span> <span class="pre">white</span> <span class="pre">bootsel</span> <span class="pre">button</span></code> on it.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/arduino3.png"><img alt="../_images/arduino3.png" src="../_images/arduino3.png" style="width: 520px;" /></a>
+</figure>
+<p>After the Install button is activated, you can release the button. Press the <code class="docutils literal notranslate"><span class="pre">Install</span> <span class="pre">button</span></code> and wait for the firmware to load.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thonny4.png"><img alt="../_images/thonny4.png" src="../_images/thonny4.png" style="width: 520px;" /></a>
+</figure>
+<p>After the installation is complete, click the Close button to complete the installation.</p>
+</section>
+<section id="installing-and-running-code-on-raspberry-pi-pico">
+<h2>Installing and Running Code on Raspberry Pi Pico<a class="headerlink" href="#installing-and-running-code-on-raspberry-pi-pico" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Plug the Pico’s cable directly into the computer’s USB port. You don’t need to hold down the Bootsel button. Select the <code class="docutils literal notranslate"><span class="pre">“Select</span> <span class="pre">interpreter”</span></code> option from the Run menu in Thonny. Make sure Raspberry Pi Pico is selected in section 1. Click the OK button to close the window.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thonny5.png"><img alt="../_images/thonny5.png" src="../_images/thonny5.png" style="width: 520px;" /></a>
+</figure>
+<p>Activate the Files option from the View menu. A long file explorer tab will be placed on the left side of the screen. If you see Raspberry Pi Pico in section 1, it means that it is connected to Thonny Pico without any problems, you are ready to write, save and run your code. File explorer area that shows the working directory on your computer.</p>
+<p>The MicroPython code you wrote in Thonny consist of libraries arranged for Raspberry Pi Pico and similar micro control cards and are called MicroPython. The syntax and almost all libraries work the same as MicroPython.
+The <code class="docutils literal notranslate"><span class="pre">&quot;hello</span> <span class="pre">world&quot;</span></code> application of the software world is the <code class="docutils literal notranslate"><span class="pre">&quot;blink&quot;</span></code> application to physical programming. Write down the code shown in field 1. Click the save button in area 2. Thonny will ask you in the window in area 3 whether you want to save your code in the working directory on your computer or in Pico’s onboard memory. If you choose your computer, the resulting file will appear in field 4, and if you choose Pico, the resulting file will appear in field</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/thonny6.png"><img alt="../_images/thonny6.png" src="../_images/thonny6.png" style="width: 520px;" /></a>
+</figure>
+<p>Select Raspberry Pi Pico from the Save in window, type <code class="docutils literal notranslate"><span class="pre">“blink.py”</span></code>  in the File Name field and click the OK button.After seeing the <code class="docutils literal notranslate"><span class="pre">&quot;blink.py&quot;</span></code> file in Pico’s file explorer, click the F5 key on the keyboard or the green Run button on the toolbar, and the code file will be run by Pico. If you see the internal LED on the Pico blinking at 1 second intervals, you have successfully written and run your first code. Congratulations :)</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>If you want the code you have written to run as soon as Pico is opened without giving a run command, you should save your code in Pico’s main directory with the name <code class="docutils literal notranslate"><span class="pre">&quot;main.py&quot;.</span></code></p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Thonny (MicroPython) IDE for Beginners</a><ul>
+<li><a class="reference internal" href="#thonny-ide-setup">Thonny IDE Setup</a></li>
+<li><a class="reference internal" href="#thonny-ide-interface">Thonny IDE Interface</a></li>
+<li><a class="reference internal" href="#upload-micropython-firmware-to-raspberry-pi-pico">Upload MicroPython Firmware to Raspberry Pi Pico</a></li>
+<li><a class="reference internal" href="#installing-and-running-code-on-raspberry-pi-pico">Installing and Running Code on Raspberry Pi Pico</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="microblocks.html"
+                          title="capítulo anterior">MicroBlocks Block Programming Language</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="../projects/projects.html"
+                          title="próximo capítulo">Projects</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/started/thonny.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../projects/projects.html" title="Projects"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="microblocks.html" title="MicroBlocks Block Programming Language"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="started.html" >Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Thonny (MicroPython) IDE for Beginners</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

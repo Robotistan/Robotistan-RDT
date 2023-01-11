@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Guide for MicroBlocks &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Datasheet" href="../datasheet.html" />
+    <link rel="prev" title="Bootloader" href="../boatloader/boatloader.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../datasheet.html" title="Datasheet"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="../boatloader/boatloader.html" title="Bootloader"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Guide for MicroBlocks</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="guide-for-microblocks">
+<h1>Guide for MicroBlocks<a class="headerlink" href="#guide-for-microblocks" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="summary-of-blocks">
+<h2>Summary of Blocks<a class="headerlink" href="#summary-of-blocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>For each block, there is a short description entry and a detailed block and component description. You can click on block pictures in the short description table to access the details and sample codes.</p>
+<p>Sample codes on how to use the blocks have been provided. To try them out, all you have to do is open a browser session of the MicroBlocks IDE and drag and drop them onto the editor programming area. Then you can just click on them and see the results.</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>To test any of the sample codes below, just drag and drop them onto the MicroBlocks IDE.</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 48%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="linux-logo3" src="../_images/pb_setrgbcolor.png" /></p></td>
+<td><p><img alt="macos-logo3" src="../_images/pb_temperature.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Sets the RGB LED to the selected color</p></td>
+<td><p>Returns the temperature in Celsius</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 51%" />
+<col style="width: 49%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="windows-logo" src="../_images/pb_beep.png" /></p></td>
+<td><p><img alt="linux-logo" src="../_images/pb_button.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Makes a beep sound from the speaker</p></td>
+<td><p>Returns the button status as 1/0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 48%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="windows-logo1" src="../_images/pb_humidity.png" /></p></td>
+<td><p><img alt="macos-logo1" src="../_images/pb_potentiometer.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Returns the humidity percentage value</p></td>
+<td><p>Returns the potentiometer value.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 59%" />
+<col style="width: 41%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="windows-logo2" src="../_images/pb_randomcolor.png" /></p></td>
+<td><p><img alt="linux-logo2" src="../_images/pb_redled.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Sets the RGB LED to a random color</p></td>
+<td><p>Sets the red LED as 1/0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 51%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="windows-logo3" src="../_images/pb_setmotor.png" /></p></td>
+<td><p><img alt="macos-logo2" src="../_images/pb_relay.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Controls the DC motors</p></td>
+<td><p>Sets the relay as 1/0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 64%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="macos-logo" src="../_images/pb_color.png" /></p></td>
+<td><p><img alt="linux-logo1" src="../_images/pb_lightsensorr.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Returns a RGB color value</p></td>
+<td><p>Returns the light level as a percentage value</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="windows-logo4" src="../_images/pb_turnoffrgb.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Turns off the RGB LED</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="working-with-library-blocks">
+<h2>Working with Library Blocks<a class="headerlink" href="#working-with-library-blocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>The library consists of a set of simple services, that together allow the user to have complete control of the PicoBricks Board and the modules on it.</p>
+<p>PicoBricks Library has two distinct types of block shapes:</p>
+<ul class="simple">
+<li><p>oval: these are <code class="docutils literal notranslate"><span class="pre">reporter</span> <span class="pre">blocks</span></code> that return some kind of information back. The user would normally either assign these to a project variable or use it in a suitable input slot of other blocks. The return information type can be any of the supported data types.</p></li>
+<li><p>rectangular: these are <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">blocks</span></code> that perform a programmed function and do not return any information.</p></li>
+</ul>
+</section>
+<section id="notes-on-library-components">
+<h2>Notes on Library Components<a class="headerlink" href="#notes-on-library-components" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>PicoBricks board contains ten components premounted. The Library, however, only has blocks for seven of them; the OLED screen, Motor Control, and Wireless Comm components are <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">directly</span> <span class="pre">covered</span></code> by the library.</p>
+<p>In this section, we will describe how one can make use of these components, as well as some special information about them.</p>
+<ul class="simple">
+<li><p>OLED display module is programmed by using the MicroBlocks graphics library called OLED Graphics. It is located under <code class="docutils literal notranslate"><span class="pre">Libraries+</span> <span class="pre">/</span> <span class="pre">Graphics</span> <span class="pre">/</span> <span class="pre">OLED</span> <span class="pre">Graphics.ubl</span></code> in the IDE.</p></li>
+</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pb_oled_module.png"><img alt="../_images/pb_oled_module.png" src="../_images/pb_oled_module.png" style="width: 320px;" /></a>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>For details of the library blocks and operations, refer to  <a class="reference external" href="https://wiki.microblocks.fun/extension_libraries/oled">OLED Library</a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>For a project that describes advanced use of the library and data transfer, please refer to <a class="reference external" href="https://wiki.microblocks.fun/snap/snap2mb_img_code">SNAP to MicroBlocks</a></p>
+</div>
+<ul class="simple">
+<li><p>MOTOR module is used to control SERVO motors and DC motors.DC Motor support is provided in the library directly. However, there is a caveat: since the motor connections are only via thee-wire cable, it is not possible to programmatically reverse the direction of the DC motors. The only way to change the direction of the DC motors is to change the way the wires are connected.</p></li>
+</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pb_motor_module.png"><img alt="../_images/pb_motor_module.png" src="../_images/pb_motor_module.png" style="width: 320px;" /></a>
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>SERVO motor programming is supported via the MicroBlocks library Servo. It is located under Libraries+ / Servo.ubl in the IDE.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>For a detailed project that uses the DC and Servo motors, please refer to  <a class="reference external" href="https://wiki.microblocks.fun/picobricks/motorservo">PicoBricks Servo and DC Motor Control</a></p>
+</div>
+<ul class="simple">
+<li><p>WIRELESS COMM Module enables PicoBricks to communicate with other environments using either a WIFI module or a Bluetooth module and is connected to the Serial IO ports of the Pico.</p></li>
+</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pb_wireless_module.png"><img alt="../_images/pb_wireless_module.png" src="../_images/pb_wireless_module.png" style="width: 320px;" /></a>
+</figure>
+</section>
+<section id="projects-with-microblocks">
+<h2>Projects with MicroBlocks<a class="headerlink" href="#projects-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<img alt="../_static/pb.gif" src="../_static/pb.gif" />
+<div class="line-block">
+<div class="line"><strong>MicroBlocks is a live programming system that invites exploration. Click a block in the MicroBlocks IDE to see text appear.</strong></div>
+</div>
+<img alt="../_static/pb1.gif" src="../_static/pb1.gif" />
+<div class="line-block">
+<div class="line"><strong>Beginners and experts alike will find that MicroBlocks is a great tool exploring every aspect of PicoBricks.</strong></div>
+</div>
+<img alt="../_static/pb2.gif" src="../_static/pb2.gif" />
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Guide for MicroBlocks</a><ul>
+<li><a class="reference internal" href="#summary-of-blocks">Summary of Blocks</a></li>
+<li><a class="reference internal" href="#working-with-library-blocks">Working with Library Blocks</a></li>
+<li><a class="reference internal" href="#notes-on-library-components">Notes on Library Components</a></li>
+<li><a class="reference internal" href="#projects-with-microblocks">Projects with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="../boatloader/boatloader.html"
+                          title="capítulo anterior">Bootloader</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="../datasheet.html"
+                          title="próximo capítulo">Datasheet</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/library/mblib.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../datasheet.html" title="Datasheet"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="../boatloader/boatloader.html" title="Bootloader"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Guide for MicroBlocks</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

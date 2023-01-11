@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Alarm Clock &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Know Your Color" href="know%20your%20color.html" />
+    <link rel="prev" title="My Timer" href="my%20timer.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="know%20your%20color.html" title="Know Your Color"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="my%20timer.html" title="My Timer"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Alarm Clock</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="alarm-clock">
+<h1>Alarm Clock<a class="headerlink" href="#alarm-clock" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In this project, we will create a timer alarm that adjusts for daylight using the light sensor in Picobricks. In this project we will make a simple alarm application. The alarm system we will design is designed to sound automatically in the morning. For this, we will use LDR sensor in the project.</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Global warming is affecting the climate of our world worse every day. Countries take many precautions and sign agreements to reduce the effects of global warming. The use of renewable energy sources and the efficient use of energy is an issue that needs attention everywhere, from factories to our rooms. Many reasons such as keeping road and park lighting on in cities due to human error, and the use of high energy consuming lighting tools reduce energy efficiency. Many electronic and digital systems are developed and programmed by engineers to measure the light, temperature and humidity values of the environment and ensure that they are used only when needed and in the right amounts.</p>
+<p>At night, the OLED screen will display a good night message to the user, in the morning, an alarm will sound with a buzzer sound, a good morning message will be displayed on the screen, and the RGB LED will light up in white for light notification. The user will have to press the button of Picobricks to stop the alarm. After these processes, which continue until the alarm is stopped, when the button is pressed, the buzzer and RGB LED will turn off and a good day message will be displayed on the OLED screen.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/alarm-clock.png"><img alt="../_images/alarm-clock.png" src="../_images/alarm-clock.png" style="width: 500px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/alarm-clock1.png"><img alt="../_images/alarm-clock1.png" src="../_images/alarm-clock1.png" style="width: 520px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">I2C</span><span class="p">,</span> <span class="n">ADC</span><span class="p">,</span> <span class="n">PWM</span><span class="c1">#to access the hardware on the pico</span>
+<span class="kn">from</span> <span class="nn">picobricks</span> <span class="kn">import</span> <span class="n">SSD1306_I2C</span><span class="c1">#OLED Screen Library</span>
+<span class="kn">import</span> <span class="nn">utime</span>
+<span class="kn">from</span> <span class="nn">picobricks</span> <span class="kn">import</span> <span class="n">WS2812</span><span class="c1">#ws8212 library</span>
+
+<span class="c1">#OLED Screen Settings</span>
+<span class="n">WIDTH</span>  <span class="o">=</span> <span class="mi">128</span>
+<span class="n">HEIGHT</span> <span class="o">=</span> <span class="mi">64</span>
+
+<span class="n">sda</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">scl</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1">#initialize digital pin 4 and 5 as an OUTPUT for OLED Communication</span>
+
+<span class="n">i2c</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sda</span><span class="o">=</span><span class="n">sda</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">scl</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="n">neo</span> <span class="o">=</span> <span class="n">WS2812</span><span class="p">(</span><span class="n">pin_num</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">num_leds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">brightness</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="c1">#initialize digital pin 6 as an OUTPUT for NeoPixel</span>
+
+<span class="n">oled</span> <span class="o">=</span> <span class="n">SSD1306_I2C</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">HEIGHT</span><span class="p">,</span> <span class="n">i2c</span><span class="p">)</span>
+<span class="n">ldr</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">27</span><span class="p">))</span><span class="c1">#initialize digital pin 6 as an OUTPUT for NeoPixel</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">PULL_DOWN</span><span class="p">)</span><span class="c1">#initialize digital pin 10 as an INPUT for button</span>
+<span class="n">buzzer</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">))</span><span class="c1">#initialize digital pin 20 as an OUTPUT for buzzer</span>
+<span class="n">buzzer</span><span class="o">.</span><span class="n">freq</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">BLACK</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">WHITE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="c1">#RGB black and white color code</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">neo</span><span class="o">.</span><span class="n">pixels_fill</span><span class="p">(</span><span class="n">BLACK</span><span class="p">)</span>
+<span class="n">neo</span><span class="o">.</span><span class="n">pixels_show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">ldr</span><span class="o">.</span><span class="n">read_u16</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">4000</span><span class="p">:</span>
+<span class="n">wakeup</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+<span class="n">wakeup</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="n">wakeup</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Good night&quot;</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c1">#Show on OLED and print &quot;Good night&quot;</span>
+    <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ldr</span><span class="o">.</span><span class="n">read_u16</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">4000</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Good morning&quot;</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
+            <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="c1">#Print the minutes, seconds, milliseconds and &quot;Goog morning&quot; values ​​to the X and Y coordinates determined on the OLED screen.</span>
+            <span class="n">neo</span><span class="o">.</span><span class="n">pixels_fill</span><span class="p">(</span><span class="n">WHITE</span><span class="p">)</span>
+            <span class="n">neo</span><span class="o">.</span><span class="n">pixels_show</span><span class="p">()</span>
+            <span class="n">buzzer</span><span class="o">.</span><span class="n">duty_u16</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span>
+            <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1">#wait for one second</span>
+            <span class="n">buzzer</span><span class="o">.</span><span class="n">duty_u16</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="c1">#wait for half second</span>
+            <span class="n">wakeup</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">neo</span><span class="o">.</span><span class="n">pixels_fill</span><span class="p">(</span><span class="n">BLACK</span><span class="p">)</span>
+        <span class="n">neo</span><span class="o">.</span><span class="n">pixels_show</span><span class="p">()</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Have a nice day!&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
+<span class="c1">#Print the minutes, seconds, milliseconds and &quot;Have a nice day!&quot; values ​​to the X and Y coordinates determined on the OLED screen.</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">ldr</span><span class="o">.</span><span class="n">read_u16</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">40000</span><span class="p">:</span>
+    <span class="n">wakeup</span><span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#wait for one second</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Ifyou rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#include &lt;Adafruit_NeoPixel.h&gt;
+#ifdef __AVR__
+#include &lt;avr/power.h&gt;
+#endif
+#define PIN        6
+
+#define NUMPIXELS 1
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+#include &lt;Wire.h&gt;
+#include &quot;ACROBOTIC_SSD1306.h&quot;
+int button;
+void setup() {
+// put your setup code here, to run once:
+Wire.begin();
+oled.init();
+oled.clearDisplay();
+
+#if defined(__AVR_ATtiny85__) &amp;&amp; (F_CPU == 16000000)
+clock_prescale_set(clock_div_1);
+#endif
+pinMode(10,INPUT);
+pinMode(27,INPUT);
+pinMode(20,OUTPUT);
+
+pixels.begin();
+pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+pixels.show();
+
+    }
+
+void loop() {
+// put your main code here, to run repeatedly:
+oled.setTextXY(4,3);
+oled.putString(&quot;Good night&quot;);
+
+if (analogRead(27)&lt;200){
+
+  while(!(button == 1)){
+
+    button=digitalRead(10);
+
+    oled.setTextXY(4,2);
+    oled.putString(&quot;Good morning&quot;);
+    pixels.setPixelColor(0, pixels.Color(255, 255, 255));
+    pixels.show();
+    tone(20,494);
+  }
+    oled.clearDisplay();
+    oled.setTextXY(4,1);
+    oled.putString(&quot;Have a nice day&quot;);
+    noTone(20);
+    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+    pixels.show();
+    delay(10000);
+}
+
+
+}
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with MicroBlocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="alarm-clock2" src="../_images/alarm-clock2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Alarm Clock</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="my%20timer.html"
+                          title="capítulo anterior">My Timer</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="know%20your%20color.html"
+                          title="próximo capítulo">Know Your Color</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/alarm clock.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="know%20your%20color.html" title="Know Your Color"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="my%20timer.html" title="My Timer"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Alarm Clock</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

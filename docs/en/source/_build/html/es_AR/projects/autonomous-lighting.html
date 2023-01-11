@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Autonomous Lighting &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Thermometer" href="thermometer.html" />
+    <link rel="prev" title="Action-Reaction" href="action-reaction.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="thermometer.html" title="Thermometer"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="action-reaction.html" title="Action-Reaction"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Autonomous Lighting</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="autonomous-lighting">
+<h1>Autonomous Lighting<a class="headerlink" href="#autonomous-lighting" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In this project, with PicoBricks, we will enable the LED to turn on when the amount of light decreases in order to understand the working systems of the systems where the lighting is turned on automatically when it gets dark.</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>It is called the state of being autonomous when electronic systems make a decision based on the data they collect and perform the given task automatically. The components that enable electronic systems to collect data from their environment are called sensors. Many data such as the level of light in the environment, how many degrees the air temperature is, how many lt/min water flow rate, how loud the sound is, are collected by the sensors and transmitted to PicoBricks as electrical signals, that is data. There are many sensors in Picobricks. Knowing how to get data from sensors and how to interpret and use that data will improve project ideas like reading a book improves vocabulary.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/autonomous-lighting.png"><img alt="../_images/autonomous-lighting.png" src="../_images/autonomous-lighting.png" style="width: 500px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/autonomous-lighting1.png"><img alt="../_images/autonomous-lighting1.png" src="../_images/autonomous-lighting1.png" style="width: 520px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">ADC</span>
+<span class="kn">from</span> <span class="nn">picobricks</span> <span class="kn">import</span>  <span class="n">WS2812</span>
+<span class="c1">#define the library</span>
+
+<span class="n">ldr</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">27</span><span class="p">))</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">WS2812</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">brightness</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="c1">#define the input and output pins</span>
+
+<span class="c1">#define colors</span>
+<span class="n">RED</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">GREEN</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">BLUE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+<span class="n">COLORS</span> <span class="o">=</span> <span class="p">(</span><span class="n">RED</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">)</span>
+<span class="c1">#RGB color Code</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span><span class="c1">#while loop</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">ldr</span><span class="o">.</span><span class="n">read_u16</span><span class="p">())</span> <span class="c1">#print the value of the LDR sensor to the screen.</span>
+
+ <span class="k">if</span><span class="p">(</span><span class="n">ldr</span><span class="o">.</span><span class="n">read_u16</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">10000</span><span class="p">):</span><span class="c1">#let&#39;s check the ldr sensor</span>
+     <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">COLORS</span><span class="p">:</span>
+
+         <span class="c1">#turn on the LDR</span>
+         <span class="n">ws</span><span class="o">.</span><span class="n">pixels_fill</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+         <span class="n">ws</span><span class="o">.</span><span class="n">pixels_show</span><span class="p">()</span>
+
+ <span class="k">else</span><span class="p">:</span>
+     <span class="n">ws</span><span class="o">.</span><span class="n">pixels_fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>  <span class="c1">#turn off the RGB</span>
+     <span class="n">ws</span><span class="o">.</span><span class="n">pixels_show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>If you rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;Adafruit_NeoPixel.h&gt;</span>
+<span class="c1">#define PIN            6</span>
+<span class="c1">#define NUMLEDS        1</span>
+<span class="c1">#define LIGHT_SENSOR_PIN 27</span>
+
+<span class="n">Adafruit_NeoPixel</span> <span class="n">leds</span> <span class="o">=</span> <span class="n">Adafruit_NeoPixel</span><span class="p">(</span><span class="n">NUMLEDS</span><span class="p">,</span> <span class="n">PIN</span><span class="p">,</span> <span class="n">NEO_GRB</span> <span class="o">+</span> <span class="n">NEO_KHZ800</span><span class="p">);</span>
+<span class="o">//</span><span class="n">define</span> <span class="n">the</span> <span class="n">libraries</span>
+
+<span class="nb">int</span> <span class="n">delayval</span> <span class="o">=</span> <span class="mi">250</span><span class="p">;</span> <span class="o">//</span> <span class="n">delay</span> <span class="k">for</span> <span class="n">half</span> <span class="n">a</span> <span class="n">second</span>
+
+   <span class="n">void</span> <span class="n">setup</span><span class="p">()</span>
+   <span class="p">{</span>
+   <span class="n">leds</span><span class="o">.</span><span class="n">begin</span><span class="p">();</span>
+   <span class="p">}</span>
+
+   <span class="n">void</span> <span class="n">loop</span><span class="p">()</span>
+   <span class="p">{</span>
+   <span class="nb">int</span> <span class="n">analogValue</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">LIGHT_SENSOR_PIN</span><span class="p">);</span>
+   <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMLEDS</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+   <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">analogValue</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+       <span class="o">//</span> <span class="n">pixels</span><span class="o">.</span><span class="n">Color</span> <span class="n">takes</span> <span class="n">RGB</span> <span class="n">values</span><span class="p">,</span> <span class="kn">from</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span>
+       <span class="n">leds</span><span class="o">.</span><span class="n">setPixelColor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">leds</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">));</span>
+       <span class="n">leds</span><span class="o">.</span><span class="n">show</span><span class="p">();</span> <span class="o">//</span> <span class="n">This</span> <span class="n">sends</span> <span class="n">the</span> <span class="n">updated</span> <span class="n">pixel</span> <span class="n">color</span> <span class="n">to</span> <span class="n">the</span> <span class="n">hardware</span><span class="o">.</span>
+       <span class="n">delay</span><span class="p">(</span><span class="n">delayval</span><span class="p">);</span>
+   <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">leds</span><span class="o">.</span><span class="n">setPixelColor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">leds</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>  <span class="o">//</span><span class="n">white</span> <span class="n">color</span> <span class="n">code</span><span class="o">.</span>
+      <span class="n">leds</span><span class="o">.</span><span class="n">show</span><span class="p">();</span> <span class="o">//</span> <span class="n">This</span> <span class="n">sends</span> <span class="n">the</span> <span class="n">updated</span> <span class="n">pixel</span> <span class="n">color</span> <span class="n">to</span> <span class="n">the</span> <span class="n">hardware</span><span class="o">.</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+ <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with MicroBlocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="autonomous-lighting2" src="../_images/autonomous-lighting2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Autonomous Lighting</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="action-reaction.html"
+                          title="capítulo anterior">Action-Reaction</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="thermometer.html"
+                          title="próximo capítulo">Thermometer</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/autonomous-lighting.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="thermometer.html" title="Thermometer"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="action-reaction.html" title="Action-Reaction"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Autonomous Lighting</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

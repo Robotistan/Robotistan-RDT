@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Show Your Reaction &#8212; documentación de PicoBricks - 5.3.0-dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="My Timer" href="my%20timer.html" />
+    <link rel="prev" title="Dominate The Rhythm" href="dominate%20the%20rhythm.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="my%20timer.html" title="My Timer"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="dominate%20the%20rhythm.html" title="Dominate The Rhythm"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" accesskey="U">Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Show Your Reaction</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="show-your-reaction">
+<h1>Show Your Reaction<a class="headerlink" href="#show-your-reaction" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>In this project you will learn about the randomness used in every programming language. With Picobricks, we will develop an electronic system using OLED display, Button-LED and Buzzer module. A timer starts running as soon as the Picobricks are turned on. With this timer, we can measure 1 thousandth of a second.</p>
+</section>
+<section id="project-details-and-algorithm">
+<h2>Project Details and Algorithm<a class="headerlink" href="#project-details-and-algorithm" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Now we will prepare a game that develops attention and reflexes. Moving quickly and being able to provide attention for a long time are important developmental characteristics of children. Preschool and primary school children do activities that increase their attention span and reflexes, as they are liked by their parents and teachers. The electronic system we will prepare will be a game that increases attention and develops reflexes. After finishing the project, you can compete with your friends. :)</p>
+<p>Timers are used in many electronic systems in daily life. Timed lighting, ovens, irons, food processors… When our project starts working, we will display a welcome message on the OLED screen. Then we will print on the screen what the user has to do to start the game. In order to start the game, we will ask the player to prepare by counting backwards from 3 on the screen after the button is pressed. After the end of the countdown, the red LED will turn on in a random time between <code class="docutils literal notranslate"><span class="pre">2-10</span> <span class="pre">seconds</span></code>. We will reset the timer immediately after the red LED lights up. We will measure the timer as soon as the button is pressed again. This value we get will be in milliseconds. We will display this value on the screen as the player’s reaction time.</p>
+</section>
+<section id="wiring-diagram">
+<h2>Wiring Diagram<a class="headerlink" href="#wiring-diagram" title="Enlace permanente a este encabezado">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/show-your-reaction.png"><img alt="../_images/show-your-reaction.png" src="../_images/show-your-reaction.png" style="width: 500px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/show-your-reaction1.png"><img alt="../_images/show-your-reaction1.png" src="../_images/show-your-reaction1.png" style="width: 520px;" /></a>
+</figure>
+<p>You can program and run Picobricks modules without any wiring. If you are going to use the modules by separating them from the board, then you should make the module connections with the Grove cables provided.</p>
+</section>
+<section id="micropython-code-of-the-project">
+<h2>MicroPython Code of the Project<a class="headerlink" href="#micropython-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">I2C</span><span class="p">,</span><span class="n">Timer</span>
+<span class="kn">from</span> <span class="nn">picobricks</span> <span class="kn">import</span> <span class="n">SSD1306_I2C</span>
+<span class="kn">import</span> <span class="nn">utime</span>
+<span class="kn">import</span> <span class="nn">urandom</span>
+<span class="c1">#define the library</span>
+<span class="n">WIDTH</span><span class="o">=</span><span class="mi">128</span>
+<span class="n">HEIGHT</span><span class="o">=</span><span class="mi">64</span>
+<span class="c1">#define the width and height values</span>
+<span class="n">sda</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">scl</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">i2c</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sda</span><span class="o">=</span><span class="n">sda</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">scl</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">2000000</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">=</span> <span class="n">SSD1306_I2C</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">HEIGHT</span><span class="p">,</span> <span class="n">i2c</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">PULL_DOWN</span><span class="p">)</span>
+<span class="n">led</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="c1">#define our input and output pins</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+ <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;press the button&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;TO START!&quot;</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ <span class="c1">#print &quot;Press the button&quot; and &quot;TO START!&quot; on the OLED screen</span>
+ <span class="k">while</span> <span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+     <span class="k">pass</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Wait For LED&quot;</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ <span class="c1">#write &quot;wait for LED&quot; on the screen when the button is pressed</span>
+ <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">urandom</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+ <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+ <span class="n">timer_start</span><span class="o">=</span><span class="n">utime</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+ <span class="c1">#wait for a rondom second and turn on the led</span>
+ <span class="k">while</span> <span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+     <span class="k">pass</span>
+ <span class="n">timer_reaction</span><span class="o">=</span><span class="n">utime</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">utime</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">(),</span> <span class="n">timer_start</span><span class="p">)</span>
+ <span class="n">pressed</span><span class="o">=</span><span class="kc">True</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Your Time&quot;</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">timer_reaction</span><span class="p">),</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+ <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+ <span class="c1">#print the score and &quot;Your Time&quot; to the screen when the button is pressed.</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>If you rename your code file to main.py, your code will run after every boot.</p>
+</div>
+</section>
+<section id="arduino-c-code-of-the-project">
+<h2>Arduino C Code of the Project<a class="headerlink" href="#arduino-c-code-of-the-project" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#include &lt;Wire.h&gt;
+#include &quot;ACROBOTIC_SSD1306.h&quot;
+//define the library
+
+int buzzer=20;
+int button=10;
+int led=7;
+int La=440;
+
+int old_time=0;
+int now_time=0;
+int score=0;
+String string_score;
+//define our integer and string veriables
+
+
+void setup() {
+// put your setup code here, to run once:
+Wire.begin();
+oled.init();
+oled.clearDisplay();
+
+pinMode(led,OUTPUT);
+pinMode(buzzer,OUTPUT);
+pinMode(button,INPUT);
+Serial.begin(9600);
+//define the input and output pins
+
+ }
+
+void loop() {
+// put your main code here, to run repeatedly:
+oled.setTextXY(3,0);
+oled.putString(&quot;Press the button&quot;);
+oled.setTextXY(5,4);
+oled.putString(&quot;TO START&quot;);
+
+if(digitalRead(button)==1){
+ for(int i=3; i&gt;0; i--){
+
+   String string_i=String(i);
+   oled.clearDisplay();
+   oled.setTextXY(4,8);
+   oled.putString(string_i);
+   delay(1000);
+
+ }
+ //count backwards from three
+
+ oled.clearDisplay();
+ oled.setTextXY(4,6);
+ oled.putString(&quot;GO!!!&quot;);
+ //print &quot;GO!!&quot; on the OLED at x=4 y=6
+
+ int random_wait= random(1000, 5000);
+ delay(random_wait);
+ //wait for a random second between 1 and 5
+
+ digitalWrite(led, HIGH);
+ old_time=millis();
+ //turn on LED
+ while(!(digitalRead(button)==1)){
+
+   now_time=millis();
+   score=now_time-old_time;
+   string_score= String(score);
+   //save score as string on button press
+
+ }
+ digitalWrite(led, HIGH);
+ tone(buzzer, La);
+ delay(200);
+ noTone(buzzer);
+ //turn on LED and buzzer
+
+ oled.clearDisplay();
+ oled.setTextXY(1,4);
+ oled.putString(&quot;Press the&quot;);
+ //print &quot;Press the&quot; on the OLED at x=1 Y=4
+
+ oled.setTextXY(2,3);
+ oled.putString(&quot;RESET BUTTON&quot;);
+ //print &quot;RESET BUTTON&quot; on the OLED at X=1 Y=4
+
+ oled.setTextXY(3,3);
+ oled.putString(&quot;To Repeat!&quot;);
+ //print &quot;To Repeat!&quot; on the OLED at X=3 Y=3
+
+ oled.setTextXY(6,3);
+ oled.putString(&quot;Score: &quot;);
+ oled.setTextXY(6,9);
+ oled.putString(string_score);
+ oled.setTextXY(6,13);
+ oled.putString(&quot; ms&quot;);
+ Serial.println(score);
+ //print score value to screen
+
+ delay(10000);
+ oled.clearDisplay();
+ //wait ten seconds and clear the screen
+ }
+
+     }
+</pre></div>
+</div>
+</section>
+<section id="coding-the-project-with-microblocks">
+<h2>Coding the Project with MicroBlocks<a class="headerlink" href="#coding-the-project-with-microblocks" title="Enlace permanente a este encabezado">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><img alt="show-your-reaction2" src="../_images/show-your-reaction2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo_picobricks2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Tabla de contenido</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Show Your Reaction</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#project-details-and-algorithm">Project Details and Algorithm</a></li>
+<li><a class="reference internal" href="#wiring-diagram">Wiring Diagram</a></li>
+<li><a class="reference internal" href="#micropython-code-of-the-project">MicroPython Code of the Project</a></li>
+<li><a class="reference internal" href="#arduino-c-code-of-the-project">Arduino C Code of the Project</a></li>
+<li><a class="reference internal" href="#coding-the-project-with-microblocks">Coding the Project with MicroBlocks</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Tema anterior</h4>
+    <p class="topless"><a href="dominate%20the%20rhythm.html"
+                          title="capítulo anterior">Dominate The Rhythm</a></p>
+  </div>
+  <div>
+    <h4>Próximo tema</h4>
+    <p class="topless"><a href="my%20timer.html"
+                          title="próximo capítulo">My Timer</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/projects/show your reaction.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="my%20timer.html" title="My Timer"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="dominate%20the%20rhythm.html" title="Dominate The Rhythm"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">documentación de PicoBricks - 5.3.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="projects.html" >Projects</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Show Your Reaction</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Robotistan.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>
