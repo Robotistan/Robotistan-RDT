@@ -1,3 +1,7 @@
 #sidebar {
   background-color: green;
 }
+
+#sidebar {
+  border: 10px solid gray;
+}
