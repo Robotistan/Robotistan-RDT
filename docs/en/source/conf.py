@@ -97,7 +97,6 @@ html_css_files = ['custom.css',]
 
 exclude_patterns = ['_build', 'html', 'doctrees']
 
-def setup(app):
-    app.add_css_file('custom.css']
+
 # Style
 # pygments_style = "sphinx"
