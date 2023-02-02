@@ -92,12 +92,6 @@ html_static_path = ['_static']
 
 exclude_patterns = ['_build', 'html', 'doctrees']
 
-def setup(app):
-    app.add_css_file('custom.css')
-    
-.wy-side-nav-search, .wy-nav-top {
-    background: #0b750a;
-}
 
 # Style
 # pygments_style = "sphinx"
