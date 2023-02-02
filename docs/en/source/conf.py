@@ -85,6 +85,12 @@ epub_show_urls = 'footnote'
 html_theme = 'default'
 html_logo = '_static/logo_picobricks2.png'
 
+html_theme_options = {
+    "rightsidebar": "true",
+    "relbarbgcolor": "black",
+    "backgroundcolor": "red"
+}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
