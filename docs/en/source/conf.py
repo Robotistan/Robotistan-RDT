@@ -82,7 +82,7 @@ epub_show_urls = 'footnote'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'default'
+html_theme = 'basic'
 html_theme_options = {
     "rightsidebar": "true",
     "relbarbgcolor": "red",
