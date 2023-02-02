@@ -82,13 +82,11 @@ epub_show_urls = 'footnote'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'default'
+html_theme = 'classic'
 html_logo = '_static/logo_picobricks2.png'
 
 html_theme_options = {
-    "rightsidebar": "true",
-    "relbarbgcolor": "black",
-    "backgroundcolor": "red"
+    "sidebarbgcolor": "red"
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
