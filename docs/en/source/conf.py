@@ -85,7 +85,7 @@ epub_show_urls = 'footnote'
 html_theme = 'default'
 html_theme_options = {
     "rightsidebar": "true",
-    "relbarbgcolor": "black"
+    "relbarbgcolor": "red"
 }
 html_logo = '_static/logo_picobricks2.png'
 
