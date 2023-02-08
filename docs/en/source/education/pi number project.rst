@@ -1,14 +1,14 @@
 ###########
-Turtle Project
+Pi Number Project
 ###########
 
 Coding the Project with MicroBlocks
 ------------------------------------
-+--------+
-||turtle||     
-+--------+
++-----------+
+||pi-number||     
++-----------+
 
-.. |turtle| image:: _static/turtle.png
+.. |pi-number| image:: _static/pi-number.png
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
