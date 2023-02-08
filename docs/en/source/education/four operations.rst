@@ -1,14 +1,14 @@
 ###########
-Turtle Project
+Four Operations
 ###########
 
 Coding the Project with MicroBlocks
 ------------------------------------
-+--------+
-||turtle||     
-+--------+
++-----------------+
+||four-operations||     
++-----------------+
 
-.. |turtle| image:: _static/turtle.png
+.. |four-operations| image:: _static/four-operations.png
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
