@@ -1,14 +1,14 @@
 ###########
-Turtle Project
+Square Triangle Octagonal Hexagonal
 ###########
 
 Coding the Project with MicroBlocks
 ------------------------------------
 +--------+
-||turtle||     
+||shapes||     
 +--------+
 
-.. |turtle| image:: _static/turtle.png
+.. |shapes| image:: _static/shapes.png
 
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
