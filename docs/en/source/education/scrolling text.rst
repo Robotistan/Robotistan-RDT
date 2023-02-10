@@ -12,9 +12,8 @@ Coding the Project with MicroBlocks
 .. |scrolling-text1| image:: _static/scrolling-text1.png
 
 
-###########
 Scrolling Text-2
-###########
+==================
 
 Coding the Project with MicroBlocks
 ------------------------------------
