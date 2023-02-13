@@ -3,7 +3,7 @@
 PicoBricks Education
 #########
 
-You can easily access the projects you can find in Picobricks Education Content here. With Picobricks, you can start your coding learning adventure quickly with the projects here and advance yourself.
+You can easily access the projects you can find in PicoBricks Education Content here. With PicoBricks, you can start your coding learning adventure quickly with the projects here and advance yourself.
 
 .. image:: /../_static/education.gif
 
