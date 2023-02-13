@@ -135,7 +135,7 @@ The number 500 in the ``wait 500 millisecs`` block represents milliseconds. You 
 
 
 .. figure:: ../_static/maxresdefault1.jpg
-    :alt: some image
+    :alt: the video of the project
     :target: https://www.youtube.com/watch?v=Hmb4V0TCYb8
     :class: with-shadow
     :scale: 50
