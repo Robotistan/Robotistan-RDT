@@ -133,7 +133,6 @@ The number 500 in the ``wait 500 millisecs`` block represents milliseconds. You 
     :figclass: align-center    
 
 
-..  image:: /Images/maxresdefault1.jpg
 
 .. figure:: ../_static/maxresdefault1.jpg
     :alt: some image
