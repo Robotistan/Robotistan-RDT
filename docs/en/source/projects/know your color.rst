@@ -281,7 +281,7 @@ Coding the Project with MicroBlocks
   
 
  The Video of The Project
-------------------------------------
+---------------------------
 
 .. figure:: ../_static/maxresdefault.jpg
     :alt: the video of the project
