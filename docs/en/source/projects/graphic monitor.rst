@@ -96,5 +96,14 @@ Coding the Project with MicroBlocks
 .. note::
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
   
+  
 
-    
+ The Video of The Project
+------------------------------------
+
+
+.. figure:: ../_static/maxresdefault(1).jpg
+    :alt: the video of the project
+    :target: https://www.youtube.com/watch?v=Oxkp8EBg4K0
+    :class: with-shadow
+    :scale: 50   
