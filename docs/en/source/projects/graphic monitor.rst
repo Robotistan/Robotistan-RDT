@@ -102,7 +102,7 @@ Coding the Project with MicroBlocks
 ------------------------------------
 
 
-.. figure:: ../_static/maxresdefault(1).jpg
+.. figure:: ../_static/maxresdefault2.jpg
     :alt: the video of the project
     :target: https://www.youtube.com/watch?v=Oxkp8EBg4K0
     :class: with-shadow
