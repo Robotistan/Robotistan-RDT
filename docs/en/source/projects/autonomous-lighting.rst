@@ -123,4 +123,13 @@ Coding the Project with MicroBlocks
   To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
   
 
-    
+   
+The Video of The Project
+------------------------------------
+
+
+.. figure:: ../_static/autonomouslighting.png
+    :alt: the video of the project
+    :target: https://youtu.be/ZrCUB26m8Ak
+    :class: with-shadow
+    :scale: 50 
