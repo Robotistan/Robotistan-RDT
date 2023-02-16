@@ -191,3 +191,13 @@ Coding the Project with MicroBlocks
   
 
     
+
+The Video of The Project
+------------------------------------
+
+
+.. figure:: ../_static/alarmclock.png
+    :alt: the video of the project
+    :target: https://www.youtube.com/watch?v=QFx235Ijx5k
+    :class: with-shadow
+    :scale: 50
