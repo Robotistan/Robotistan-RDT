@@ -198,3 +198,13 @@ Coding the Project with MicroBlocks
   
 
     
+
+The Video of The Project
+------------------------------------
+
+
+.. figure:: ../_static/dominatetherhythm.png
+    :alt: the video of the project
+    :target: https://www.youtube.com/watch?v=LPsvPh_-hbY
+    :class: with-shadow
+    :scale: 50
