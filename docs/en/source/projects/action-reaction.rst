@@ -96,7 +96,7 @@ The Video of The Project
 ------------------------------------
 
 
-.. figure:: ../_static/actionreaction2.png
+.. figure:: ../_static/actionreaction2.jpg
     :alt: the video of the project
     :target: https://youtu.be/_iomgZ-P6tU
     :class: with-shadow
