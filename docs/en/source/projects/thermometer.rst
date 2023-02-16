@@ -124,3 +124,12 @@ Coding the Project with MicroBlocks
   
 
     
+The Video of The Project
+------------------------------------
+
+
+.. figure:: ../_static/thermometer3.png
+    :alt: the video of the project
+    :target: https://www.youtube.com/watch?v=7dVtA_J19wc
+    :class: with-shadow
+    :scale: 50
