@@ -244,3 +244,14 @@ Coding the Project with MicroBlocks
   
 
     
+
+
+The Video of The Project
+------------------------------------
+
+
+.. figure:: ../_static/maxresdefault3.jpg
+    :alt: the video of the project
+    :target: https://www.youtube.com/watch?v=2pn-0tZ_USs
+    :class: with-shadow
+    :scale: 50
