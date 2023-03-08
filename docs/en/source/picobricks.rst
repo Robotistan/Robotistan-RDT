@@ -39,6 +39,18 @@ Once you've explored the Pico Bricks modules, you may want to use some of them i
 .. image:: /../_static/detachable.gif
 
 
+The Splitting Video
+------------------------------------
+
+
+.. figure:: ../_static/split.png
+    :alt: the video of the project
+    :target: https://youtu.be/k4_ww3uv2Uc
+    :class: with-shadow
+    :scale: 50
+
+
+
 Detachable Modules Can Be Reassembled
 -----------------------------------------------
 
