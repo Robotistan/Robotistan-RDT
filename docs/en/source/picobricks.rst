@@ -3,7 +3,6 @@ What is PicoBricks?
 
 .. image:: /../_static/wtb.gif
 
-
 PicoBricks
 -----------
 
@@ -41,7 +40,7 @@ Once you've explored the Pico Bricks modules, you may want to use some of them i
 
 The Splitting Video
 ------------------------------------
-
+Click on the image to watch the Splitting Video.
 
 .. figure:: ../_static/split.png
     :alt: the video of the project
