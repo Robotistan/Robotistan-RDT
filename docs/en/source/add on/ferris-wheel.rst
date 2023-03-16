@@ -28,4 +28,77 @@ Wiring Diagram
     :figclass: align-center
     
 
+MicroPython Code of the Project
+--------------------------------
+.. code-block::
+
+#Ferris Wheel
+# You need 3 batteries for this project.
+
+import time
+from machine import PWM, Pin, ADC
+
+pot = ADC(26)
+motor_1 = PWM(Pin(21))
+motor_1.duty_u16(0)
+
+while True:
+    pot_val = pot.read_u16()
+    print(pot_val)
+    time.sleep(0.5)
+    
+    if pot_val > 150:
+        motor_1.duty_u16(pot_val)
+    else:
+        motor_1.duty_u16(0)
+
+.. tip::
+  If you rename your code file to main.py, your code will run after every boot.
+   
+Arduino C Code of the Project
+-------------------------------
+
+
+.. code-block::
+
+/*Ferris Wheel*/
+#define pot 26
+#define motor 21
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(motor, OUTPUT);
+  pinMode(pot, INPUT);
+}
+
+void loop() {
+  int pot_value = analogRead(pot);
+
+  if (pot_value > 150) {
+    analogWrite(motor, pot_value);
+  }
+  else {
+    analogWrite(motor, LOW);
+  }
+Serial.println(pot_value);
+}
+
+
+
+Coding the Project with MicroBlocks
+------------------------------------
++---------------------+
+||ferris-wheel-mb.png||     
++---------------------+
+
+.. |ferris-wheel-mb.png| image:: _static/ferris-wheel-mb.png
+
+
+
+.. note::
+  To code with MicroBlocks, simply drag and drop the image above to the MicroBlocks Run tab.
+  
+
+    
+
 
