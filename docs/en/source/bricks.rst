@@ -55,6 +55,30 @@ Buzzer
 -------------------
 A buzzer or beeper is an signaling device, which produces sound. 
 
+PIR
+-------------------
+PIR (passive infrared) sensors utilise the detection of infrared that is radiated from all objects that emit heat. This type of emission is not visible to the human eye, but sensors that operate using infrared wavelengths can detect such activity.
+
+Soil Moisture Sensor
+---------------------
+Soil moisture sensors measure the water content in the soil and can be used to estimate the amount of stored water in the soil horizon.
+
+Capacitive Soil Moisture Sensor
+--------------------------------
+A capacitive moisture sensor works by measuring capacitance changes caused by the changes in the dielectric. It does not measure soil moisture directly (as pure water does not conduct electricity well),  instead it measures the ions that are dissolved in the moisture.
+
+Gas Sensor
+---------------------
+Gas sensors (also known as gas detectors) are electronic devices that detect and identify different types of gasses. They are commonly used to detect toxic or explosive gasses and measure gas concentration.
+
+Sound Sensor 
+-------------------
+The sound sensor is a module that monitors and detects the sound signals like voice, claps, snaps, knocks, etc. It is also known as an acoustic sensor or sound detector. 
+
+Water Level Sensor
+------------------------
+Water level sensor, is used as a switch to measure the level of liquid in a container. It can control a pump, indicator, alarm or any other device
+
 Protoboard
 -------------------
 A protoboard is usually a construction base for prototyping of electronics. 
