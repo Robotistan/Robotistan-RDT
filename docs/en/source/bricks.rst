@@ -77,7 +77,7 @@ The sound sensor is a module that monitors and detects the sound signals like vo
 
 Water Level Sensor
 ------------------------
-Water level sensor, is used as a switch to measure the level of liquid in a container. It can control a pump, indicator, alarm or any other device
+Water level sensor, is used as a switch to measure the level of liquid in a container. It can control a pump, indicator, alarm or any other device.
 
 Protoboard
 -------------------
