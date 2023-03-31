@@ -57,7 +57,7 @@ A buzzer or beeper is an signaling device, which produces sound.
 
 PIR
 -------------------
-PIR (passive infrared) sensors utilise the detection of infrared that is radiated from all objects that emit heat. This type of emission is not visible to the human eye, but sensors that operate using infrared wavelengths can detect such activity.
+PIR (passive infrared) sensors utilise the detection of infrared that is radiated from all objects that emit heat. This type of emission is not visible to the human eye, but sensors that operate using ``infrared wavelengths`` can detect such activity.
 
 Soil Moisture Sensor
 ---------------------
@@ -69,7 +69,7 @@ A capacitive moisture sensor works by measuring capacitance changes caused by th
 
 Gas Sensor
 ---------------------
-Gas sensors (also known as gas detectors) are electronic devices that detect and identify different types of gasses. They are commonly used to detect toxic or explosive gasses and measure gas concentration.
+Gas sensors (also known as gas detectors) are electronic devices that detect and identify different types of gasses. They are commonly used to detect ``toxic`` or ``explosive`` gasses and measure gas concentration.
 
 Sound Sensor 
 -------------------
