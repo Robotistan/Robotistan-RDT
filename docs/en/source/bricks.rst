@@ -6,7 +6,7 @@ Bricks
 ||bricks||     
 +--------+
 
-.. |bricks| image:: _static/bricks.png
+.. |bricks| image:: _static/docs2.png
 
 Pico Board
 -------------------
