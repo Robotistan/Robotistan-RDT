@@ -170,6 +170,11 @@ MicroPython Code of the Project
         print ('Waiting For connection...')
 
 
+.. tip::
+  If you rename your code file to main.py, your code will run after every boot.
+  
+  
+
 MicroPython Code of Smart Greenhouse with Button Controlling
 --------------------------------
 .. code-block::
@@ -299,22 +304,7 @@ MicroPython Code of Smart Greenhouse with Button Controlling
                 oled.text("SMO:      {0:.2f} V".format(smo.read_u16() * conversion_factor),0,20) # round(pot.read_u16() * conversion_factor, 2)
                 oled.show()
                 time.sleep(0.3)
-            
-        
-        
-
-
-
-            
-        
-        
-
-
-
-.. tip::
-  If you rename your code file to main.py, your code will run after every boot.
-  
-  
+             
    
 Arduino C Code of the Project
 -------------------------------
