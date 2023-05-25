@@ -26,7 +26,6 @@ Here you will find all the relevant information about the project.
    Development Environments <guides/guides>
    Getting Started <started/started>
    Projects <projects/projects>
-   Projectss <projectss/projectss>
    Education <education/education>
    PicoBricks Add-On <addon/addon>
    Bootloader <boatloader/boatloader>
