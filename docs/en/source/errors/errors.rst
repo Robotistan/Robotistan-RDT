@@ -51,13 +51,6 @@ OLED Error with MicroBlocks
     :width: 620
     :figclass: align-center
 
-OLED Error with PicoBricks
-------------------------------------
-
-
-DHT11 Error
--------------------
-    
     
 
  
