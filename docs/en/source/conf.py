@@ -5,16 +5,15 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
-project = 'REX-RDT'
-copyright = '2023, REX-V2'
-author = 'REX'
-release = '2.0'
+project = 'PicoBricks'
+copyright = '2022, Robotistan'
+author = 'Robotistan R&D Team'
+release = '1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = ['sphinx_rtd_theme']
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -25,4 +24,3 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
